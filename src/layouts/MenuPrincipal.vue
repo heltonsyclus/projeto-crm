@@ -62,7 +62,6 @@ export default defineComponent({
   },
   created() {
     let login = JSON.parse(localStorage.getItem("login"));
-
     for (let i = 0; i < login.aplicativos.length; i++) {
       let rotas = login.aplicativos[i].recursos;
       this.liberacaoRotas(rotas);

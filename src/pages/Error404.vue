@@ -12,7 +12,7 @@
         color="white"
         text-color="blue"
         unelevated
-        to="/producao"
+        to="/"
         label="Voltar Syclus 2.0"
         no-caps
       />

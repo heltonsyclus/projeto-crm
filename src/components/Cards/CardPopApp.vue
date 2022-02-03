@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     abrirAplicativos(objAplicativos) {
-      this.$emit("fecharModal", fecharModal);
+      this.$emit("fecharModal");
       this.$router.push(objAplicativos);
     },
     mostrarAplicativos() {
@@ -48,7 +48,7 @@ export default {
           this.Aplicativos.push({
             app: "Produção",
             icon: "precision_manufacturing",
-            rota: "/login-cliente",
+            rota: "/producao",
           });
         } else if (login.aplicativos[i].aplicativo === "Base de conhecimento") {
           this.Aplicativos.push({

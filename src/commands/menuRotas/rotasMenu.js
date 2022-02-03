@@ -1,6 +1,7 @@
 export const rotasMenu = {
   methods: {
     liberacaoRotas(rotas) {
+      console.log(rotas);
       if (rotas.dashboard_area_trabalho) {
         this.linksList.push({
           icon: "dashboard",

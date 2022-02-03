@@ -19,6 +19,28 @@ const routes = [
   },
 
   {
+    path: "/cliente",
+    component: () => import("layouts/MainLayout.vue"),
+    children: [
+      {
+        path: "",
+        name: "cliente",
+        component: () => import("src/pages/DashboardCliente.vue"),
+      },
+    ],
+  },
+  {
+    path: "/colaborador",
+    component: () => import("layouts/MainLayout.vue"),
+    children: [
+      {
+        path: "",
+        name: "colaborador",
+        component: () => import("src/pages/DashboardColaborador.vue"),
+      },
+    ],
+  },
+  {
     path: "/notificacao",
     component: () => import("layouts/MainLayout.vue"),
     children: [
@@ -30,11 +52,33 @@ const routes = [
     ],
   },
   {
+    path: "/bi",
+    component: () => import("layouts/MainLayout.vue"),
+    children: [
+      {
+        path: "",
+        name: "bi",
+        component: () => import("src/pages/DashboardBI.vue"),
+      },
+    ],
+  },
+  {
+    path: "/projetos",
+    component: () => import("layouts/MainLayout.vue"),
+    children: [
+      {
+        path: "",
+        name: "dashboardprojetos",
+        component: () => import("src/pages/DashboardProjeto.vue"),
+      },
+    ],
+  },
+  {
     path: "/producao",
     component: () => import("layouts/MainLayout.vue"),
     children: [
       {
-        path: "/producao",
+        path: "",
         name: "producao",
         component: () => import("src/pages/DashboardProducao.vue"),
       },

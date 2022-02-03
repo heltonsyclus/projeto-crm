@@ -17,12 +17,12 @@ const api = axios.create({
   },
 });
 
-/*const apiServece = axios.create({
+const apiServece = axios.create({
   baseURL: "https://jsonplaceholder.typicode.com/",
-  headers: {
+  /*  headers: {
     Authorization: access_token
-  }
-});*/
+  }*/
+});
 //api.defaults.headers.Authorization = access_token;
 export default boot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
@@ -34,7 +34,7 @@ export default boot(({ app }) => {
   app.config.globalProperties.$api = api;
   // ^ ^ ^ this will allow you to use this.$api (for Vue Options API form)
   //       so you can easily perform requests against your app's API
-  //app.config.globalProperties.$apiServece = apiServece;
+  app.config.globalProperties.$apiServece = apiServece;
 });
 
-export { api };
+export { api, apiServece };

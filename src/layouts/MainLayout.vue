@@ -9,13 +9,11 @@
           style="cursor: pointer"
           @click="$router.push({ name: 'dashboard' })"
         />
-        <q-toolbar-title class="text-weight-bold">
-          <span
-            @click="$router.push({ name: 'dashboard' })"
-            style="cursor: pointer"
-            class="logo-texto"
-            >Syclus 2.0</span
-          >
+        <q-toolbar-title
+          class="text-weight-bold"
+          @click="$router.push({ name: 'dashboard' })"
+        >
+          <span style="cursor: pointer" class="logo-texto">Syclus 2.0</span>
         </q-toolbar-title>
 
         <div class="q-gutter-sm row items-center no-wrap">
@@ -39,14 +37,15 @@
             color="text-grey-7"
             icon="apps"
             class="q-ml-sm"
-            @click="AbrirModalPop()"
+            @click="AbrirModalPop(event)"
           >
             <q-tooltip>Syclus Apps</q-tooltip>
           </q-btn>
           <CardPopApp
             class="tela-popup"
             v-show="ModalpopUp"
-            @fecharModal="ModalpopUp"
+            @mouseover="teste"
+            @fecharModal="fecharModal()"
           />
           <span style="font-weight: 500" class="capitalize text-grey-8">{{
             this.nomeUsuario
@@ -159,6 +158,14 @@ export default defineComponent({
     };
   },
   methods: {
+    teste() {
+      if ((this.ModalpopUp = true)) {
+        console.log("ok");
+      }
+    },
+    fecharModal() {
+      this.ModalpopUp = false;
+    },
     limparToken() {
       window.localStorage.clear();
       // window.location.replace("https://sycluscrm-chi.vercel.app/#/Login");

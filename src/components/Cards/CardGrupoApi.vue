@@ -161,9 +161,9 @@ export default {
     transform: rotate(360deg);
   }
 }
-@media only screen and (max-width: 500px) {
+/*@media only screen and (max-width: 500px) {
   .my-card-syclus {
     min-height: 200px;
   }
-}
+}*/
 </style>

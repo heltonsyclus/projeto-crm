@@ -126,11 +126,11 @@
   </div>
 </template>
 <script>
-import { senhaLogin } from "../commands/layouts/loginColaborador";
-import layoutColaborador from "src/commands/layouts/layoutColaborador";
+import { senhaLogin } from "../commands/layouts/layoutColaborador";
+import { computed } from "vue";
+import { useStore } from "vuex";
 
 export default {
-  mixins: [layoutColaborador],
   name: "Login",
   data() {
     return {
@@ -193,11 +193,18 @@ export default {
       }
     },
   },
-  /*beforeRouteLeave(to, from, next) {
-    alert("hey");
-    this.layoutValidacao();
-    next();
-  },*/
+  setup() {
+    const $store = useStore();
+    const login = computed({
+      get: () => $store.state.showcase.login,
+      set: (val) => {
+        $store.commit("showcase/autenticacaoLogin", val);
+      },
+    });
+    return {
+      login,
+    };
+  },
   created() {
     window.addEventListener("resize", this.handleResize);
     this.handleResize();

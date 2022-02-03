@@ -136,7 +136,7 @@ export default {
 .corpo {
   padding: 0;
   margin: 0px auto;
-  max-height: 200px;
+  height: 23vh;
   overflow: auto;
 }
 .text-class {
@@ -161,9 +161,9 @@ export default {
     transform: rotate(360deg);
   }
 }
-/*@media only screen and (max-width: 1320px) {
+/*@media only screen and (max-width: 500px) {
   .my-card-syclus {
-    width: 350px;
+    min-height: 200px;
   }
 }*/
 </style>

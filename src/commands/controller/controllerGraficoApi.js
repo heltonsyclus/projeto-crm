@@ -207,44 +207,51 @@ export default {
       seriesGraficoPolar: [],
       objGraficoLinhaDoTempo: {
         chart: {
-          height: 350,
+          height: 450,
           type: "rangeBar",
         },
         plotOptions: {
           bar: {
             horizontal: true,
+            barHeight: "80%",
+            /*  distributed: true,
+            dataLabels: {
+              hideOverflowingLabels: false
+            }*/
           },
         },
         xaxis: {
           type: "datetime",
-          //tickInterval: 200
-          //tickPixelInterval: 3600 * 1000
-          //maxZoom: 20 * 1000
-          /*labels: {
-            formatter: function(value, timestamp) {
-              return new Date(timestamp).getHours(); // The formatter function overrides format property
-            }
-          }*/
         },
+        /*--fechar barra lateral esquerdo
+         yaxis: {
+          show: false
+        },*/
+        /*--linha margem 
         stroke: {
-          width: 1,
-        },
+          width: 0
+        },*/
         fill: {
-          type: "gradient",
-          gradient: {
-            shade: "light",
-            type: "vertical",
-            shadeIntensity: 0.25,
-            gradientToColors: undefined,
-            inverseColors: true,
-            opacityFrom: 1,
-            opacityTo: 1,
-            stops: [50, 0, 100, 100],
-          },
+          type: "solid",
+          opacity: 0.7,
         },
         legend: {
           position: "top",
           horizontalAlign: "left",
+        },
+
+        dataLabels: {
+          enabled: true,
+          formatter: function (val) {
+            //var label = opts.w.globals.labels[opts.dataPointIndex];
+            //return label;
+            //var teste = val + opts;
+            //return teste;
+            //var label = opts.w.globals.labels[0];
+            //var a = val[1];
+            var teste = (val[1] - val[0]) / 60 / 1000;
+            return teste;
+          },
         },
       },
       seriesGraficoLinhaDoTempo: [],
@@ -265,6 +272,7 @@ export default {
         }
         this.carregarKnob = true;
         this.$api.post("consultasql", body).then((res) => {
+          //  console.log(">>" + JSON.stringify(res.data));
           let arrRetorno = res.data;
           this.carregarKnob = false;
 
@@ -281,11 +289,11 @@ export default {
 
           //estrutura
           switch (this.sub_tipo) {
-            case "grafico_linha_tempo":
-              this.montarConteudoLinhaTempo(arrRetorno);
-              break;
             case "grafico_barra":
               this.montarConteudoBarra(arrRetorno);
+              break;
+            case "grafico_linha_tempo":
+              this.montarConteudoLinhaTempo(arrRetorno);
               break;
             case "grafico_barra_horizontal":
               this.montarConteudoBarraHorizontal(arrRetorno);
@@ -309,6 +317,7 @@ export default {
               this.montarConteudoGraficoPolar(arrRetorno);
               break;
           }
+
           //final
           setTimeout(() => {
             arrRetorno == "";
@@ -337,6 +346,7 @@ export default {
       this.limparConteudoLinhaTempo();
       //Criando estrutura de categorias e series
       for (let i = 0; i < pConteudo.length; i++) {
+        console.log(pConteudo[i]);
         let xSerie = Object.values(pConteudo[i])[0];
         let xCategoria = Object.values(pConteudo[i])[1];
         let xInicio = Object.values(pConteudo[i])[2];
@@ -357,8 +367,8 @@ export default {
           x: xCategoria,
           y: [new Date(xInicio).getTime(), new Date(xFim).getTime()],
         });
+        console.log(this.seriesGraficoLinhaDoTempo[0].data[i].y);
       }
-      //console.log(">>>>>> " + JSON.stringify(this.seriesGraficoLinhaDoTempo));*/
     },
     montarConteudoBarraHorizontal(pConteudo) {
       this.limparConteudoBarraHorizontal();
@@ -614,7 +624,6 @@ export default {
       this.objGraficoPolar.labels = [];
       this.seriesGraficoPolar = [];
     },
-    medidaCard() {},
     handleResize() {
       if (window.innerWidth >= 500) {
         this.alturaCard = this.height + "vh";
@@ -624,14 +633,14 @@ export default {
       }
       if (window.innerWidth <= 600) {
         this.alturaGrafico = 185;
-      }
-      if (window.innerWidth <= 300) {
-        this.alturaGrafico = 200;
+        let altura = parseInt(this.height);
+        this.alturaCard = this.height * 6 + "px";
+        this.alturaGrafico = altura * 5.1 + "px";
+        this.alturaCorpo = this.height - 6 + "vh";
       }
     },
   },
   created() {
-    this.medidaCard();
     window.addEventListener("resize", this.handleResize);
     this.handleResize();
   },

@@ -41,17 +41,24 @@ import BarraLayout from "src/layouts/BarraLayout.vue";
 import CardNotificacaoApi from "src/components/Cards/CardNotificacaoApi.vue";
 import { defineComponent } from "vue";
 import { ref } from "vue";
-import layoutColaborador from "src/commands/layouts/layoutColaborador";
+import { computed } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   mixins: [layoutColaborador],
   components: { BarraLayout, CardNotificacaoApi },
   name: "bi",
   setup() {
+    const $store = useStore();
+    const login = computed({
+      get: () => $store.state.showcase.login,
+    });
     const fabPos = ref([18, 18]);
     const draggingFab = ref(false);
+    s;
     return {
       fabPos,
+      login,
       draggingFab,
       moveFab(ev) {
         draggingFab.value = ev.isFirst !== true && ev.isFinal !== true;
