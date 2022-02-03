@@ -180,7 +180,7 @@ export default {
       }
     },
     confirmacaoLogin() {
-      this.$router.push({ name: "producao" });
+      this.$router.push({ name: "dashboard" });
     },
 
     handleResize() {
