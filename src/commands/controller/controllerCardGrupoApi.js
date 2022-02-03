@@ -118,8 +118,8 @@ export default {
         this.alturaCorpo = this.height - 7.8 + "vh";
       }
       if (window.innerWidth <= 500) {
-        this.alturaCard = this.height * 6 + "px";
-        this.alturaCorpo = this.height - 4.3 + "vh";
+        this.alturaCard = this.height + "vh";
+        this.alturaCorpo = this.height * 5 + "px";
       }
     },
   },
