@@ -1,4 +1,4 @@
-# Quasar App (syclus-producao)
+# Quasar App (syclus-crm)
 
 A Quasar Framework app
 
