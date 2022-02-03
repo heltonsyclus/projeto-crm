@@ -128,7 +128,6 @@ export default {
       return this.ObjConteudo.grupos;
     },
   },
-
   watch: {
     msg: {
       handler: function (newValue, oldValue) {
