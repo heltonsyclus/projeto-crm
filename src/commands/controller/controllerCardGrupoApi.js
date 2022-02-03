@@ -112,9 +112,17 @@ export default {
       //this.abrirGrupo(pIndex);
       this.atualizarConteudoItens(pIndex);
     },
-    medidaCard() {
-      this.alturaCard = this.height + "vh";
-      this.alturaCorpo = this.height - 7.8 + "vh";
+    medidaCard() {},
+    handleResize() {
+      if (window.innerWidth >= 500) {
+        this.alturaCard = this.height + "vh";
+        this.alturaCorpo = this.height - 7.8 + "vh";
+      }
+      if (window.innerWidth <= 500) {
+        this.alturaCard = this.height * 6 + "px";
+        console.log(this.alturaCorpo);
+        this.alturaCorpo = this.height - 3 + "vh";
+      }
     },
   },
   computed: {
@@ -122,6 +130,7 @@ export default {
       return this.ObjConteudo.grupos;
     },
   },
+
   watch: {
     msg: {
       handler: function (newValue, oldValue) {
@@ -138,5 +147,7 @@ export default {
   },
   created() {
     this.medidaCard();
+    window.addEventListener("resize", this.handleResize);
+    this.handleResize();
   },
 };
