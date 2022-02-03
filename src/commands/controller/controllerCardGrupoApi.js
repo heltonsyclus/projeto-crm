@@ -119,7 +119,7 @@ export default {
       }
       if (window.innerWidth <= 500) {
         this.alturaCard = this.height * 6 + "px";
-        this.alturaCorpo = this.height - 3 + "vh";
+        this.alturaCorpo = this.height - 4.2 + "vh";
       }
     },
   },
