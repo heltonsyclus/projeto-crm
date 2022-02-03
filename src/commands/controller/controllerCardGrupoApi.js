@@ -112,7 +112,6 @@ export default {
       //this.abrirGrupo(pIndex);
       this.atualizarConteudoItens(pIndex);
     },
-    medidaCard() {},
     handleResize() {
       if (window.innerWidth >= 500) {
         this.alturaCard = this.height + "vh";
@@ -120,7 +119,6 @@ export default {
       }
       if (window.innerWidth <= 500) {
         this.alturaCard = this.height * 6 + "px";
-        console.log(this.alturaCorpo);
         this.alturaCorpo = this.height - 3 + "vh";
       }
     },
@@ -146,7 +144,6 @@ export default {
     },
   },
   created() {
-    this.medidaCard();
     window.addEventListener("resize", this.handleResize);
     this.handleResize();
   },
