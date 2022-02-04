@@ -2,7 +2,7 @@
   <q-card class="card-popup">
     <div style="margin-top: 10px">
       <div class="flex">
-        <div
+        <a
           class="fundo-card"
           v-for="(objAplicativos, i) in Aplicativos"
           :key="i"
@@ -16,7 +16,7 @@
             />
             <p>{{ objAplicativos.app }}</p>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </q-card>
@@ -32,7 +32,7 @@ export default {
   methods: {
     abrirAplicativos(objAplicativos) {
       this.$emit("fecharModal");
-      this.$router.push(objAplicativos);
+      window.open(objAplicativos, "_blank");
     },
     mostrarAplicativos() {
       let login = JSON.parse(localStorage.getItem("login"));
@@ -42,7 +42,7 @@ export default {
           this.Aplicativos.push({
             app: "CRM",
             icon: "maps_home_work",
-            rota: "/",
+            rota: "https://syclus-crm.vercel.app/",
           });
         } else if (login.aplicativos[i].aplicativo === "Produção") {
           this.Aplicativos.push({
@@ -65,8 +65,8 @@ export default {
         } else if (login.aplicativos[i].aplicativo === "BI") {
           this.Aplicativos.push({
             app: "BI",
-            icon: "point_of_sale",
-            rota: "/login-cliente",
+            icon: "leaderboard",
+            rota: "https://syclus-bi.vercel.app/",
           });
         }
       }

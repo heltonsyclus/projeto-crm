@@ -618,6 +618,45 @@ export function senhaLogin() {
               },
             },
           },
+          {
+            id_aplicativo: 1,
+            aplicativo: "BI",
+            base_url_api: "https://api.syclus.com.br",
+            recursos: {
+              dashboard_area_trabalho: {
+                id_layout_dashboard: 1,
+                dashboard_complementar: [],
+              },
+              dashboard_bi: [
+                {
+                  grupo: "Desenvolvimento",
+                  icone: "code",
+                  layout_dashboard: [
+                    {
+                      icone: "code",
+                      id_layout_dashboard: 12,
+                      dashboard: "Padrão",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
+              ],
+              dashboard_notificacao: {
+                layout_dashboard: [
+                  {
+                    id_layout_dashboard: 10,
+                    dashboard: "Periodo",
+                    dashboard_complementar: [],
+                  },
+                  {
+                    id_layout_dashboard: 11,
+                    dashboard: "Tipo",
+                    dashboard_complementar: [],
+                  },
+                ],
+              },
+            },
+          },
         ],
         rotas: "colaborador",
         img: require("../../assets/helton.png"),
