@@ -136,7 +136,6 @@ export default {
 .corpo {
   padding: 0;
   margin: 0px auto;
-  height: 23vh;
   overflow: auto;
 }
 .text-class {
