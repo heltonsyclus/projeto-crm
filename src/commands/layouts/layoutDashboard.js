@@ -2107,7 +2107,7 @@ function layoutDashBoard5() {
         icone: "signal_cellular_alt",
         cards: [
           {
-            card: "Ocorrências no Mês",
+            card: "Ocorrências (Mês Atual)",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGraficoApi",
             sub_tipo: "grafico_comparativo_barra",
