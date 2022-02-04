@@ -566,7 +566,7 @@ export function senhaLogin() {
       },
       {
         usuario: "helton",
-        senha: "7",
+        senha: "0",
         id_colaborador: 47,
         id_aplicativo_inicial: 0,
         aplicativos: [
