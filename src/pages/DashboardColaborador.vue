@@ -279,7 +279,7 @@ export default defineComponent({
     },
     PermissaoDadosColaborador(pIdColaborador) {
       let permissao = false;
-      let login = JSON.parse(localStorage.getItem("login"));
+      let login = JSON.parse(sessionStorage.getItem("login"));
       permissao =
         login.aplicativos[0].recursos.dashboard_colaborador
           .permissao_colaborador[0] === "*";
@@ -342,7 +342,7 @@ export default defineComponent({
     },
   },
   beforeRouteEnter(to, from, next) {
-    let login = JSON.parse(localStorage.getItem("login"));
+    let login = JSON.parse(sessionStorage.getItem("login"));
     const permissao = login.aplicativos[0].recursos.dashboard_colaborador;
     if (!permissao) {
       alert("Você não possui autorização!");
@@ -363,7 +363,7 @@ export default defineComponent({
     };
   },
   created() {
-    let login = JSON.parse(localStorage.getItem("login"));
+    let login = JSON.parse(sessionStorage.getItem("login"));
     this.ObjDashboard = GeLayoutDashBoard(
       login.aplicativos[0].recursos.dashboard_colaborador.id_layout_dashboard
     );

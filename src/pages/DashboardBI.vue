@@ -191,7 +191,7 @@ export default defineComponent({
       this.popUp = false;
       let grupoBi = j;
       let dashboardBi = i;
-      let login = JSON.parse(localStorage.getItem("login"));
+      let login = JSON.parse(sessionStorage.getItem("login"));
       let recursosBi = login.aplicativos[0].recursos.dashboard_bi;
       this.IndexGrupoAtual = 0;
       console.log(
@@ -279,7 +279,7 @@ export default defineComponent({
     },
   },
   beforeRouteEnter(to, from, next) {
-    let login = JSON.parse(localStorage.getItem("login"));
+    let login = JSON.parse(sessionStorage.getItem("login"));
     const permissao = login.aplicativos[0].recursos.dashboard_bi;
     if (!permissao) {
       next("");
@@ -287,7 +287,7 @@ export default defineComponent({
     next();
   },
   created() {
-    let login = JSON.parse(localStorage.getItem("login"));
+    let login = JSON.parse(sessionStorage.getItem("login"));
     let recursosBi = login.aplicativos[0].recursos.dashboard_bi;
     this.dashboardBInome =
       recursosBi[0].grupo + " / " + recursosBi[0].layout_dashboard[0].dashboard;

@@ -335,7 +335,7 @@ export default defineComponent({
     },
   },
   beforeRouteEnter(to, from, next) {
-    let login = JSON.parse(localStorage.getItem("login"));
+    let login = JSON.parse(sessionStorage.getItem("login"));
     const permissao = login.aplicativos[0].recursos.dashboard_projeto;
     if (!permissao) {
       next("");
@@ -354,7 +354,7 @@ export default defineComponent({
     };
   },
   created() {
-    let login = JSON.parse(localStorage.getItem("login"));
+    let login = JSON.parse(sessionStorage.getItem("login"));
     this.ObjDashboard = GeLayoutDashBoard(
       login.aplicativos[0].recursos.dashboard_projeto.id_layout_dashboard
     );

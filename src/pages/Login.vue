@@ -151,7 +151,7 @@ export default {
           objSenhaLogin.login[i].senha === password
         ) {
           this.login = objSenhaLogin.login[i];
-          localStorage.setItem("login", JSON.stringify(this.login));
+          sessionStorage.setItem("login", JSON.stringify(this.login));
           if (this.login) {
             let appInicial = this.login.id_aplicativo_inicial;
             this.confirmacaoLogin(appInicial);

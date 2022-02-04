@@ -192,7 +192,7 @@ export default {
     },
   },
   created() {
-    let login = JSON.parse(localStorage.getItem("login"));
+    let login = JSON.parse(sessionStorage.getItem("login"));
     this.nomeUsuario = login.usuario;
   },
 };

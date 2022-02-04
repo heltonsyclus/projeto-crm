@@ -167,7 +167,7 @@ export default defineComponent({
       this.ModalpopUp = false;
     },
     limparToken() {
-      window.localStorage.clear();
+      window.sessionStorage.clear();
       // window.location.replace("https://sycluscrm-chi.vercel.app/#/Login");
       this.login = [];
     },
@@ -188,7 +188,7 @@ export default defineComponent({
     },
   },
   created() {
-    let login = JSON.parse(localStorage.getItem("login"));
+    let login = JSON.parse(sessionStorage.getItem("login"));
     for (let i = 0; i < login.aplicativos.length; i++) {
       let rotas = login.aplicativos[i].recursos;
       this.liberacaoRotas(rotas);

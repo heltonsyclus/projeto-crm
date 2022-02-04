@@ -35,7 +35,7 @@ export default route(function (/* { store, ssrContext } */) {
     ),
   });
   Router.beforeEach((to, from, next) => {
-    let login = JSON.parse(localStorage.getItem("login"));
+    let login = JSON.parse(sessionStorage.getItem("login"));
     if (to.fullPath !== "/login" && login === null) {
       next({ name: "login" });
     }

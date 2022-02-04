@@ -35,7 +35,7 @@ export default {
       window.open(objAplicativos, "_blank");
     },
     mostrarAplicativos() {
-      let login = JSON.parse(localStorage.getItem("login"));
+      let login = JSON.parse(sessionStorage.getItem("login"));
       for (let i = 0; i < login.aplicativos.length; i++) {
         login.aplicativos[i].aplicativo;
         if (login.aplicativos[i].aplicativo === "CRM") {
