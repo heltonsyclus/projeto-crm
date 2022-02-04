@@ -239,18 +239,14 @@ export default {
           position: "top",
           horizontalAlign: "left",
         },
-
         dataLabels: {
           enabled: true,
           formatter: function (val) {
             //var label = opts.w.globals.labels[opts.dataPointIndex];
             //return label;
-            //var teste = val + opts;
-            //return teste;
             //var label = opts.w.globals.labels[0];
-            //var a = val[1];
-            var teste = (val[1] - val[0]) / 60 / 1000;
-            return teste;
+            var ocorrenciaValor = (val[1] - val[0]) / 60 / 1000 + " MN";
+            return ocorrenciaValor;
           },
         },
       },

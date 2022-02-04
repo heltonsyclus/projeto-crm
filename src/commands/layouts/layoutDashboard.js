@@ -3989,7 +3989,7 @@ function layoutDashBoard13() {
             sub_tipo: "grafico_comparativo_barra",
             coluna_serie: 2,
             coluna_categoria: 1,
-            width: "94vw",
+            width: "96vw",
             height: "80",
             conteudo_card: {
               body: "bodyAtividadePorWorkflowStatus",
@@ -4004,7 +4004,7 @@ function layoutDashBoard13() {
             sub_tipo: "grafico_comparativo_barra",
             coluna_serie: 2,
             coluna_categoria: 1,
-            width: "94vw",
+            width: "96vw",
             height: "80",
             conteudo_card: {
               body: "bodyAtividadePorDataStatus",
@@ -4019,7 +4019,7 @@ function layoutDashBoard13() {
             sub_tipo: "grafico_comparativo_barra",
             coluna_serie: 2,
             coluna_categoria: 1,
-            width: "94vw",
+            width: "96vw",
             height: "80",
             conteudo_card: {
               body: "bodyOcorrenciaPorWorkflowData",
@@ -4061,7 +4061,7 @@ function layoutDashBoard13() {
             sub_tipo: "grafico_linha_tempo",
             coluna_serie: 2,
             coluna_categoria: 1,
-            width: "94vw",
+            width: "95vw",
             height: "80",
             conteudo_card: {
               body: "bodyOcorrenciaColaboradorWorkflowPeriodo",
@@ -6564,7 +6564,7 @@ function layoutDashBoard22() {
             sub_tipo: "grafico_linha_tempo",
             coluna_serie: 2,
             coluna_categoria: 1,
-            width: "94vw",
+            width: "95vw",
             height: "80",
             conteudo_card: {
               body: "bodyOcorrenciaColaboradorTipoAtividadePeriodo",

@@ -49,7 +49,10 @@ import {
   bodyOcorrenciaPorData,
   bodyOcorrenciaPorMesAno,
   bodyOcorrenciaPorSemana,
+  bodyOcorrenciaPorWorkflowData,
   bodyOcorrenciaColaboradorTipoAtividadePeriodo,
+  bodyOcorrenciaColaboradorWorkflowPeriodo,
+  bodyOcorrenciaTipoAtividadeDataPeriodo,
   bodyProjeto,
   bodyProjetoPorTipoProjeto,
   bodyProjetoPorResponsavel,
@@ -262,8 +265,17 @@ export default {
       if (pNomeBody === "bodyOcorrenciaPorSemana") {
         return bodyOcorrenciaPorSemana(filtros);
       }
+      if (pNomeBody === "bodyOcorrenciaPorWorkflowData") {
+        return bodyOcorrenciaPorWorkflowData(filtros);
+      }
       if (pNomeBody === "bodyOcorrenciaColaboradorTipoAtividadePeriodo") {
         return bodyOcorrenciaColaboradorTipoAtividadePeriodo(filtros);
+      }
+      if (pNomeBody === "bodyOcorrenciaColaboradorWorkflowPeriodo") {
+        return bodyOcorrenciaColaboradorWorkflowPeriodo(filtros);
+      }
+      if (pNomeBody === "bodyOcorrenciaTipoAtividadeDataPeriodo") {
+        return bodyOcorrenciaTipoAtividadeDataPeriodo(filtros);
       }
 
       if (pNomeBody === "bodyProjeto") {

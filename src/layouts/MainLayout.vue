@@ -160,7 +160,7 @@ export default defineComponent({
   methods: {
     teste() {
       if ((this.ModalpopUp = true)) {
-        console.log("ok");
+        // console.log("ok");
       }
     },
     fecharModal() {
