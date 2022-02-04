@@ -153,7 +153,8 @@ export default {
           this.login = objSenhaLogin.login[i];
           localStorage.setItem("login", JSON.stringify(this.login));
           if (this.login) {
-            this.confirmacaoLogin();
+            let appInicial = this.login.id_aplicativo_inicial;
+            this.confirmacaoLogin(appInicial);
             this.$q.notify({
               color: "green-7",
               textColor: "white",
@@ -179,9 +180,14 @@ export default {
         }
       }
     },
-    confirmacaoLogin() {
-      console.log(this.login);
-      this.$router.push({ name: "dashboard" });
+    confirmacaoLogin(appInicial) {
+      console.log(appInicial);
+      if (appInicial === 0) {
+        this.$router.push({ name: "dashboard" });
+      }
+      if (appInicial === 1) {
+        this.$router.push({ name: "producao" });
+      }
     },
 
     handleResize() {

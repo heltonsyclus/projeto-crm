@@ -1303,6 +1303,7 @@ export function senhaLogin() {
         usuario: "techplast",
         senha: "0",
         id_colaborador: 54,
+        id_aplicativo_inicial: 1,
         aplicativos: [
           {
             id_aplicativo: 1,
