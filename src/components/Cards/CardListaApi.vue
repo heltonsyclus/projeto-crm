@@ -54,7 +54,6 @@
             <a @click.prevent="abrirItem(indexitem)" class="cursor">
               {{ itens.descricao }}
             </a>
-
             <p class="text-blue-grey-7" style="font-size: 12.5px">
               <q-icon name="av_timer" />
               {{ this.formataCaptionItem(itens.qtde, itens.duracao) }}
