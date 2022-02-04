@@ -2105,7 +2105,23 @@ function layoutDashBoard5() {
         id_grupo: 1,
         grupo: "Geral",
         icone: "signal_cellular_alt",
-        cards: [],
+        cards: [
+          {
+            card: "Ocorrências no Mês",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "96vw",
+            height: "80",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorWorkflowData",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
+        ],
       },
     ],
   };
