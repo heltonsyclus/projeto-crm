@@ -438,7 +438,7 @@ export default defineComponent({
     },
   },
   beforeRouteEnter(to, from, next) {
-    let login = JSON.parse(sessionStorage.getItem("login"));
+    let login = JSON.parse(localStorage.getItem("login"));
     const permissao = login.aplicativos[0].recursos.dashboard_cliente;
     if (!permissao) {
       alert("Você não possue autorização!");
@@ -459,7 +459,7 @@ export default defineComponent({
     };
   },
   created() {
-    let login = JSON.parse(sessionStorage.getItem("login"));
+    let login = JSON.parse(localStorage.getItem("login"));
     this.ObjDashboard = GeLayoutDashBoard(
       login.aplicativos[0].recursos.dashboard_cliente.id_layout_dashboard
     );

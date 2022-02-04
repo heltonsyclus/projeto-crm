@@ -82,7 +82,7 @@ export default defineComponent({
   },
   methods: {
     OnClickSelect(selectIndex) {
-      let login = JSON.parse(sessionStorage.getItem("login"));
+      let login = JSON.parse(localStorage.getItem("login"));
       let recursos = login.recursos.dashboard_notificacao.layout_dashboard;
 
       this.CarregarDashboard(
@@ -138,7 +138,7 @@ export default defineComponent({
     },
   },
   beforeRouteEnter(to, from, next) {
-    let login = JSON.parse(sessionStorage.getItem("login"));
+    let login = JSON.parse(localStorage.getItem("login"));
     const permissao = login.recursos.dashboard_notificacao;
     if (!permissao) {
       alert("Você não possue autorização!");
@@ -147,7 +147,7 @@ export default defineComponent({
     next();
   },
   created() {
-    let login = JSON.parse(sessionStorage.getItem("login"));
+    let login = JSON.parse(localStorage.getItem("login"));
     let recursos = login.recursos.dashboard_notificacao.layout_dashboard;
     for (let i = 0; i < recursos.length; i++) {
       this.dashboardsColaboradorAtivo.push(recursos[i].dashboard);
