@@ -102,6 +102,23 @@ export function senhaLogin() {
               },
               dashboard_bi: [
                 {
+                  grupo: "Área Técnica",
+                  layout_dashboard: [
+                    {
+                      id_layout_dashboard: 4,
+                      dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 18,
+                      dashboard: "Formação",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
+                {
                   grupo: "Projetos",
                   icone: "code",
                   layout_dashboard: [
@@ -153,6 +170,23 @@ export function senhaLogin() {
               },
               dashboard_bi: [
                 {
+                  grupo: "Área Técnica",
+                  layout_dashboard: [
+                    {
+                      id_layout_dashboard: 4,
+                      dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 18,
+                      dashboard: "Formação",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
+                {
                   grupo: "Desenvolvimento",
                   icone: "code",
                   layout_dashboard: [
@@ -191,6 +225,23 @@ export function senhaLogin() {
                 dashboard_complementar: [],
               },
               dashboard_bi: [
+                {
+                  grupo: "Área Técnica",
+                  layout_dashboard: [
+                    {
+                      id_layout_dashboard: 4,
+                      dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 18,
+                      dashboard: "Formação",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
                 {
                   grupo: "Desenvolvimento",
                   icone: "code",
@@ -392,6 +443,23 @@ export function senhaLogin() {
               },
               dashboard_bi: [
                 {
+                  grupo: "Área Técnica",
+                  layout_dashboard: [
+                    {
+                      id_layout_dashboard: 4,
+                      dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 18,
+                      dashboard: "Formação",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
+                {
                   grupo: "Desenvolvimento",
                   icone: "code",
                   layout_dashboard: [
@@ -566,7 +634,7 @@ export function senhaLogin() {
       },
       {
         usuario: "helton",
-        senha: "8",
+        senha: "7",
         id_colaborador: 47,
         id_aplicativo_inicial: 0,
         aplicativos: [
@@ -587,45 +655,6 @@ export function senhaLogin() {
                 id_layout_dashboard: 3,
                 dashboard_complementar: [],
                 permissao_colaborador: ["*"],
-              },
-              dashboard_bi: [
-                {
-                  grupo: "Desenvolvimento",
-                  icone: "code",
-                  layout_dashboard: [
-                    {
-                      icone: "code",
-                      id_layout_dashboard: 12,
-                      dashboard: "Padrão",
-                      dashboard_complementar: [],
-                    },
-                  ],
-                },
-              ],
-              dashboard_notificacao: {
-                layout_dashboard: [
-                  {
-                    id_layout_dashboard: 10,
-                    dashboard: "Periodo",
-                    dashboard_complementar: [],
-                  },
-                  {
-                    id_layout_dashboard: 11,
-                    dashboard: "Tipo",
-                    dashboard_complementar: [],
-                  },
-                ],
-              },
-            },
-          },
-          {
-            id_aplicativo: 1,
-            aplicativo: "BI",
-            base_url_api: "https://api.syclus.com.br",
-            recursos: {
-              dashboard_area_trabalho: {
-                id_layout_dashboard: 1,
-                dashboard_complementar: [],
               },
               dashboard_bi: [
                 {
@@ -851,6 +880,23 @@ export function senhaLogin() {
                 dashboard_complementar: [],
               },
               dashboard_bi: [
+                {
+                  grupo: "Área Técnica",
+                  layout_dashboard: [
+                    {
+                      id_layout_dashboard: 4,
+                      dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 18,
+                      dashboard: "Formação",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
                 {
                   grupo: "Desenvolvimento",
                   icone: "code",
@@ -1160,6 +1206,23 @@ export function senhaLogin() {
               },
               dashboard_bi: [
                 {
+                  grupo: "Área Técnica",
+                  layout_dashboard: [
+                    {
+                      id_layout_dashboard: 4,
+                      dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 18,
+                      dashboard: "Formação",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
+                {
                   grupo: "Desenvolvimento",
                   icone: "code",
                   layout_dashboard: [
@@ -1200,6 +1263,23 @@ export function senhaLogin() {
               },
               dashboard_bi: [
                 {
+                  grupo: "Área Técnica",
+                  layout_dashboard: [
+                    {
+                      id_layout_dashboard: 4,
+                      dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 18,
+                      dashboard: "Formação",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
+                {
                   grupo: "Desenvolvimento",
                   icone: "code",
                   layout_dashboard: [
@@ -1239,6 +1319,23 @@ export function senhaLogin() {
                 dashboard_complementar: [],
               },
               dashboard_bi: [
+                {
+                  grupo: "Área Técnica",
+                  layout_dashboard: [
+                    {
+                      id_layout_dashboard: 4,
+                      dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 18,
+                      dashboard: "Formação",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
                 {
                   grupo: "Contas",
                   icone: "work",

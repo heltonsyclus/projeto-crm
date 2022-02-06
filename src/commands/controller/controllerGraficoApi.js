@@ -347,7 +347,6 @@ export default {
         let xCategoria = Object.values(pConteudo[i])[1];
         let xInicio = Object.values(pConteudo[i])[2];
         let xFim = Object.values(pConteudo[i])[3];
-
         let idxSerie = this.seriesGraficoLinhaDoTempo.findIndex(
           (item) => item.name === xSerie
         );
