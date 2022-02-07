@@ -114,7 +114,7 @@ function layoutDashBoard1() {
             },
           },
           {
-            card: "Atividade",
+            card: "Atividades Previstas",
             btn_comando: "btn-atualizar",
             tipo_card: "CardListaApi",
             width: "31vw",
@@ -188,10 +188,9 @@ function layoutDashBoard1() {
           },
           {
             card: "Notificações",
-            ordem: 2,
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
-            width: "94.6vw",
+            width: "62.7vw",
             height: "40",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
@@ -201,6 +200,19 @@ function layoutDashBoard1() {
               body_item: "bodyNotificacaoPorAtividade",
               filtro_sql_item:
                 "where n.ds_status = 'P' and n.cd_colaborador = <id_principal> and a.cd_tipo_atividade = <id_grupo>",
+            },
+          },
+          {
+            card: "Atividades Efetivas",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardListaApi",
+            width: "31vw",
+            height: "40",
+            link: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorAtividade",
+              filtro_sql:
+                "where o.ds_status in ('A', 'F') and cast(o.dt_ocorrencia as date) = (current_date) and o.cd_colaborador = <id_principal>",
             },
           },
         ],
@@ -520,7 +532,7 @@ function layoutDashBoard1() {
             conteudo_card: {
               body: "bodyOcorrenciaColaboradorTipoAtividadePeriodo",
               filtro_sql:
-                "where o.ds_status = 'F' and extract(minute from o.duracao) > 0 and cast(o.dt_ocorrencia as date) = current_date and o.cd_colaborador = <id_principal>",
+                "where o.ds_status in ('A', 'F') and extract(minute from o.duracao) > 0 and cast(o.dt_ocorrencia as date) = current_date and o.cd_colaborador = <id_principal>",
             },
           },
         ],
