@@ -115,7 +115,7 @@ export default {
     handleResize() {
       if (window.innerWidth >= 500) {
         this.alturaCard = this.height + "vh";
-        this.alturaCorpo = this.height - 7.8 + "vh";
+        this.alturaCorpo = this.height - 7.9 + "vh";
       }
       if (window.innerWidth <= 500) {
         this.alturaCard = this.height + "vh";
