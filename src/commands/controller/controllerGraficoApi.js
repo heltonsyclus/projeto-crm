@@ -243,19 +243,15 @@ export default {
           bar: {
             horizontal: true,
             barHeight: "80%",
-            //   rangeBarGroupRows: true,
-            /*  distributed: true,
-            dataLabels: {
-              hideOverflowingLabels: false
-            }*/
+            //medida da barra
           },
         },
         xaxis: {
           type: "datetime",
         },
-
         yaxis: {
           show: true,
+          //nome vertical na lateral
         },
         /*--linha margem 
         stroke: {

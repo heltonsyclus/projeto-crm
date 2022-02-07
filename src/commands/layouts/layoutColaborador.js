@@ -686,6 +686,37 @@ export function senhaLogin() {
               },
             },
           },
+
+          {
+            id_aplicativo: 2,
+            aplicativo: "BI",
+            base_url_api: "https://api.syclus.com.br",
+            recursos: {
+              dashboard_area_trabalho: {
+                id_layout_dashboard: 1,
+                dashboard_complementar: [],
+              },
+              dashboard_bi: [
+                {
+                  grupo: "Área Técnica",
+                  layout_dashboard: [
+                    {
+                      id_layout_dashboard: 4,
+                      dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 18,
+                      dashboard: "Formação",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
+              ],
+            },
+          },
         ],
         rotas: "colaborador",
         img: require("../../assets/helton.png"),
