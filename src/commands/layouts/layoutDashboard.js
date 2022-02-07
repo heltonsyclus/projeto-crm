@@ -1179,8 +1179,8 @@ function layoutDashBoard3() {
             sub_tipo: "grafico_linha_tempo",
             coluna_serie: 2,
             coluna_categoria: 1,
-            width: "72vw",
-            height: "80",
+            width: "70vw",
+            height: "70",
             conteudo_card: {
               body: "bodyOcorrenciaColaboradorTipoAtividadePeriodo",
               filtro_sql:

@@ -181,12 +181,11 @@ export default {
       }
     },
     confirmacaoLogin(appInicial) {
-      console.log(appInicial);
       if (appInicial === 0) {
         this.$router.push({ name: "dashboard" });
       }
       if (appInicial === 1) {
-        this.$router.push({ name: "producao" });
+        this.$router.push({ name: "bi" });
       }
     },
 
