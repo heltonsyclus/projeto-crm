@@ -210,10 +210,40 @@ export default {
           height: 450,
           type: "rangeBar",
         },
+        tooltip: {
+          custom: function (opts) {
+            const valorY1horas = new Date(opts.y1).getHours();
+            const valorY1minutos = new Date(opts.y1).getMinutes();
+            const valorY2horas = new Date(opts.y2).getHours();
+            const valorY2minutos = new Date(opts.y2).getMinutes();
+            const inicial =
+              valorY1horas + 3 + ":" + String(valorY1minutos).padStart(2, "0");
+            const final =
+              valorY2horas + 3 + ":" + String(valorY2minutos).padStart(2, "0");
+            const values = opts.ctx.rangeBar.getTooltipValues(opts);
+            return (
+              '<div class="apexcharts-tooltip-rangebar">' +
+              '<div> <span class="series-name" style="color: ' +
+              values.color +
+              '">' +
+              (values.seriesName ? values.seriesName : "") +
+              "</span></div>" +
+              '<div> <span class="category">' +
+              values.ylabel +
+              ' </span> <span class="value start-value">' +
+              inicial +
+              '</span> <span class="separator">-</span> <span class="value end-value">' +
+              final +
+              "</span></div>" +
+              "</div>"
+            );
+          },
+        },
         plotOptions: {
           bar: {
             horizontal: true,
             barHeight: "80%",
+            //   rangeBarGroupRows: true,
             /*  distributed: true,
             dataLabels: {
               hideOverflowingLabels: false
@@ -223,10 +253,10 @@ export default {
         xaxis: {
           type: "datetime",
         },
-        /*--fechar barra lateral esquerdo
-         yaxis: {
-          show: false
-        },*/
+
+        yaxis: {
+          show: false,
+        },
         /*--linha margem 
         stroke: {
           width: 0
