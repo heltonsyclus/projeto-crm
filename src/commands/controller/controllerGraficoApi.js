@@ -255,7 +255,7 @@ export default {
         },
 
         yaxis: {
-          show: false,
+          show: true,
         },
         /*--linha margem 
         stroke: {
