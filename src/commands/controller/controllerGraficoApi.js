@@ -268,9 +268,6 @@ export default {
         dataLabels: {
           enabled: true,
           formatter: function (val) {
-            //var label = opts.w.globals.labels[opts.dataPointIndex];
-            //return label;
-            //var label = opts.w.globals.labels[0];
             var ocorrenciaValor = (val[1] - val[0]) / 60 / 1000 + " MN";
             return ocorrenciaValor;
           },
@@ -368,11 +365,11 @@ export default {
       this.limparConteudoLinhaTempo();
       //Criando estrutura de categorias e series
       for (let i = 0; i < pConteudo.length; i++) {
-        console.log(pConteudo[i]);
         let xSerie = Object.values(pConteudo[i])[0];
         let xCategoria = Object.values(pConteudo[i])[1];
         let xInicio = Object.values(pConteudo[i])[2];
         let xFim = Object.values(pConteudo[i])[3];
+        // let xObservacao = Object.values(pConteudo[i])[4];
         let idxSerie = this.seriesGraficoLinhaDoTempo.findIndex(
           (item) => item.name === xSerie
         );
@@ -383,12 +380,10 @@ export default {
               data: [],
             }) - 1;
         }
-
         this.seriesGraficoLinhaDoTempo[idxSerie].data.push({
           x: xCategoria,
           y: [new Date(xInicio).getTime(), new Date(xFim).getTime()],
         });
-        console.log(this.seriesGraficoLinhaDoTempo[0].data[i].y);
       }
     },
     montarConteudoBarraHorizontal(pConteudo) {
