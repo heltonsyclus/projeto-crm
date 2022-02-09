@@ -121,11 +121,26 @@
         ></apexchart>
       </div>
       <div v-if="sub_tipo === 'grafico_linha_tempo'" style="margin-top: 5px">
-        {{ this.descricao }}
         <apexchart
           :height="alturaGrafico"
           :options="objGraficoLinhaDoTempo"
           :series="JSON.parse(JSON.stringify(seriesGraficoLinhaDoTempo))"
+        ></apexchart>
+      </div>
+      <div v-if="sub_tipo === 'grafico_radial'">
+        <apexchart
+          type="radialBar"
+          :height="alturaGrafico"
+          :options="objGraficoRadial"
+          :series="seriesGraficoRadial"
+        ></apexchart>
+      </div>
+      <div v-if="sub_tipo === 'grafico_sparkline'">
+        <apexchart
+          type="area"
+          :height="alturaGrafico"
+          :options="objGraficoSpark"
+          :series="serieGraficoSpark"
         ></apexchart>
       </div>
     </q-card-section>

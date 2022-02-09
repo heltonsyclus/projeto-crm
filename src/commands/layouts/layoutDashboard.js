@@ -98,6 +98,21 @@ function layoutDashBoard1() {
         grupo: "Meu Dia",
         icone: "assignment_turned_in",
         cards: [
+          /*{
+            card: "grafico radial",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_radial",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorData",
+              filtro_sql:
+                "where o.ds_status in ('A', 'F') and cast(o.dt_ocorrencia as date) = (current_date) and o.cd_colaborador = <id_principal>",
+            },
+          },*/
           {
             card: "Planejamento",
             btn_comando: "btn-atualizar",

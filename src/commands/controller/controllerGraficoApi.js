@@ -274,6 +274,55 @@ export default {
         },
       },
       seriesGraficoLinhaDoTempo: [],
+      objGraficoRadial: {
+        plotOptions: {
+          radialBar: {
+            hollow: {
+              size: "70%",
+            },
+          },
+        },
+        labels: [],
+      },
+      seriesGraficoRadial: [],
+      objGraficoSpark: {
+        chart: {
+          type: "area",
+          height: 160,
+          sparkline: {
+            enabled: true,
+          },
+        },
+        stroke: {
+          curve: "straight",
+        },
+        fill: {
+          opacity: 0.3,
+        },
+        yaxis: {
+          min: 0,
+        },
+        colors: ["#DCE6EC"],
+        title: {
+          text: "$424,652",
+          offsetX: 0,
+          style: {
+            fontSize: "24px",
+          },
+        },
+        subtitle: {
+          text: "Sales",
+          offsetX: 0,
+          style: {
+            fontSize: "14px",
+          },
+        },
+      },
+      serieGraficoSpark: [
+        /* {
+          data: randomizeArray(sparklineData),
+        },*/
+      ],
     };
   },
   methods: {
@@ -335,6 +384,12 @@ export default {
             case "grafico_polar":
               this.montarConteudoGraficoPolar(arrRetorno);
               break;
+            case "grafico_radial":
+              this.montarConteudoGraficoRadial(arrRetorno);
+              break;
+            case "grafico_sparkline":
+              this.montarConteudoSpark(arrRetorno);
+              break;
           }
 
           //final
@@ -349,6 +404,17 @@ export default {
           }
         });
       }
+    },
+    montarConteudoSpark(pConteudo) {
+      // this.limparConteudoSpark();
+      /* for (let i = 0; i < pConteudo.length; i++) {
+        this.objGraficoSpark.xaxis.categories.push(
+          Object.values(pConteudo[i])[1]
+        );*/
+      this.serieGraficoSpark.push({
+        data: randomizeArray(sparklineData),
+      });
+      /* }*/
     },
     montarConteudoBarra(pConteudo) {
       this.limparConteudoBarra();
@@ -589,6 +655,13 @@ export default {
         );
       }
     },
+    montarConteudoGraficoRadial(pConteudo) {
+      this.limparConteudoRadial();
+      for (let i = 0; i < pConteudo.length; i++) {
+        this.objGraficoRadial.labels.push(Object.values(pConteudo[i])[1]);
+        this.seriesGraficoRadial.push(Object.values(pConteudo[i])[2]);
+      }
+    },
     limparConteudoBarra() {
       this.objGraficoBarra = {
         xaxis: {
@@ -601,6 +674,12 @@ export default {
           data: [],
         },
       ];
+    },
+    limparConteudoRadial() {
+      (this.objGraficoRadial = {
+        labels: [],
+      }),
+        (this.seriesGraficoRadial = []);
     },
     limparConteudoPizza() {
       (this.seriesGraficoPizza = []),
