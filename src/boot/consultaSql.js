@@ -403,6 +403,18 @@ export function bodyOcorrenciaPorSemana(pFiltros) {
   return body;
 }
 
+//---------------------- ocorrencia cliente ----------------------//
+export function bodyOcorrenciaCliente(pFiltros) {
+  let instrucao_sql = `select a.cd_atividade "id_atividade", a.ds_atividade "atividade", a.qt_colaborador_ativo "qtde", sum(DATEDIFF(MINUTE, o.dt_ocorrencia, current_timestamp)) "duracao" from atividade_ocorrencia o inner join atividade a on a.cd_empresa = o.cd_empresa and a.cd_atividade = o.cd_atividade inner join atividade_cliente ac on ac.cd_empresa = o.cd_empresa and ac.cd_atividade = o.cd_atividade <filtros> group by a.cd_atividade, a.ds_atividade, a.qt_colaborador_ativo order by a.ds_atividade`;
+  let body = montaBody(instrucao_sql, pFiltros);
+  return body;
+}
+export function bodyOcorrenciaClientePorData(pFiltros) {
+  let instrucao_sql = `select datediff(day, cast('01/01/1970' as date), o.dt_ocorrencia) "id_sequencial", lpad(extract(day from o.dt_ocorrencia), 2, '0')||'/'||lpad(extract(month from o.dt_ocorrencia), 2, '0')||'/'||extract(year from o.dt_ocorrencia) "data_ocorrencia", count(o.cd_ocorrencia) "qtde", sum(DATEDIFF(MINUTE, CAST('01/01/1970 00:00:00' AS TIMESTAMP), O.DURACAO)) "duracao" from atividade_ocorrencia o inner join atividade a on a.cd_empresa = o.cd_empresa and a.cd_atividade = o.cd_atividade inner join atividade_cliente ac on ac.cd_empresa = o.cd_empresa and ac.cd_atividade = o.cd_atividade <filtros> group by datediff(day, cast('01/01/1970' as date), o.dt_ocorrencia), lpad(extract(day from o.dt_ocorrencia), 2, '0')||'/'||lpad(extract(month from o.dt_ocorrencia), 2, '0')||'/'||extract(year from o.dt_ocorrencia) order by 1 desc`;
+  let body = montaBody(instrucao_sql, pFiltros);
+  return body;
+}
+
 //---------------------- ocorrencia comparativo ----------------------//
 export function bodyOcorrenciaPorWorkflowData(pFiltros) {
   let instrucao_sql = `select lpad(extract(day from o.dt_ocorrencia), 2, '0')||'/'||lpad(extract(month from o.dt_ocorrencia), 2, '0')||'/'||extract(year from o.dt_ocorrencia) "data_ocorrencia", wf.ds_workflow "workflow", sum(DATEDIFF(MINUTE, CAST('01/01/1970 00:00:00' AS TIMESTAMP), O.DURACAO)) "duracao" from atividade_ocorrencia o inner join atividade a on a.cd_empresa = o.cd_empresa and a.cd_atividade = o.cd_atividade inner join workflow wf on wf.cd_workflow = a.cd_workflow <filtros> group by lpad(extract(day from o.dt_ocorrencia), 2, '0')||'/'||lpad(extract(month from o.dt_ocorrencia), 2, '0')||'/'||extract(year from o.dt_ocorrencia), wf.ds_workflow order by 1, 2`;

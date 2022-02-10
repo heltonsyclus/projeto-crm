@@ -253,7 +253,7 @@ export default {
           show: true,
           //nome vertical na lateral
         },
-        /*--linha margem 
+        /*--linha margem
         stroke: {
           width: 0
         },*/
@@ -658,8 +658,13 @@ export default {
     montarConteudoGraficoRadial(pConteudo) {
       this.limparConteudoRadial();
       for (let i = 0; i < pConteudo.length; i++) {
-        this.objGraficoRadial.labels.push(Object.values(pConteudo[i])[1]);
-        this.seriesGraficoRadial.push(Object.values(pConteudo[i])[2]);
+        //        this.objGraficoRadial.labels.push(Object.values(pConteudo[i])[1]);
+        //        this.seriesGraficoRadial.push(Object.values(pConteudo[i])[2]);
+        let limite = 480;
+        let total = Object.values(pConteudo[i])[this.index_coluna_totalizadora];
+        let perc = Math.round((total / limite) * 100, 0);
+        this.objGraficoRadial.labels.push(total);
+        this.seriesGraficoRadial.push(perc);
       }
     },
     limparConteudoBarra() {

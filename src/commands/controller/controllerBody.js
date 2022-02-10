@@ -49,6 +49,8 @@ import {
   bodyOcorrenciaPorData,
   bodyOcorrenciaPorMesAno,
   bodyOcorrenciaPorSemana,
+  bodyOcorrenciaCliente,
+  bodyOcorrenciaClientePorData,
   bodyOcorrenciaPorWorkflowData,
   bodyOcorrenciaColaboradorTipoAtividadePeriodo,
   bodyOcorrenciaColaboradorWorkflowPeriodo,
@@ -59,6 +61,7 @@ import {
   bodyProjetoPorSituacao,
   bodyProjetoPorCliente,
   bodyProjetoPorTag,
+  bodyProjetoPorMesAno,
   bodyProjetoColaborador,
   bodyProjetoColaboradorPorTipoProjeto,
   bodyProjetoColaboradorPorSituacao,
@@ -265,6 +268,13 @@ export default {
       if (pNomeBody === "bodyOcorrenciaPorSemana") {
         return bodyOcorrenciaPorSemana(filtros);
       }
+      if (pNomeBody === "bodyOcorrenciaCliente") {
+        return bodyOcorrenciaCliente(filtros);
+      }
+      if (pNomeBody === "bodyOcorrenciaClientePorData") {
+        return bodyOcorrenciaClientePorData(filtros);
+      }
+
       if (pNomeBody === "bodyOcorrenciaPorWorkflowData") {
         return bodyOcorrenciaPorWorkflowData(filtros);
       }
@@ -295,6 +305,9 @@ export default {
       }
       if (pNomeBody === "bodyProjetoPorTag") {
         return bodyProjetoPorTag(filtros);
+      }
+      if (pNomeBody === "bodyProjetoPorMesAno") {
+        return bodyProjetoPorMesAno(filtros);
       }
 
       if (pNomeBody === "bodyProjetoColaborador") {

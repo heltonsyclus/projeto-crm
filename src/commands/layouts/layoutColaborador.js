@@ -613,6 +613,23 @@ export function senhaLogin() {
                   ],
                 },
                 {
+                  grupo: "Área Técnica",
+                  layout_dashboard: [
+                    {
+                      id_layout_dashboard: 4,
+                      dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 18,
+                      dashboard: "Formação",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
+                {
                   grupo: "Desenvolvimento",
                   icone: "code",
                   layout_dashboard: [
@@ -880,6 +897,23 @@ export function senhaLogin() {
                       icone: "paid",
                       id_layout_dashboard: 14,
                       dashboard: "Cobrança",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
+                {
+                  grupo: "Área Técnica",
+                  layout_dashboard: [
+                    {
+                      id_layout_dashboard: 4,
+                      dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 18,
+                      dashboard: "Formação",
+                      icone: "construction",
                       dashboard_complementar: [],
                     },
                   ],
@@ -1158,11 +1192,29 @@ export function senhaLogin() {
               },
               dashboard_bi: [
                 {
+                  grupo: "Comercial",
+                  icone: "work",
+                  layout_dashboard: [
+                    {
+                      icone: "work",
+                      id_layout_dashboard: 15,
+                      dashboard: "Padrão",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
+                {
                   grupo: "Área Técnica",
                   layout_dashboard: [
                     {
                       id_layout_dashboard: 4,
                       dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 18,
+                      dashboard: "Formação",
                       icone: "construction",
                       dashboard_complementar: [],
                     },
@@ -1175,18 +1227,6 @@ export function senhaLogin() {
                     {
                       id_layout_dashboard: 12,
                       icone: "code",
-                      dashboard: "Padrão",
-                      dashboard_complementar: [],
-                    },
-                  ],
-                },
-                {
-                  grupo: "Comercial",
-                  icone: "work",
-                  layout_dashboard: [
-                    {
-                      icone: "work",
-                      id_layout_dashboard: 15,
                       dashboard: "Padrão",
                       dashboard_complementar: [],
                     },
