@@ -286,7 +286,7 @@ function layoutDashBoard1() {
             tipo_card: "CardGrupoApi",
             width: "31vw",
             height: "40",
-            link: "https://crm.syclus.com.br/atividades/<id_item>",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
               body_grupo: "bodyAtividadePorCliente",
               filtro_sql_grupo:
@@ -297,7 +297,7 @@ function layoutDashBoard1() {
             },
           },
           {
-            card: "Worflow",
+            card: "Workflow",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
             width: "31vw",
@@ -1252,6 +1252,35 @@ function layoutDashBoard3() {
               body: "bodyOcorrenciaColaboradorTipoAtividadePeriodo",
               filtro_sql:
                 "where o.ds_status = 'F' and extract(minute from o.duracao) > 0 and cast(o.dt_ocorrencia as date) = current_date and o.cd_colaborador = <id_principal>",
+            },
+          },
+          {
+            card: "Tempo Efetivo",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_radial",
+            coluna_totalizadora: 4,
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "23vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorData",
+              filtro_sql:
+                "where o.ds_status in ('A', 'F') and cast(o.dt_ocorrencia as date) = (current_date) and o.cd_colaborador = <id_principal>",
+            },
+          },
+          {
+            card: "Interações",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardListaApi",
+            width: "46.5vw",
+            height: "40",
+            link: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorAtividade",
+              filtro_sql:
+                "where o.ds_status in ('A', 'F') and o.cd_tipo_ocorrencia = 1 and cast(o.dt_ocorrencia as date) = (current_date) and o.cd_colaborador = <id_principal>",
             },
           },
         ],
@@ -4624,7 +4653,7 @@ function layoutDashBoard15() {
             conteudo_card: {
               body: "bodyAtividade",
               filtro_sql:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade = 1 and a.cd_situacao = 4 and a.dt_previsao = current_date",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade = 1 and a.cd_situacao = 4 and cast(a.dt_previsao as date) = current_date",
             },
           },
           {
@@ -4727,7 +4756,7 @@ function layoutDashBoard15() {
             conteudo_card: {
               body: "bodyAtividade",
               filtro_sql:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade = 1 and a.cd_situacao = 19 and a.dt_previsao = current_date",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade = 1 and a.cd_situacao = 19 and and cast(a.dt_previsao as date) = current_date",
             },
           },
           {
@@ -4830,7 +4859,7 @@ function layoutDashBoard15() {
             conteudo_card: {
               body: "bodyAtividade",
               filtro_sql:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade = 1 and a.cd_situacao = 20 and a.dt_previsao = current_date",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade = 1 and a.cd_situacao = 20 and cast(a.dt_previsao as date) = current_date",
             },
           },
           {
@@ -4933,7 +4962,7 @@ function layoutDashBoard15() {
             conteudo_card: {
               body: "bodyAtividade",
               filtro_sql:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade = 1 and a.cd_situacao = 22 and a.dt_previsao = current_date",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade = 1 and a.cd_situacao = 22 and cast(a.dt_previsao as date) = current_date",
             },
           },
           {
@@ -5036,7 +5065,7 @@ function layoutDashBoard15() {
             conteudo_card: {
               body: "bodyAtividade",
               filtro_sql:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade = 1 and a.cd_situacao = 82 and a.dt_previsao = current_date",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade = 1 and a.cd_situacao = 82 and cast(a.dt_previsao as date) = current_date",
             },
           },
           {
