@@ -489,7 +489,7 @@ function layoutDashBoard1() {
             },
           },
           {
-            card: "Qualidade (Mês Atual)",
+            card: "Qualidade (90 dias)",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGraficoApi",
             sub_tipo: "grafico_pizza",
@@ -498,7 +498,8 @@ function layoutDashBoard1() {
             conteudo_card: {
               body: "bodyAtividadePorTag",
               filtro_sql:
-                "where a.ds_status = 'F' and ag.cd_tag in (140, 141) and (extract(month from a.dt_previsao) = extract(month from current_date)) and (extract(year from a.dt_previsao) = extract(year from current_date)) and a.cd_responsavel = <id_principal>",
+                "where a.ds_status = 'F' and ag.cd_tag in (140, 141) and cast(a.dt_previsao as date) >= (current_date - 90) and a.cd_responsavel = <id_principal>",
+              //"where a.ds_status = 'F' and ag.cd_tag in (140, 141) and (extract(month from a.dt_previsao) = extract(month from current_date)) and (extract(year from a.dt_previsao) = extract(year from current_date)) and a.cd_responsavel = <id_principal>",
             },
           },
           {
@@ -1648,11 +1649,11 @@ function layoutDashBoard4() {
         ],
       },
       {
-        grupo: "Areas",
+        grupo: "Áreas",
         icone: "assignment_turned_in",
         cards: [
           {
-            card: "Atividades Previstas",
+            card: "Previstas (Hoje)",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGraficoApi",
             sub_tipo: "grafico_barra_horizontal",
@@ -1661,7 +1662,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividadePorWorkflow",
               filtro_sql:
-                "where a.ds_status in ('P', 'F') and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
             },
           },
           {
@@ -1692,23 +1693,20 @@ function layoutDashBoard4() {
             },
           },
           {
-            card: "Atividades Pendentes",
+            card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardGrupoApi",
+            tipo_card: "CardListaApi",
             width: "31vw",
             height: "40",
-            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            link: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
-              body_grupo: "bodyAtividadePorWorkflow",
-              filtro_sql_grupo:
-                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-              body_item: "bodyAtividade",
-              filtro_sql_item:
-                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = <id_grupo>",
+              body: "bodyAtividade",
+              filtro_sql:
+                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and coalesce(a.qt_colaborador_ativo, 0) = 0",
             },
           },
           {
-            card: "Atividades Criadas",
+            card: "Criadas",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGraficoApi",
             sub_tipo: "grafico_comparativo_barra",
@@ -1736,14 +1734,46 @@ function layoutDashBoard4() {
                 "where o.ds_status <> 'C' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and o.cd_tipo_ocorrencia = 1",
             },
           },
+          {
+            card: "Atrasadas",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorData",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
+            },
+          },
+          {
+            card: "Futuras",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorData",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
+            },
+          },
         ],
       },
       {
-        grupo: "Area 1",
+        grupo: "Área 1",
         icone: "assignment_turned_in",
         cards: [
           {
-            card: "Atividades Previstas",
+            card: "Previstas (Hoje)",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGraficoApi",
             sub_tipo: "grafico_barra_horizontal",
@@ -1752,7 +1782,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividadePorResponsavel",
               filtro_sql:
-                "where a.ds_status in ('P', 'F') and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 35",
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
             },
           },
           {
@@ -1783,7 +1813,7 @@ function layoutDashBoard4() {
             },
           },
           {
-            card: "Atividades Pendentes",
+            card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
             width: "31vw",
@@ -1792,10 +1822,10 @@ function layoutDashBoard4() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorResponsavel",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 35",
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and coalesce(a.qt_colaborador_ativo, 0) = 0",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 35 and a.cd_responsavel = <id_grupo>",
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and coalesce(a.qt_colaborador_ativo, 0) = 0 and a.cd_responsavel = <id_grupo>",
             },
           },
           {
@@ -1808,10 +1838,10 @@ function layoutDashBoard4() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorPrioridade",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 35",
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 35 and a.cd_prioridade = <id_grupo>",
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_prioridade = <id_grupo>",
             },
           },
           {
@@ -1844,20 +1874,20 @@ function layoutDashBoard4() {
         ],
       },
       {
-        grupo: "Area 2",
+        grupo: "Área 2",
         icone: "assignment_turned_in",
         cards: [
           {
-            card: "Atividades Previstas",
+            card: "Previstas (Hoje)",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_barra",
+            sub_tipo: "grafico_barra_horizontal",
             width: "31vw",
             height: "40",
             conteudo_card: {
               body: "bodyAtividadePorResponsavel",
               filtro_sql:
-                "where a.ds_status in ('P', 'F') and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 36",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 36",
             },
           },
           {
@@ -1888,7 +1918,7 @@ function layoutDashBoard4() {
             },
           },
           {
-            card: "Atividades Pendentes",
+            card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
             width: "31vw",
@@ -1897,10 +1927,10 @@ function layoutDashBoard4() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorResponsavel",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 36",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 36 and coalesce(a.qt_colaborador_ativo, 0) = 0",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 36 and a.cd_responsavel = <id_grupo>",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 36 and coalesce(a.qt_colaborador_ativo, 0) = 0 and a.cd_responsavel = <id_grupo>",
             },
           },
           {
@@ -1949,20 +1979,20 @@ function layoutDashBoard4() {
         ],
       },
       {
-        grupo: "Area 3",
+        grupo: "Área 3",
         icone: "assignment_turned_in",
         cards: [
           {
-            card: "Atividades Previstas",
+            card: "Previstas (Hoje)",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_barra",
+            sub_tipo: "grafico_barra_horizontal",
             width: "31vw",
             height: "40",
             conteudo_card: {
               body: "bodyAtividadePorResponsavel",
               filtro_sql:
-                "where a.ds_status in ('P', 'F') and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 37",
+                "where a.ds_status= 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 37",
             },
           },
           {
@@ -1993,7 +2023,7 @@ function layoutDashBoard4() {
             },
           },
           {
-            card: "Atividades Pendentes",
+            card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
             width: "31vw",
@@ -2002,10 +2032,10 @@ function layoutDashBoard4() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorResponsavel",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 37",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 37 and coalesce(a.qt_colaborador_ativo, 0) = 0",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 37 and a.cd_responsavel = <id_grupo>",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 37 and coalesce(a.qt_colaborador_ativo, 0) = 0 and a.cd_responsavel = <id_grupo>",
             },
           },
           {
@@ -2054,20 +2084,20 @@ function layoutDashBoard4() {
         ],
       },
       {
-        grupo: "Area 4",
+        grupo: "Área 4",
         icone: "assignment_turned_in",
         cards: [
           {
-            card: "Atividades Previstas",
+            card: "Previstas (Hoje)",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_barra",
+            sub_tipo: "grafico_barra_horizontal",
             width: "31vw",
             height: "40",
             conteudo_card: {
               body: "bodyAtividadePorResponsavel",
               filtro_sql:
-                "where a.ds_status in ('P', 'F') and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 38",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 38",
             },
           },
           {
@@ -2098,7 +2128,7 @@ function layoutDashBoard4() {
             },
           },
           {
-            card: "Atividades Pendentes",
+            card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
             width: "31vw",
@@ -2107,10 +2137,10 @@ function layoutDashBoard4() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorResponsavel",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 38",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 38 and coalesce(a.qt_colaborador_ativo, 0) = 0",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 38 and a.cd_responsavel = <id_grupo>",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 38 and coalesce(a.qt_colaborador_ativo, 0) = 0 and a.cd_responsavel = <id_grupo>",
             },
           },
           {
@@ -2159,20 +2189,20 @@ function layoutDashBoard4() {
         ],
       },
       {
-        grupo: "Area 5",
+        grupo: "Área 5",
         icone: "assignment_turned_in",
         cards: [
           {
-            card: "Atividades Previstas",
+            card: "Previstas (Hoje)",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_barra",
+            sub_tipo: "grafico_barra_horizontal",
             width: "31vw",
             height: "40",
             conteudo_card: {
               body: "bodyAtividadePorResponsavel",
               filtro_sql:
-                "where a.ds_status in ('P', 'F') and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 39",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 39",
             },
           },
           {
@@ -2203,7 +2233,7 @@ function layoutDashBoard4() {
             },
           },
           {
-            card: "Atividades Pendentes",
+            card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
             width: "31vw",
@@ -2212,10 +2242,10 @@ function layoutDashBoard4() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorResponsavel",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 39",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 39 and coalesce(a.qt_colaborador_ativo, 0) = 0",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 39 and a.cd_responsavel = <id_grupo>",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 39 and coalesce(a.qt_colaborador_ativo, 0) = 0 and a.cd_responsavel = <id_grupo>",
             },
           },
           {
