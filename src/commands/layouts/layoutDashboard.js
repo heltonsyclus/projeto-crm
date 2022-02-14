@@ -1169,68 +1169,37 @@ function layoutDashBoard3() {
         cards_opcionais: [],
       },
       {
-        grupo: "Gráficos",
-        icone: "assignment_turned_in",
-        cards: [
-          {
-            id_card: 1,
-            card: "Atividades por semana",
-            ordem: 1,
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_barra",
-            width: "70vw",
-            height: "40",
-            conteudo_card: {
-              body: "bodyOcorrenciaPorTipoAtividade",
-              filtro_sql:
-                "where o.ds_status in ('A', 'F') and (extract(week from o.dt_ocorrencia) = extract(week from current_date)) and (extract(weekday from o.dt_ocorrencia) > 0) and o.cd_colaborador = <id_principal>",
-            },
-          },
-          {
-            card: "Atividade atrasadas",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_pizza",
-            width: "70vw",
-            height: "40",
-            conteudo_card: {
-              body: "bodyAtividadePorTipoAtividade",
-              filtro_sql:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_responsavel = <id_principal>",
-            },
-          },
-        ],
-        cards_opcionais: [],
-      },
-      {
         grupo: "Estatísticas",
         icone: "assignment_turned_in",
         cards: [
           {
-            card: "Workflow",
+            card: "Efetivo por Tipo de Atividade",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaApi",
-            width: "35vw",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "70vw",
             height: "40",
-            link: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
-              body: "bodyAtividadePorWorkflow",
+              body: "bodyOcorrenciaPorTipoAtividadeData",
               filtro_sql:
-                "where a.ds_status = 'P' and a.cd_responsavel = <id_principal>",
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from o.dt_ocorrencia) = extract(year from current_date)) and o.cd_colaborador = <id_principal>",
             },
           },
           {
-            card: "últimas atividades(30 dias)",
+            card: "Efetivo por Workflow",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaApi",
-            width: "35vw",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "70vw",
             height: "40",
-            link: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
-              body: "bodyOcorrenciaPorTipoAtividade",
+              body: "bodyOcorrenciaPorWorkflowData",
               filtro_sql:
-                "where o.ds_status in ('A', 'F') and (extract(week from o.dt_ocorrencia) = extract(week from current_date)) and (extract(year from o.dt_ocorrencia) = extract(year from current_date)) and o.cd_colaborador = <id_principal>",
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from o.dt_ocorrencia) = extract(year from current_date)) and o.cd_colaborador = <id_principal>",
             },
           },
         ],
@@ -2293,24 +2262,12 @@ function layoutDashBoard4() {
           },
         ],
       },
-    ],
-  };
-
-  return json;
-}
-//bi - diretoria
-function layoutDashBoard5() {
-  const json = {
-    id_dashboard: 5,
-    dashboard: "layout dashboard 5",
-    grupos: [
       {
-        id_grupo: 1,
-        grupo: "Geral",
-        icone: "signal_cellular_alt",
+        grupo: "Estatísticas",
+        icone: "assignment_turned_in",
         cards: [
           {
-            card: "Ocorrências (Mês Atual)",
+            card: "Área Técnica por Workflow",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGraficoApi",
             sub_tipo: "grafico_comparativo_barra",
@@ -2324,7 +2281,187 @@ function layoutDashBoard5() {
                 "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
             },
           },
+          {
+            card: "Área 1",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "95vw",
+            height: "80",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaboradorData",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 35 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
+          {
+            card: "Área 2",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "95vw",
+            height: "80",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaboradorData",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 36 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
+          {
+            card: "Área 3",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "95vw",
+            height: "80",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaboradorData",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 37 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
+          {
+            card: "Área 4",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "95vw",
+            height: "80",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaboradorData",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 38 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
+          {
+            card: "Área 5",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "95vw",
+            height: "80",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaboradorData",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 39 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
+          {
+            card: "Área Técnica por Workflow",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_pizza",
+            coluna_totalizadora: 4,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorWorkflow",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
+          {
+            card: "Área 1",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_pizza",
+            coluna_totalizadora: 4,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaborador",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 35 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
+          {
+            card: "Área 2",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_pizza",
+            coluna_totalizadora: 4,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaborador",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 36 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
+          {
+            card: "Área 3",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_pizza",
+            coluna_totalizadora: 4,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaborador",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 37 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
+          {
+            card: "Área 4",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_pizza",
+            coluna_totalizadora: 4,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaborador",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 38 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
+          {
+            card: "Área 5",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_pizza",
+            coluna_totalizadora: 4,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaborador",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 39 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
         ],
+      },
+    ],
+  };
+
+  return json;
+}
+//bi - diretoria
+function layoutDashBoard5() {
+  const json = {
+    id_dashboard: 5,
+    dashboard: "layout dashboard 5",
+    grupos: [
+      {
+        grupo: "Geral",
+        icone: "signal_cellular_alt",
+        cards: [],
       },
     ],
   };
@@ -4202,7 +4339,22 @@ function layoutDashBoard13() {
         icone: "assignment_turned_in",
         cards: [
           {
-            card: "Atividades criadas no Mês",
+            card: "Atividades criadas no mês",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "95vw",
+            height: "80",
+            conteudo_card: {
+              body: "bodyAtividadePorEmissaoStatus",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and (extract(month from a.dt_emissao) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
+          {
+            card: "Atividades criadas no mês por Workflow",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGraficoApi",
             sub_tipo: "grafico_comparativo_barra",
@@ -4217,22 +4369,7 @@ function layoutDashBoard13() {
             },
           },
           {
-            card: "Atividades criadas no Mês",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_comparativo_barra",
-            coluna_serie: 2,
-            coluna_categoria: 1,
-            width: "95vw",
-            height: "80",
-            conteudo_card: {
-              body: "bodyAtividadePorDataStatus",
-              filtro_sql:
-                "where a.ds_status in ('P', 'F') and (extract(month from a.dt_emissao) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-            },
-          },
-          {
-            card: "Ocorrências no Mês",
+            card: "Área Técnica por Workflow",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGraficoApi",
             sub_tipo: "grafico_comparativo_barra",
@@ -4242,6 +4379,49 @@ function layoutDashBoard13() {
             height: "80",
             conteudo_card: {
               body: "bodyOcorrenciaPorWorkflowData",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
+          {
+            card: "Área Técnica por Colaborador",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "95vw",
+            height: "80",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaboradorData",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
+          {
+            card: "Área Técnica por Workflow",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_pizza",
+            coluna_totalizadora: 4,
+            width: "46.7vw",
+            height: "60",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorWorkflow",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+            },
+          },
+          {
+            card: "Área Técnica por Colaborador",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_pizza",
+            coluna_totalizadora: 4,
+            width: "46.7vw",
+            height: "60",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
                 "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
             },
@@ -4265,6 +4445,21 @@ function layoutDashBoard13() {
               body: "bodyAtividadeTagPorResponsavelTag",
               filtro_sql:
                 "where a.ds_status = 'F' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and ag.cd_tag in (140, 141, 367) and extract(month from a.dt_previsao) = extract(month from current_date) and extract(year from a.dt_previsao) = extract(year from current_date)",
+            },
+          },
+          {
+            card: "Classificadas (Mês Anterior)",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "94vw",
+            height: "80",
+            conteudo_card: {
+              body: "bodyAtividadeTagPorResponsavelTag",
+              filtro_sql:
+                "where a.ds_status = 'F' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and ag.cd_tag in (140, 141, 367) and extract(month from a.dt_previsao) = extract(month from current_date - 30) and extract(year from a.dt_previsao) = extract(year from current_date - 30)",
             },
           },
         ],
@@ -6087,7 +6282,11 @@ function layoutDashBoard19() {
                 "where a.ds_status = 'F' and a.cd_tipo_atividade = 2 and ag.cd_tag = 153 and extract(year from a.dt_previsao) = extract(year from current_date)",
               body_item: "bodyAtividadeTag",
               filtro_sql_item:
+<<<<<<< HEAD
                 "where a.ds_status ='F' and a.cd_tipo_atividade = 2 and ag.cd_tag = 153 and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
+=======
+                "where a.ds_status ='F' and a.cd_tipo_atividade = 2 and ag.cd_tag = 153 and extract(year from a.dt_previsao) = extract(year from current_date) and a.cd_responsavel = <id_grupo>",
+>>>>>>> 2d6ddbf224fa8f3315d15001f00781ab886a72dd
             },
           },
           {
@@ -6148,6 +6347,9 @@ function layoutDashBoard19() {
               body_grupo: "bodyAtividadeTagPorResponsavel",
               filtro_sql_grupo:
                 "where a.ds_status = 'F' and a.cd_tipo_atividade = 2 and ag.cd_tag = 141 and extract(year from a.dt_previsao) = extract(year from current_date)",
+              body_item: "bodyAtividadeTag",
+              filtro_sql_item:
+                "where a.ds_status ='F' and a.cd_tipo_atividade = 2 and ag.cd_tag = 141 and extract(year from a.dt_previsao) = extract(year from current_date) and a.cd_responsavel = <id_grupo>",
             },
           },
         ],
@@ -7074,6 +7276,81 @@ function layoutDashBoard23() {
           },
         ],
         cards_opcionais: [],
+      },
+    ],
+  };
+
+  return json;
+}
+//bi - controladoria
+function layoutDashBoard24() {
+  const json = {
+    id_dashboard: 5,
+    dashboard: "layout dashboard 24",
+    grupos: [
+      {
+        grupo: "Efetivo",
+        icone: "signal_cellular_alt",
+        cards: [
+          {
+            card: "Tipo Atividade",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "95vw",
+            height: "80",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorTipoAtividadeData",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date))",
+            },
+          },
+          {
+            card: "Colaborador",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "95vw",
+            height: "80",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaboradorData",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date))",
+            },
+          },
+          {
+            card: "Tipo Atividade",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_pizza",
+            coluna_totalizadora: 4,
+            width: "45vw",
+            height: "60",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorTipoAtividade",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date))",
+            },
+          },
+          {
+            card: "Colaborador",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_pizza",
+            coluna_totalizadora: 4,
+            width: "48vw",
+            height: "60",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaborador",
+              filtro_sql:
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date))",
+            },
+          },
+        ],
       },
     ],
   };

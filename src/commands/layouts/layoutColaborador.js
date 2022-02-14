@@ -415,6 +415,18 @@ export function senhaLogin() {
                     },
                   ],
                 },
+                {
+                  grupo: "Controladoria",
+                  icone: "people_outline",
+                  layout_dashboard: [
+                    {
+                      icone: "people_outline",
+                      id_layout_dashboard: 24,
+                      dashboard: "Padrão",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
               ],
             },
           },
@@ -594,11 +606,6 @@ export function senhaLogin() {
               dashboard_cliente: {
                 id_layout_dashboard: 2,
                 dashboard_complementar: [],
-              },
-              dashboard_colaborador: {
-                id_layout_dashboard: 3,
-                dashboard_complementar: [],
-                permissao_colaborador: ["*"],
               },
               dashboard_bi: [
                 {
@@ -783,6 +790,18 @@ export function senhaLogin() {
                       icone: "paid",
                       id_layout_dashboard: 19,
                       dashboard: "Qualidade",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
+                {
+                  grupo: "Controladoria",
+                  icone: "people_outline",
+                  layout_dashboard: [
+                    {
+                      icone: "people_outline",
+                      id_layout_dashboard: 24,
+                      dashboard: "Padrão",
                       dashboard_complementar: [],
                     },
                   ],
