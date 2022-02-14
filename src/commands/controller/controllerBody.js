@@ -17,6 +17,7 @@ import {
   bodyAtividadePorResponsavelStatus,
   bodyAtividadePorDataStatus,
   bodyAtividadePorMesAnoStatus,
+  bodyAtividadePorEmissaoStatus,
   bodyAtividadePorTipoAtividadeColaboradorPrevisao,
   bodyAtividadeCliente,
   bodyAtividadeClientePorTipoAtividade,
@@ -51,7 +52,9 @@ import {
   bodyOcorrenciaPorSemana,
   bodyOcorrenciaCliente,
   bodyOcorrenciaClientePorData,
+  bodyOcorrenciaPorTipoAtividadeData,
   bodyOcorrenciaPorWorkflowData,
+  bodyOcorrenciaPorColaboradorData,
   bodyOcorrenciaColaboradorTipoAtividadePeriodo,
   bodyOcorrenciaColaboradorWorkflowPeriodo,
   bodyOcorrenciaTipoAtividadeDataPeriodo,
@@ -167,6 +170,9 @@ export default {
       if (pNomeBody === "bodyAtividadePorMesAnoStatus") {
         return bodyAtividadePorMesAnoStatus(filtros);
       }
+      if (pNomeBody === "bodyAtividadePorEmissaoStatus") {
+        return bodyAtividadePorEmissaoStatus(filtros);
+      }
       if (pNomeBody === "bodyAtividadePorTipoAtividadeColaboradorPrevisao") {
         return bodyAtividadePorTipoAtividadeColaboradorPrevisao(filtros);
       }
@@ -275,9 +281,16 @@ export default {
         return bodyOcorrenciaClientePorData(filtros);
       }
 
+      if (pNomeBody === "bodyOcorrenciaPorTipoAtividadeData") {
+        return bodyOcorrenciaPorTipoAtividadeData(filtros);
+      }
       if (pNomeBody === "bodyOcorrenciaPorWorkflowData") {
         return bodyOcorrenciaPorWorkflowData(filtros);
       }
+      if (pNomeBody === "bodyOcorrenciaPorColaboradorData") {
+        return bodyOcorrenciaPorColaboradorData(filtros);
+      }
+
       if (pNomeBody === "bodyOcorrenciaColaboradorTipoAtividadePeriodo") {
         return bodyOcorrenciaColaboradorTipoAtividadePeriodo(filtros);
       }

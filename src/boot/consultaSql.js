@@ -164,6 +164,11 @@ export function bodyAtividadePorMesAnoStatus(pFiltros) {
   let body = montaBody(instrucao_sql, pFiltros);
   return body;
 }
+export function bodyAtividadePorEmissaoStatus(pFiltros) {
+  let instrucao_sql = `select lpad(extract(day from a.dt_emissao), 2, '0')||'/'||lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao) "data_emissao", a.ds_status "status", count(a.cd_atividade) "qtde_atividade" from atividade a inner join tipo_atividade tv on tv.cd_tipo_atividade = a.cd_tipo_atividade <filtros> group by lpad(extract(day from a.dt_emissao), 2, '0')||'/'||lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao), a.ds_status order by 1`;
+  let body = montaBody(instrucao_sql, pFiltros);
+  return body;
+}
 export function bodyAtividadePorTipoAtividadeColaboradorPrevisao(pFiltros) {
   let instrucao_sql = `select tv.ds_tipo_atividade "tipo_atividade", cb.ds_colaborador "colaborador", cast(a.dt_previsao as date) "previsao", count(a.cd_atividade) "qtde_atividade" from atividade a inner join tipo_atividade tv on tv.cd_tipo_atividade = a.cd_tipo_atividade inner join colaborador cb on cb.cd_colaborador = a.cd_responsavel <filtros> group by tv.ds_tipo_atividade, cb.ds_colaborador, cast(a.dt_previsao as date) order by 1,2,3`;
   let body = montaBody(instrucao_sql, pFiltros);
@@ -416,9 +421,18 @@ export function bodyOcorrenciaClientePorData(pFiltros) {
 }
 
 //---------------------- ocorrencia comparativo ----------------------//
+export function bodyOcorrenciaPorTipoAtividadeData(pFiltros) {
+  let instrucao_sql = `select lpad(extract(day from o.dt_ocorrencia), 2, '0')||'/'||lpad(extract(month from o.dt_ocorrencia), 2, '0')||'/'||extract(year from o.dt_ocorrencia) "data_ocorrencia", ta.ds_tipo_atividade "tipo atividade", sum(DATEDIFF(MINUTE, CAST('01/01/1970 00:00:00' AS TIMESTAMP), O.DURACAO)) "duracao" from atividade_ocorrencia o inner join atividade a on a.cd_empresa = o.cd_empresa and a.cd_atividade = o.cd_atividade inner join tipo_atividade ta on ta.cd_tipo_atividade = a.cd_tipo_atividade <filtros> group by lpad(extract(day from o.dt_ocorrencia), 2, '0')||'/'||lpad(extract(month from o.dt_ocorrencia), 2, '0')||'/'||extract(year from o.dt_ocorrencia), ta.ds_tipo_atividade order by 1, 2`;
+  let body = montaBody(instrucao_sql, pFiltros);
+  return body;
+}
 export function bodyOcorrenciaPorWorkflowData(pFiltros) {
   let instrucao_sql = `select lpad(extract(day from o.dt_ocorrencia), 2, '0')||'/'||lpad(extract(month from o.dt_ocorrencia), 2, '0')||'/'||extract(year from o.dt_ocorrencia) "data_ocorrencia", wf.ds_workflow "workflow", sum(DATEDIFF(MINUTE, CAST('01/01/1970 00:00:00' AS TIMESTAMP), O.DURACAO)) "duracao" from atividade_ocorrencia o inner join atividade a on a.cd_empresa = o.cd_empresa and a.cd_atividade = o.cd_atividade inner join workflow wf on wf.cd_workflow = a.cd_workflow <filtros> group by lpad(extract(day from o.dt_ocorrencia), 2, '0')||'/'||lpad(extract(month from o.dt_ocorrencia), 2, '0')||'/'||extract(year from o.dt_ocorrencia), wf.ds_workflow order by 1, 2`;
-  //let instrucao_sql = `select lpad(extract(day from a.dt_previsao), 2, '0')||'/'||lpad(extract(month from a.dt_previsao), 2, '0')||'/'||extract(year from a.dt_previsao) "data_previsao", a.ds_status "status", count(a.cd_atividade) "qtde_atividade" from atividade a inner join tipo_atividade tv on tv.cd_tipo_atividade = a.cd_tipo_atividade <filtros> group by lpad(extract(day from a.dt_previsao), 2, '0')||'/'||lpad(extract(month from a.dt_previsao), 2, '0')||'/'||extract(year from a.dt_previsao), a.ds_status order by 1`;
+  let body = montaBody(instrucao_sql, pFiltros);
+  return body;
+}
+export function bodyOcorrenciaPorColaboradorData(pFiltros) {
+  let instrucao_sql = `select lpad(extract(day from o.dt_ocorrencia), 2, '0')||'/'||lpad(extract(month from o.dt_ocorrencia), 2, '0')||'/'||extract(year from o.dt_ocorrencia) "data_ocorrencia", cb.ds_colaborador "colaborador", sum(DATEDIFF(MINUTE, CAST('01/01/1970 00:00:00' AS TIMESTAMP), O.DURACAO)) "duracao" from atividade_ocorrencia o inner join atividade a on a.cd_empresa = o.cd_empresa and a.cd_atividade = o.cd_atividade inner join colaborador cb on cb.cd_colaborador = o.cd_colaborador <filtros> group by lpad(extract(day from o.dt_ocorrencia), 2, '0')||'/'||lpad(extract(month from o.dt_ocorrencia), 2, '0')||'/'||extract(year from o.dt_ocorrencia), cb.ds_colaborador order by 1, 2`;
   let body = montaBody(instrucao_sql, pFiltros);
   return body;
 }

@@ -235,6 +235,24 @@
             :idPrincipal="this.idClienteAtivo"
             :msg="this.msgCard"
           />
+          <CardComparativoApi
+            v-if="ObjCard.tipo_card === 'CardComparativoApi'"
+            class="q-ma-xs"
+            :id="ObjCard.id_card"
+            :card="ObjCard.card"
+            :ordem="ObjCard.ordem"
+            cor_header="bg-primary"
+            topo_fixo="topo_fixo"
+            :height="ObjCard.height"
+            :style="{ width: `${ObjCard.width}` }"
+            :btn_comando="ObjCard.btn_comando"
+            :tipo_card="ObjCard.tipo_card"
+            :sub_tipo="ObjCard.sub_tipo"
+            :conteudo_card="ObjCard.conteudo_card"
+            :link_item="ObjCard.link_item"
+            :idPrincipal="this.idColaboradorAtivo"
+            :msg="this.msgCard"
+          />
           <CardGraficoApi
             v-if="ObjCard.tipo_card === 'CardGraficoApi'"
             class="q-ma-xs"
