@@ -147,7 +147,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/comum.png"),
+        img: require("../../assets/51.png"),
       },
       {
         usuario: "adelmo",
@@ -203,7 +203,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/comum.png"),
+        img: require("../../assets/57.png"),
       },
       {
         usuario: "cledesson",
@@ -260,7 +260,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/cledesson.png"),
+        img: require("../../assets/2.png"),
       },
       {
         usuario: "danilo",
@@ -420,7 +420,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/comum.png"),
+        img: require("../../assets/4.png"),
       },
       {
         usuario: "eron",
@@ -477,7 +477,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/comum.png"),
+        img: require("../../assets/49.png"),
       },
       {
         usuario: "ewerton",
@@ -574,7 +574,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/comum.png"),
+        img: require("../../assets/46.png"),
       },
       {
         usuario: "fabricio",
@@ -647,7 +647,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/fabricio.png"),
+        img: require("../../assets/42.png"),
       },
       {
         usuario: "helton",
@@ -736,7 +736,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/helton.png"),
+        img: require("../../assets/47.png"),
       },
       {
         usuario: "henrique",
@@ -856,7 +856,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/comum.png"),
+        img: require("../../assets/12.png"),
       },
       {
         usuario: "joaopaulo",
@@ -923,7 +923,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/jpaulo.png"),
+        img: require("../../assets/21.png"),
       },
       {
         usuario: "joaopedro",
@@ -980,7 +980,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/jpedro.png"),
+        img: require("../../assets/52.png"),
       },
       {
         usuario: "jonatan",
@@ -1076,7 +1076,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/comum.png"),
+        img: require("../../assets/56.png"),
       },
       {
         usuario: "jullyadson",
@@ -1164,7 +1164,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/jully.png"),
+        img: require("../../assets/15.png"),
       },
       {
         usuario: "maciel",
@@ -1254,7 +1254,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/comum.png"),
+        img: require("../../assets/20.png"),
       },
       {
         usuario: "pedrosantos",
@@ -1311,7 +1311,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/comum.png"),
+        img: require("../../assets/41.png"),
       },
       {
         usuario: "renan",
@@ -1368,7 +1368,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/comum.png"),
+        img: require("../../assets/55.png"),
       },
       {
         usuario: "rodrigo",
@@ -1437,7 +1437,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/rodrigo.png"),
+        img: require("../../assets/58.png"),
       },
       {
         usuario: "wagner",
@@ -1504,7 +1504,7 @@ export function senhaLogin() {
           },
         ],
         rotas: "colaborador",
-        img: require("../../assets/wagner.png"),
+        img: require("../../assets/53.png"),
       },
       {
         usuario: "techplast",

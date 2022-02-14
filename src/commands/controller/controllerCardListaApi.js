@@ -10,9 +10,19 @@ export default {
       larguraCard: null,
       alturaCard: null,
       alturaCorpo: null,
+      imagens: [],
+      descricao: null,
+      duracao: null,
+      indexSlide: 0,
     };
   },
   methods: {
+    getTextoSlideAtual(atualizarIndex) {
+      let descricao = this.ObjConteudo.itens.map((chave) => chave.descricao);
+      let duracao = this.ObjConteudo.itens.map((chave) => chave.duracao);
+      this.descricao = descricao[atualizarIndex];
+      this.duracao = duracao[atualizarIndex];
+    },
     atualizarConteudo() {
       this.limparConteudo();
       if (this.idPrincipal !== null) {
@@ -28,13 +38,15 @@ export default {
         this.$api.post("consultasql", body).then((res) => {
           let arrRetorno = res.data;
           for (let i = 0; i < arrRetorno.length; i++) {
+            let arraYlista = Object.values(arrRetorno[i])[4];
+            var arrJson = JSON.parse("[" + arraYlista + "]");
             let item = {
               id: Object.values(arrRetorno[i])[0],
               descricao: Object.values(arrRetorno[i])[1],
               qtde: Object.values(arrRetorno[i])[2],
               duracao: Object.values(arrRetorno[i])[3],
+              lista: arrJson,
             };
-
             this.carregarKnob = false;
             this.ObjConteudo.itens.push(item);
           }
@@ -47,7 +59,22 @@ export default {
           } else {
             this.carregarText = false;
           }
+          this.getTextoSlideAtual(this.indexSlide);
         });
+      }
+    },
+    proximoIndex() {
+      this.getTextoSlideAtual(this.indexSlide + 1);
+      this.indexSlide++;
+      if (this.indexSlide === this.ObjConteudo.itens.length - 1) {
+        this.indexSlide = -1;
+      }
+    },
+    voltarIndex() {
+      this.getTextoSlideAtual(this.indexSlide);
+      this.indexSlide--;
+      if (this.indexSlide < 0) {
+        this.indexSlide = this.ObjConteudo.itens.length - 1;
       }
     },
     limparConteudo() {

@@ -89,6 +89,44 @@
           :idPrincipal="this.idColaboradorAtivo"
           :msg="this.msgCard"
         />
+        <CardListaColaboradorApi
+          v-if="ObjCard.tipo_card === 'CardListaColaboradorApi'"
+          class="q-ma-xs"
+          :id="ObjCard.id_card"
+          :card="ObjCard.card"
+          :ordem="ObjCard.ordem"
+          cor_header="bg-primary"
+          :style="{ width: `${ObjCard.width}` }"
+          topo_fixo="topo_fixo"
+          :height="ObjCard.height"
+          :width="ObjCard.width"
+          :btn_comando="ObjCard.btn_comando"
+          :tipo_card="ObjCard.tipo_card"
+          :sub_tipo="ObjCard.sub_tipo"
+          :conteudo_card="ObjCard.conteudo_card"
+          :link="ObjCard.link"
+          :idPrincipal="this.idColaboradorAtivo"
+          :msg="this.msgCard"
+        />
+        <CardSlideApi
+          v-if="ObjCard.tipo_card === 'CardSlideApi'"
+          class="q-ma-xs"
+          :id="ObjCard.id_card"
+          :card="ObjCard.card"
+          :ordem="ObjCard.ordem"
+          cor_header="bg-primary"
+          :style="{ width: `${ObjCard.width}` }"
+          topo_fixo="topo_fixo"
+          :height="ObjCard.height"
+          :width="ObjCard.width"
+          :btn_comando="ObjCard.btn_comando"
+          :tipo_card="ObjCard.tipo_card"
+          :sub_tipo="ObjCard.sub_tipo"
+          :conteudo_card="ObjCard.conteudo_card"
+          :link="ObjCard.link"
+          :idPrincipal="this.idColaboradorAtivo"
+          :msg="this.msgCard"
+        />
       </div>
     </div>
   </div>
@@ -98,7 +136,9 @@
 import BarraLayout from "src/layouts/BarraLayout.vue";
 import CardGrupoApi from "src/components/Cards/CardGrupoApi.vue";
 import CardListaApi from "src/components/Cards/CardListaApi.vue";
+import CardListaColaboradorApi from "src/components/Cards/CardListaColaboradorApi.vue";
 import CardGraficoApi from "src/components/Cards/CardGraficoApi.vue";
+import CardSlideApi from "src/components/Cards/CardSlideApi.vue";
 import CardComparativoApi from "src/components/Cards/CardComparativoApi.vue";
 import { GeLayoutDashBoard } from "src/commands/layouts/layoutDashboard";
 import { computed } from "vue";
@@ -113,6 +153,8 @@ export default defineComponent({
     CardListaApi,
     CardGraficoApi,
     CardComparativoApi,
+    CardListaColaboradorApi,
+    CardSlideApi,
   },
   name: "dashboard",
   setup() {
