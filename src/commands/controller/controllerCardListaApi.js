@@ -39,7 +39,10 @@ export default {
           let arrRetorno = res.data;
           for (let i = 0; i < arrRetorno.length; i++) {
             let arraYlista = Object.values(arrRetorno[i])[4];
-            var arrJson = JSON.parse("[" + arraYlista + "]");
+            var arrJson = "[]";
+            if (arraYlista != undefined) {
+              arrJson = JSON.parse("[" + arraYlista + "]");
+            }
             let item = {
               id: Object.values(arrRetorno[i])[0],
               descricao: Object.values(arrRetorno[i])[1],

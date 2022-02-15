@@ -98,19 +98,6 @@ function layoutDashBoard1() {
         grupo: "Meu Dia",
         icone: "assignment_turned_in",
         cards: [
-          /*  {
-            card: "SLIDE",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardSlideApi",
-            width: "31vw",
-            height: "40",
-            link: "https://crm.syclus.com.br/atividades/<id_item>",
-            conteudo_card: {
-              body: "bodyOcorrenciaPorAtividade",
-              filtro_sql:
-                "where o.ds_status = 'P' and o.cd_tipo_ocorrencia = 1",
-            },
-          },*/
           {
             card: "Planejamento",
             btn_comando: "btn-atualizar",
@@ -201,6 +188,19 @@ function layoutDashBoard1() {
                 "where o.ds_status in ('A', 'F') and cast(o.dt_ocorrencia as date) = (current_date) and o.cd_colaborador = <id_principal>",
             },
           },
+          /*{
+            card: "Tempo Efetivo",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_barra",
+            coluna_totalizadora: 4,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorData",
+              filtro_sql:
+                "where o.ds_status in ('A', 'F') and cast(o.dt_ocorrencia as date) = (current_date) and o.cd_colaborador = <id_principal>",
+            },*/
           {
             card: "Notificações",
             btn_comando: "btn-atualizar",
@@ -252,10 +252,10 @@ function layoutDashBoard1() {
             },
           },
           {
-            card: "Atividades",
+            card: "Atividade",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaColaboradorApi",
-            width: "62.5vw",
+            tipo_card: "CardListaApi",
+            width: "31vw",
             height: "70",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
@@ -269,7 +269,7 @@ function layoutDashBoard1() {
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
             width: "31vw",
-            height: "40",
+            height: "70",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
               body_grupo: "bodyOcorrenciaPorColaborador",
@@ -1221,7 +1221,7 @@ function layoutDashBoard3() {
             conteudo_card: {
               body: "bodyOcorrenciaColaboradorTipoAtividadePeriodo",
               filtro_sql:
-                "where o.ds_status = 'F' and extract(minute from o.duracao) > 0 and cast(o.dt_ocorrencia as date) = current_date and o.cd_colaborador = <id_principal>",
+                "where o.ds_status in ('A', 'F') and extract(minute from o.duracao) > 0 and cast(o.dt_ocorrencia as date) = current_date and o.cd_colaborador = <id_principal>",
             },
           },
           {
@@ -1250,7 +1250,7 @@ function layoutDashBoard3() {
             conteudo_card: {
               body: "bodyOcorrenciaPorAtividade",
               filtro_sql:
-                "where o.ds_status in ('A', 'F') and o.cd_tipo_ocorrencia = 1 and cast(o.dt_ocorrencia as date) = (current_date) and o.cd_colaborador = <id_principal>",
+                "where o.ds_status in ('A', 'F') and cast(o.dt_ocorrencia as date) = (current_date) and o.cd_colaborador = <id_principal>",
             },
           },
         ],
@@ -1288,336 +1288,6 @@ function layoutDashBoard4() {
     dashboard: "bi - area tecnica (corrente)",
     grupos: [
       {
-        grupo: "Geral",
-        icone: "assignment_turned_in",
-        cards: [
-          {
-            card: "Atividades Pendentes",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_barra_horizontal",
-            width: "31vw",
-            height: "40",
-            conteudo_card: {
-              body: "bodyAtividadePorSituacao",
-              filtro_sql:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-            },
-          },
-          {
-            card: "Em Execução",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardListaApi",
-            width: "31vw",
-            height: "40",
-            link: "https://crm.syclus.com.br/atividades/<id_item>",
-            conteudo_card: {
-              body: "bodyAtividade",
-              filtro_sql:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.qt_colaborador_ativo > 0",
-            },
-          },
-          {
-            card: "Situação",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGrupoApi",
-            width: "31vw",
-            height: "40",
-            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
-            conteudo_card: {
-              body_grupo: "bodyAtividadePorSituacao",
-              filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-              body_item: "bodyAtividade",
-              filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_situacao = <id_grupo>",
-            },
-          },
-          {
-            card: "Tag",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGrupoApi",
-            width: "31vw",
-            height: "40",
-            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
-            conteudo_card: {
-              body_grupo: "bodyAtividadePorTag",
-              filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-              body_item: "bodyAtividadeTag",
-              filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and ag.cd_tag = <id_grupo>",
-            },
-          },
-          {
-            card: "Cliente",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGrupoApi",
-            width: "31vw",
-            height: "40",
-            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
-            conteudo_card: {
-              body_grupo: "bodyAtividadePorCliente",
-              filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-              body_item: "bodyAtividadeCliente",
-              filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and ac.cd_cliente = <id_grupo>",
-            },
-          },
-          {
-            card: "Prioridade",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGrupoApi",
-            width: "31vw",
-            height: "40",
-            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
-            conteudo_card: {
-              body_grupo: "bodyAtividadePorPrioridade",
-              filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-              body_item: "bodyAtividade",
-              filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_prioridade = <id_grupo>",
-            },
-          },
-        ],
-      },
-      {
-        grupo: "Responsável",
-        icone: "assignment_turned_in",
-        cards: [
-          {
-            card: "Atividades Previstas",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_barra_horizontal",
-            width: "31vw",
-            height: "40",
-            conteudo_card: {
-              body: "bodyAtividadePorResponsavel",
-              filtro_sql:
-                "where a.ds_status in ('P', 'F') and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-            },
-          },
-          {
-            card: "Atividades Pendentes",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_barra_horizontal",
-            width: "31vw",
-            height: "40",
-            conteudo_card: {
-              body_grupo: "bodyAtividadePorResponsavel",
-              filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-              body_item: "bodyAtividade",
-              filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_responsavel = <id_grupo>",
-            },
-          },
-          {
-            card: "Distribuição do Tempo",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_pizza",
-            coluna_totalizadora: 4,
-            width: "31vw",
-            height: "40",
-            conteudo_card: {
-              body: "bodyOcorrenciaPorColaborador",
-              filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and o.cd_tipo_ocorrencia = 1",
-            },
-          },
-          {
-            card: "Atividades Criadas",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_comparativo_barra",
-            coluna_serie: 2,
-            coluna_categoria: 1,
-            width: "31vw",
-            height: "40",
-            conteudo_card: {
-              body: "bodyAtividadePorResponsavelStatus",
-              filtro_sql:
-                "where a.ds_status in ('P', 'F') and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-            },
-          },
-          {
-            card: "Tempo Efetivo",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_barra",
-            coluna_totalizadora: 4,
-            width: "31vw",
-            height: "40",
-            conteudo_card: {
-              body: "bodyOcorrenciaPorColaborador",
-              filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and o.cd_tipo_ocorrencia = 1",
-            },
-          },
-        ],
-      },
-      {
-        grupo: "Tipo",
-        icone: "assignment_turned_in",
-        cards: [
-          {
-            card: "Atividades Previstas",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_barra_horizontal",
-            width: "31vw",
-            height: "40",
-            conteudo_card: {
-              body: "bodyAtividadePorTipoAtividade",
-              filtro_sql:
-                "where a.ds_status in ('P', 'F') and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-            },
-          },
-          {
-            card: "Atividades Pendentes ",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGrupoApi",
-            width: "31vw",
-            height: "40",
-            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
-            conteudo_card: {
-              body_grupo: "bodyAtividadePorTipoAtividade",
-              filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-              body_item: "bodyAtividade",
-              filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_tipo_atividade = <id_grupo>",
-            },
-          },
-          {
-            card: "Distribuição do Tempo",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_pizza",
-            coluna_totalizadora: 4,
-            width: "31vw",
-            height: "40",
-            conteudo_card: {
-              body: "bodyOcorrenciaPorTipoAtividade",
-              filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and o.cd_tipo_ocorrencia = 1",
-            },
-          },
-          {
-            card: "Atividades Criadas",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_comparativo_barra",
-            coluna_serie: 2,
-            coluna_categoria: 1,
-            width: "31vw",
-            height: "40",
-            conteudo_card: {
-              body: "bodyAtividadePorTipoAtividadeStatus",
-              filtro_sql:
-                "where a.ds_status in ('P', 'F') and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-            },
-          },
-          {
-            card: "Tempo Efetivo",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_barra",
-            coluna_totalizadora: 4,
-            width: "31vw",
-            height: "40",
-            conteudo_card: {
-              body: "bodyOcorrenciaPorTipoAtividade",
-              filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and o.cd_tipo_ocorrencia = 1",
-            },
-          },
-        ],
-      },
-      {
-        grupo: "Workflow",
-        icone: "assignment_turned_in",
-        cards: [
-          {
-            card: "Atividades Previstas",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_barra",
-            width: "31vw",
-            height: "40",
-            conteudo_card: {
-              body: "bodyAtividadePorWorkflow",
-              filtro_sql:
-                "where a.ds_status in ('P', 'F') and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-            },
-          },
-          {
-            card: "Atividades Pendentes",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGrupoApi",
-            width: "31vw",
-            height: "40",
-            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
-            conteudo_card: {
-              body_grupo: "bodyAtividadePorWorkflow",
-              filtro_sql_grupo:
-                "where a.ds_status = 'P' and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-              body_item: "bodyAtividade",
-              filtro_sql_item:
-                "where a.ds_status = 'P' and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = <id_grupo>",
-            },
-          },
-          {
-            card: "Distribuição do Tempo",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_pizza",
-            coluna_totalizadora: 4,
-            width: "31vw",
-            height: "40",
-            conteudo_card: {
-              body: "bodyOcorrenciaPorWorkflow",
-              filtro_sql:
-                "where o.ds_status <> 'C' and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and o.cd_tipo_ocorrencia = 1",
-            },
-          },
-          {
-            card: "Atividades Criadas",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_comparativo_barra",
-            coluna_serie: 2,
-            coluna_categoria: 1,
-            width: "31vw",
-            height: "40",
-            conteudo_card: {
-              body: "bodyAtividadePorWorkflowStatus",
-              filtro_sql:
-                "where a.ds_status in ('P', 'F') and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
-            },
-          },
-          {
-            card: "Tempo Efetivo",
-            btn_comando: "btn-atualizar",
-            tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_barra",
-            coluna_totalizadora: 4,
-            width: "31vw",
-            height: "40",
-            conteudo_card: {
-              body: "bodyOcorrenciaPorWorkflow",
-              filtro_sql:
-                "where o.ds_status <> 'C' and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and o.cd_tipo_ocorrencia = 1",
-            },
-          },
-        ],
-      },
-      {
         grupo: "Áreas",
         icone: "assignment_turned_in",
         cards: [
@@ -1631,7 +1301,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividadePorWorkflow",
               filtro_sql:
-                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -1644,7 +1314,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividade",
               filtro_sql:
-                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.qt_colaborador_ativo > 0",
+                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.qt_colaborador_ativo > 0",
             },
           },
           {
@@ -1658,7 +1328,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorWorkflow",
               filtro_sql:
-                "where o.ds_status <> 'C' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -1671,7 +1341,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividade",
               filtro_sql:
-                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and coalesce(a.qt_colaborador_ativo, 0) = 0",
+                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and coalesce(a.qt_colaborador_ativo, 0) = 0",
             },
           },
           {
@@ -1686,7 +1356,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividadePorWorkflowStatus",
               filtro_sql:
-                "where a.ds_status in ('P', 'F') and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_emissao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status in ('P', 'F') and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_emissao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -1700,7 +1370,22 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorWorkflow",
               filtro_sql:
-                "where o.ds_status <> 'C' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Pendentes (Hoje)",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorResponsavel",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_responsavel = <id_grupo>",
             },
           },
           {
@@ -1713,10 +1398,10 @@ function layoutDashBoard4() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorData",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
+                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
             },
           },
           {
@@ -1729,10 +1414,10 @@ function layoutDashBoard4() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorData",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
+                "where a.ds_status = 'P' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
             },
           },
         ],
@@ -1751,7 +1436,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividadePorResponsavel",
               filtro_sql:
-                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -1764,7 +1449,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividade",
               filtro_sql:
-                "where a.ds_status = 'P' and a.cd_workflow = 35 and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.qt_colaborador_ativo > 0",
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.qt_colaborador_ativo > 0",
             },
           },
           {
@@ -1778,23 +1463,20 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 35 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 35",
             },
           },
           {
             card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardGrupoApi",
+            tipo_card: "CardListaApi",
             width: "31vw",
             height: "40",
-            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            link: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
-              body_grupo: "bodyAtividadePorResponsavel",
-              filtro_sql_grupo:
-                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and coalesce(a.qt_colaborador_ativo, 0) = 0",
-              body_item: "bodyAtividade",
-              filtro_sql_item:
-                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and coalesce(a.qt_colaborador_ativo, 0) = 0 and a.cd_responsavel = <id_grupo>",
+              body: "bodyAtividade",
+              filtro_sql:
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and coalesce(a.qt_colaborador_ativo, 0) = 0",
             },
           },
           {
@@ -1807,10 +1489,10 @@ function layoutDashBoard4() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorPrioridade",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_prioridade = <id_grupo>",
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_prioridade = <id_grupo>",
             },
           },
           {
@@ -1824,7 +1506,54 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 35 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 35",
+            },
+          },
+          {
+            card: "Pendentes (Hoje)",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorResponsavel",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_responsavel = <id_grupo>",
+            },
+          },
+          {
+            card: "Atrasadas",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorData",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
+            },
+          },
+          {
+            card: "Futuras",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorData",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
             },
           },
           {
@@ -1837,7 +1566,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorAtividade",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 35 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 35",
             },
           },
         ],
@@ -1856,7 +1585,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividadePorResponsavel",
               filtro_sql:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 36",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 36",
             },
           },
           {
@@ -1869,7 +1598,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividade",
               filtro_sql:
-                "where a.ds_status = 'P' and a.cd_workflow = 36 and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.qt_colaborador_ativo > 0",
+                "where a.ds_status = 'P' and a.cd_workflow = 36 and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.qt_colaborador_ativo > 0",
             },
           },
           {
@@ -1883,23 +1612,20 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 36 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 36",
             },
           },
           {
             card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardGrupoApi",
+            tipo_card: "CardListaApi",
             width: "31vw",
             height: "40",
-            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            link: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
-              body_grupo: "bodyAtividadePorResponsavel",
-              filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 36 and coalesce(a.qt_colaborador_ativo, 0) = 0",
-              body_item: "bodyAtividade",
-              filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 36 and coalesce(a.qt_colaborador_ativo, 0) = 0 and a.cd_responsavel = <id_grupo>",
+              body: "bodyAtividade",
+              filtro_sql:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 36 and coalesce(a.qt_colaborador_ativo, 0) = 0",
             },
           },
           {
@@ -1912,10 +1638,10 @@ function layoutDashBoard4() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorPrioridade",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 36",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 36",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 36 and a.cd_prioridade = <id_grupo>",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 36 and a.cd_prioridade = <id_grupo>",
             },
           },
           {
@@ -1929,7 +1655,54 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 36 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 36",
+            },
+          },
+          {
+            card: "Pendentes (Hoje)",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorResponsavel",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 36 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 36 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_responsavel = <id_grupo>",
+            },
+          },
+          {
+            card: "Atrasadas",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorData",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 36 and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 36 and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
+            },
+          },
+          {
+            card: "Futuras",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorData",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 36 and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 36 and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
             },
           },
           {
@@ -1942,7 +1715,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorAtividade",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 36 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 36",
             },
           },
         ],
@@ -1961,7 +1734,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividadePorResponsavel",
               filtro_sql:
-                "where a.ds_status= 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 37",
+                "where a.ds_status= 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 37",
             },
           },
           {
@@ -1974,7 +1747,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividade",
               filtro_sql:
-                "where a.ds_status = 'P' and a.cd_workflow = 37 and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.qt_colaborador_ativo > 0",
+                "where a.ds_status = 'P' and a.cd_workflow = 37 and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.qt_colaborador_ativo > 0",
             },
           },
           {
@@ -1988,23 +1761,20 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 37 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 37",
             },
           },
           {
             card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardGrupoApi",
+            tipo_card: "CardListaApi",
             width: "31vw",
             height: "40",
-            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            link: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
-              body_grupo: "bodyAtividadePorResponsavel",
-              filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 37 and coalesce(a.qt_colaborador_ativo, 0) = 0",
-              body_item: "bodyAtividade",
-              filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 37 and coalesce(a.qt_colaborador_ativo, 0) = 0 and a.cd_responsavel = <id_grupo>",
+              body: "bodyAtividade",
+              filtro_sql:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 37 and coalesce(a.qt_colaborador_ativo, 0) = 0",
             },
           },
           {
@@ -2017,10 +1787,10 @@ function layoutDashBoard4() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorPrioridade",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 37",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 37",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 37 and a.cd_prioridade = <id_grupo>",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 37 and a.cd_prioridade = <id_grupo>",
             },
           },
           {
@@ -2034,7 +1804,54 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 37 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 37",
+            },
+          },
+          {
+            card: "Pendentes (Hoje)",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorResponsavel",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 37 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 37 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_responsavel = <id_grupo>",
+            },
+          },
+          {
+            card: "Atrasadas",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorData",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 37 and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 37 and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
+            },
+          },
+          {
+            card: "Futuras",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorData",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 37 and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 37 and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
             },
           },
           {
@@ -2047,7 +1864,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorAtividade",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 37 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 37",
             },
           },
         ],
@@ -2066,7 +1883,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividadePorResponsavel",
               filtro_sql:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 38",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 38",
             },
           },
           {
@@ -2079,7 +1896,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividade",
               filtro_sql:
-                "where a.ds_status = 'P' and a.cd_workflow = 38 and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.qt_colaborador_ativo > 0",
+                "where a.ds_status = 'P' and a.cd_workflow = 38 and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.qt_colaborador_ativo > 0",
             },
           },
           {
@@ -2093,23 +1910,20 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 38 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 38",
             },
           },
           {
             card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardGrupoApi",
+            tipo_card: "CardListaApi",
             width: "31vw",
             height: "40",
-            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            link: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
-              body_grupo: "bodyAtividadePorResponsavel",
-              filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 38 and coalesce(a.qt_colaborador_ativo, 0) = 0",
-              body_item: "bodyAtividade",
-              filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 38 and coalesce(a.qt_colaborador_ativo, 0) = 0 and a.cd_responsavel = <id_grupo>",
+              body: "bodyAtividade",
+              filtro_sql:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 38 and coalesce(a.qt_colaborador_ativo, 0) = 0",
             },
           },
           {
@@ -2122,10 +1936,10 @@ function layoutDashBoard4() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorPrioridade",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 38",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 38",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 38 and a.cd_prioridade = <id_grupo>",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 38 and a.cd_prioridade = <id_grupo>",
             },
           },
           {
@@ -2139,7 +1953,54 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 38 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 38",
+            },
+          },
+          {
+            card: "Pendentes (Hoje)",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorResponsavel",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 38 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 38 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_responsavel = <id_grupo>",
+            },
+          },
+          {
+            card: "Atrasadas",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorData",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 38 and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 38 and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
+            },
+          },
+          {
+            card: "Futuras",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorData",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 38 and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 38 and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
             },
           },
           {
@@ -2152,7 +2013,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorAtividade",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 38 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 38",
             },
           },
         ],
@@ -2171,7 +2032,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividadePorResponsavel",
               filtro_sql:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 39",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 39",
             },
           },
           {
@@ -2184,7 +2045,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyAtividade",
               filtro_sql:
-                "where a.ds_status = 'P' and a.cd_workflow = 39 and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.qt_colaborador_ativo > 0",
+                "where a.ds_status = 'P' and a.cd_workflow = 39 and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.qt_colaborador_ativo > 0",
             },
           },
           {
@@ -2198,23 +2059,20 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 39 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 39",
             },
           },
           {
             card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardGrupoApi",
+            tipo_card: "CardListaApi",
             width: "31vw",
             height: "40",
-            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            link: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
-              body_grupo: "bodyAtividadePorResponsavel",
-              filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 39 and coalesce(a.qt_colaborador_ativo, 0) = 0",
-              body_item: "bodyAtividade",
-              filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 39 and coalesce(a.qt_colaborador_ativo, 0) = 0 and a.cd_responsavel = <id_grupo>",
+              body: "bodyAtividade",
+              filtro_sql:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 39 and coalesce(a.qt_colaborador_ativo, 0) = 0",
             },
           },
           {
@@ -2227,10 +2085,10 @@ function layoutDashBoard4() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorPrioridade",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 39",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 39",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 39 and a.cd_prioridade = <id_grupo>",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 39 and a.cd_prioridade = <id_grupo>",
             },
           },
           {
@@ -2244,7 +2102,54 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 39 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 39",
+            },
+          },
+          {
+            card: "Pendentes (Hoje)",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorResponsavel",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 39 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 39 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_responsavel = <id_grupo>",
+            },
+          },
+          {
+            card: "Atrasadas",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorData",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 39 and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 39 and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
+            },
+          },
+          {
+            card: "Futuras",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorData",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 39 and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 39 and cast(a.dt_previsao as date) > current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
             },
           },
           {
@@ -2257,7 +2162,420 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorAtividade",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = 39 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = 39",
+            },
+          },
+        ],
+      },
+      {
+        grupo: "Desenvolvimento",
+        icone: "assignment_turned_in",
+        cards: [
+          {
+            card: "Situação",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_barra_horizontal",
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadePorSituacao",
+              filtro_sql:
+                "where a.ds_status = 'P' and a.cd_tipo_atividade = 4 and a.cd_situacao in (63, 64, 65, 66, 69, 70, 106) and a.cd_responsavel not in (4, 47, 34)",
+            },
+          },
+          {
+            card: "Responsável",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorResponsavel",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_tipo_atividade = 4 and a.cd_situacao in (63, 64, 65, 66, 69, 70, 106) and a.cd_responsavel not in (4, 47, 34)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_tipo_atividade = 4 and a.cd_situacao in (63, 64, 65, 66, 69, 70, 106) and a.cd_responsavel not in (4, 47, 34) and a.cd_responsavel = <id_grupo>",
+            },
+          },
+          {
+            card: "Previsão",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorData",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_tipo_atividade = 4 and a.cd_situacao in (63, 64, 65, 66, 69, 70, 106) and a.cd_responsavel not in (4, 47, 34)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_tipo_atividade = 4 and a.cd_situacao in (63, 64, 65, 66, 69, 70, 106) and a.cd_responsavel not in (4, 47, 34) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
+            },
+          },
+          {
+            card: "Situação",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorSituacao",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_tipo_atividade = 4 and a.cd_situacao in (63, 64, 65, 66, 69, 70, 106) and a.cd_responsavel not in (4, 47, 34)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_tipo_atividade = 4 and a.cd_situacao in (63, 64, 65, 66, 69, 70, 106) and a.cd_responsavel not in (4, 47, 34) and a.cd_situacao = <id_grupo>",
+            },
+          },
+          {
+            card: "Cliente",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorCliente",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_tipo_atividade = 4 and a.cd_situacao in (63, 64, 65, 66, 69, 70, 106) and a.cd_responsavel not in (4, 47, 34)",
+              body_item: "bodyAtividadeCliente",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_tipo_atividade = 4 and a.cd_situacao in (63, 64, 65, 66, 69, 70, 106) and a.cd_responsavel not in (4, 47, 34) and ac.cd_cliente = <id_grupo>",
+            },
+          },
+        ],
+      },
+      {
+        grupo: "Geral",
+        icone: "assignment_turned_in",
+        cards: [
+          {
+            card: "Atividades Pendentes",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_barra_horizontal",
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadePorSituacao",
+              filtro_sql:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Em Execução",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardListaApi",
+            width: "31vw",
+            height: "40",
+            link: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body: "bodyAtividade",
+              filtro_sql:
+                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.qt_colaborador_ativo > 0",
+            },
+          },
+          {
+            card: "Situação",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorSituacao",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_situacao = <id_grupo>",
+            },
+          },
+          {
+            card: "Tag",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorTag",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividadeTag",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and ag.cd_tag = <id_grupo>",
+            },
+          },
+          {
+            card: "Cliente",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorCliente",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividadeCliente",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and ac.cd_cliente = <id_grupo>",
+            },
+          },
+          {
+            card: "Prioridade",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorPrioridade",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_prioridade = <id_grupo>",
+            },
+          },
+        ],
+      },
+      {
+        grupo: "Responsável",
+        icone: "assignment_turned_in",
+        cards: [
+          {
+            card: "Atividades Previstas",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_barra_horizontal",
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadePorResponsavel",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Atividades Pendentes",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_barra_horizontal",
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorResponsavel",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_responsavel = <id_grupo>",
+            },
+          },
+          {
+            card: "Distribuição do Tempo",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_pizza",
+            coluna_totalizadora: 4,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaborador",
+              filtro_sql:
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Atividades Criadas",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadePorResponsavelStatus",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Tempo Efetivo",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_barra",
+            coluna_totalizadora: 4,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorColaborador",
+              filtro_sql:
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+        ],
+      },
+      {
+        grupo: "Tipo",
+        icone: "assignment_turned_in",
+        cards: [
+          {
+            card: "Atividades Previstas",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_barra_horizontal",
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadePorTipoAtividade",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Atividades Pendentes ",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorTipoAtividade",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_tipo_atividade = <id_grupo>",
+            },
+          },
+          {
+            card: "Distribuição do Tempo",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_pizza",
+            coluna_totalizadora: 4,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorTipoAtividade",
+              filtro_sql:
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Atividades Criadas",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadePorTipoAtividadeStatus",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Tempo Efetivo",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_barra",
+            coluna_totalizadora: 4,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorTipoAtividade",
+              filtro_sql:
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+        ],
+      },
+      {
+        grupo: "Workflow",
+        icone: "assignment_turned_in",
+        cards: [
+          {
+            card: "Atividades Previstas",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_barra",
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadePorWorkflow",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Atividades Pendentes",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            width: "31vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorWorkflow",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = <id_grupo>",
+            },
+          },
+          {
+            card: "Distribuição do Tempo",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_pizza",
+            coluna_totalizadora: 4,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorWorkflow",
+              filtro_sql:
+                "where o.ds_status <> 'C' and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Atividades Criadas",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadePorWorkflowStatus",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Tempo Efetivo",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_barra",
+            coluna_totalizadora: 4,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorWorkflow",
+              filtro_sql:
+                "where o.ds_status <> 'C' and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
         ],
@@ -2278,7 +2596,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorWorkflowData",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -2293,7 +2611,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaboradorData",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and a.cd_workflow = 35 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 35 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -2308,7 +2626,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaboradorData",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and a.cd_workflow = 36 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 36 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -2323,7 +2641,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaboradorData",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and a.cd_workflow = 37 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 37 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -2338,7 +2656,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaboradorData",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and a.cd_workflow = 38 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 38 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -2353,7 +2671,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaboradorData",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and a.cd_workflow = 39 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 39 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -2367,7 +2685,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorWorkflow",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -2382,7 +2700,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and a.cd_workflow = 35 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 35 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -2397,7 +2715,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and a.cd_workflow = 36 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 36 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -2412,7 +2730,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and a.cd_workflow = 37 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 37 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -2427,7 +2745,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and a.cd_workflow = 38 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 38 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -2442,7 +2760,7 @@ function layoutDashBoard4() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and a.cd_workflow = 39 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and a.cd_workflow = 39 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
         ],
@@ -2737,7 +3055,7 @@ function layoutDashBoard9() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade = 3 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade = 3",
             },
           },
         ],
@@ -2784,7 +3102,7 @@ function layoutDashBoard9() {
             conteudo_card: {
               body: "bodyOcorrenciaPorTipoAtividade",
               filtro_sql:
-                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade = 3 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade = 3",
             },
           },
           {
@@ -2859,7 +3177,7 @@ function layoutDashBoard9() {
             conteudo_card: {
               body: "bodyOcorrenciaPorWorkflow",
               filtro_sql:
-                "where o.ds_status <> 'C' and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade = 3 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade = 3",
             },
           },
           {
@@ -2897,7 +3215,7 @@ function layoutDashBoard9() {
             conteudo_card: {
               body: "bodyOcorrenciaPorWorkflow",
               filtro_sql:
-                "where o.ds_status <> 'C' and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade = 3 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and a.cd_workflow not in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade = 3",
             },
           },
         ],
@@ -2946,7 +3264,7 @@ function layoutDashBoard9() {
             conteudo_card: {
               body: "bodyOcorrenciaPorWorkflow",
               filtro_sql:
-                "where o.ds_status <> 'C' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade = 3 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade = 3",
             },
           },
           {
@@ -2984,7 +3302,7 @@ function layoutDashBoard9() {
             conteudo_card: {
               body: "bodyOcorrenciaPorWorkflow",
               filtro_sql:
-                "where o.ds_status <> 'C' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade = 3 and o.cd_tipo_ocorrencia = 1",
+                "where o.ds_status <> 'C' and a.cd_workflow in (35, 36, 37, 38, 39, 40, 41, 49) and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade = 3",
             },
           },
         ],
@@ -3349,7 +3667,7 @@ function layoutDashBoard11() {
 function layoutDashBoard12() {
   const json = {
     id_dashboard: 1,
-    dashboard: "bi - desenvolvimeto",
+    dashboard: "bi - desenvolvimento",
     grupos: [
       {
         grupo: "Geral",
@@ -4052,7 +4370,7 @@ function layoutDashBoard13() {
             conteudo_card: {
               body: "bodyAtividadePorSituacao",
               filtro_sql:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -4065,10 +4383,10 @@ function layoutDashBoard13() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorWorkflow",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_workflow = <id_grupo>",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_workflow = <id_grupo>",
             },
           },
           {
@@ -4081,10 +4399,10 @@ function layoutDashBoard13() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorResponsavel",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_responsavel = <id_grupo>",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_responsavel = <id_grupo>",
             },
           },
           {
@@ -4097,10 +4415,10 @@ function layoutDashBoard13() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorData",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
             },
           },
           {
@@ -4113,10 +4431,10 @@ function layoutDashBoard13() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorSituacao",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_situacao = <id_grupo>",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_situacao = <id_grupo>",
             },
           },
           {
@@ -4129,10 +4447,10 @@ function layoutDashBoard13() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorTag",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
               body_item: "bodyAtividadeTag",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and ag.cd_tag = <id_grupo>",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and ag.cd_tag = <id_grupo>",
             },
           },
           {
@@ -4145,10 +4463,10 @@ function layoutDashBoard13() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorCliente",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
               body_item: "bodyAtividadeCliente",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and ac.cd_cliente = <id_grupo>",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and ac.cd_cliente = <id_grupo>",
             },
           },
           {
@@ -4161,10 +4479,10 @@ function layoutDashBoard13() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorPrioridade",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.cd_prioridade = <id_grupo>",
+                "where a.ds_status = 'P' and cast(a.dt_previsao as date) < current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_prioridade = <id_grupo>",
             },
           },
         ],
@@ -4183,10 +4501,10 @@ function layoutDashBoard13() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorTipoAtividade",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.dt_previsao <= current_date",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.dt_previsao <= current_date",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.dt_previsao <= current_date and a.cd_tipo_atividade = <id_grupo>",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.dt_previsao <= current_date and a.cd_tipo_atividade = <id_grupo>",
             },
           },
           {
@@ -4199,10 +4517,10 @@ function layoutDashBoard13() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorWorkflow",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.dt_previsao <= current_date",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.dt_previsao <= current_date",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.dt_previsao <= current_date and a.cd_workflow = <id_grupo>",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.dt_previsao <= current_date and a.cd_workflow = <id_grupo>",
             },
           },
           {
@@ -4215,10 +4533,10 @@ function layoutDashBoard13() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorResponsavel",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.dt_previsao <= current_date",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.dt_previsao <= current_date",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.dt_previsao <= current_date and a.cd_responsavel = <id_grupo>",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.dt_previsao <= current_date and a.cd_responsavel = <id_grupo>",
             },
           },
           {
@@ -4231,10 +4549,10 @@ function layoutDashBoard13() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorTag",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.dt_previsao <= current_date",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.dt_previsao <= current_date",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.dt_previsao <= current_date and and ag.cd_tag = <id_grupo>",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.dt_previsao <= current_date and and ag.cd_tag = <id_grupo>",
             },
           },
           {
@@ -4247,10 +4565,10 @@ function layoutDashBoard13() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorCliente",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.dt_previsao <= current_date",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.dt_previsao <= current_date",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.dt_previsao <= current_date and ac.cd_cliente = <id_grupo>",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.dt_previsao <= current_date and ac.cd_cliente = <id_grupo>",
             },
           },
           {
@@ -4263,10 +4581,10 @@ function layoutDashBoard13() {
             conteudo_card: {
               body_grupo: "bodyAtividadePorPrioridade",
               filtro_sql_grupo:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.dt_previsao <= current_date",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.dt_previsao <= current_date",
               body_item: "bodyAtividade",
               filtro_sql_item:
-                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and a.dt_previsao <= current_date and a.cd_prioridade = <id_grupo>",
+                "where a.ds_status = 'P' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.dt_previsao <= current_date and a.cd_prioridade = <id_grupo>",
             },
           },
         ],
@@ -4286,7 +4604,7 @@ function layoutDashBoard13() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status <> 'C' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and o.cd_tipo_ocorrencia = 1 and cast(o.dt_ocorrencia as date) = (current_date)",
+                "where o.ds_status <> 'C' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and cast(o.dt_ocorrencia as date) = (current_date)",
             },
           },
           {
@@ -4299,7 +4617,7 @@ function layoutDashBoard13() {
             conteudo_card: {
               body: "bodyOcorrenciaPorWorkflow",
               filtro_sql:
-                "where o.ds_status <> 'C' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and o.cd_tipo_ocorrencia = 1 and cast(o.dt_ocorrencia as date) = (current_date)",
+                "where o.ds_status <> 'C' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and cast(o.dt_ocorrencia as date) = (current_date)",
             },
           },
           {
@@ -4314,7 +4632,7 @@ function layoutDashBoard13() {
             conteudo_card: {
               body: "bodyOcorrenciaPorData",
               filtro_sql:
-                "where o.ds_status <> 'C' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and o.cd_tipo_ocorrencia = 1 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from o.dt_ocorrencia) = extract(year from current_date)) ",
+                "where o.ds_status <> 'C' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from o.dt_ocorrencia) = extract(year from current_date)) ",
             },
           },
           {
@@ -4329,7 +4647,7 @@ function layoutDashBoard13() {
             conteudo_card: {
               body: "bodyOcorrenciaPorSemana",
               filtro_sql:
-                "where o.ds_status <> 'C' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and o.cd_tipo_ocorrencia = 1 and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from o.dt_ocorrencia) = extract(year from current_date)) ",
+                "where o.ds_status <> 'C' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from o.dt_ocorrencia) = extract(year from current_date)) ",
             },
           },
         ],
@@ -4350,7 +4668,7 @@ function layoutDashBoard13() {
             conteudo_card: {
               body: "bodyAtividadePorEmissaoStatus",
               filtro_sql:
-                "where a.ds_status in ('P', 'F') and (extract(month from a.dt_emissao) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status in ('P', 'F') and (extract(month from a.dt_emissao) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -4365,7 +4683,7 @@ function layoutDashBoard13() {
             conteudo_card: {
               body: "bodyAtividadePorWorkflowStatus",
               filtro_sql:
-                "where a.ds_status in ('P', 'F') and (extract(month from a.dt_emissao) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where a.ds_status in ('P', 'F') and (extract(month from a.dt_emissao) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -4380,7 +4698,7 @@ function layoutDashBoard13() {
             conteudo_card: {
               body: "bodyOcorrenciaPorWorkflowData",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -4395,7 +4713,7 @@ function layoutDashBoard13() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaboradorData",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -4409,7 +4727,7 @@ function layoutDashBoard13() {
             conteudo_card: {
               body: "bodyOcorrenciaPorWorkflow",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
           {
@@ -4423,7 +4741,7 @@ function layoutDashBoard13() {
             conteudo_card: {
               body: "bodyOcorrenciaPorColaborador",
               filtro_sql:
-                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status in ('P', 'F') and (extract(month from o.dt_ocorrencia) = extract(month from current_date)) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
         ],
@@ -4444,7 +4762,7 @@ function layoutDashBoard13() {
             conteudo_card: {
               body: "bodyAtividadeTagPorResponsavelTag",
               filtro_sql:
-                "where a.ds_status = 'F' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and ag.cd_tag in (140, 141, 367) and extract(month from a.dt_previsao) = extract(month from current_date) and extract(year from a.dt_previsao) = extract(year from current_date)",
+                "where a.ds_status = 'F' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and ag.cd_tag in (140, 141, 367) and extract(month from a.dt_previsao) = extract(month from current_date) and extract(year from a.dt_previsao) = extract(year from current_date)",
             },
           },
           {
@@ -4459,7 +4777,7 @@ function layoutDashBoard13() {
             conteudo_card: {
               body: "bodyAtividadeTagPorResponsavelTag",
               filtro_sql:
-                "where a.ds_status = 'F' and a.cd_tipo_atividade in (2,15,18,19,20,27,28) and ag.cd_tag in (140, 141, 367) and extract(month from a.dt_previsao) = extract(month from current_date - 30) and extract(year from a.dt_previsao) = extract(year from current_date - 30)",
+                "where a.ds_status = 'F' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and ag.cd_tag in (140, 141, 367) and extract(month from a.dt_previsao) = extract(month from current_date - 30) and extract(year from a.dt_previsao) = extract(year from current_date - 30)",
             },
           },
         ],
@@ -4480,7 +4798,7 @@ function layoutDashBoard13() {
             conteudo_card: {
               body: "bodyOcorrenciaColaboradorWorkflowPeriodo",
               filtro_sql:
-                "where o.ds_status = 'F' and extract(minute from o.duracao) > 0 and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,15,18,19,20,27,28)",
+                "where o.ds_status = 'F' and extract(minute from o.duracao) > 0 and cast(o.dt_ocorrencia as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
         ],
@@ -6252,6 +6570,9 @@ function layoutDashBoard19() {
               body_grupo: "bodyAtividadeTagPorResponsavel",
               filtro_sql_grupo:
                 "where a.ds_status = 'F' and a.cd_tipo_atividade = 2 and (select count(ag.cd_tag) from atividade_tag ag where ag.cd_empresa = a.cd_empresa and ag.cd_atividade = a.cd_atividade and ag.cd_tag in (141, 140)) = 0 and extract(year from a.dt_previsao) = extract(year from current_date)",
+              body_item: "bodyAtividadeTag",
+              filtro_sql_item:
+                "where a.ds_status ='F' and a.cd_tipo_atividade = 2 and (select count(ag.cd_tag) from atividade_tag ag where ag.cd_empresa = a.cd_empresa and ag.cd_atividade = a.cd_atividade and ag.cd_tag in (141, 140)) = 0 and extract(year from a.dt_previsao) = extract(year from current_date) and a.cd_responsavel = <id_grupo>",
             },
           },
           {
@@ -6282,11 +6603,7 @@ function layoutDashBoard19() {
                 "where a.ds_status = 'F' and a.cd_tipo_atividade = 2 and ag.cd_tag = 153 and extract(year from a.dt_previsao) = extract(year from current_date)",
               body_item: "bodyAtividadeTag",
               filtro_sql_item:
-<<<<<<< HEAD
-                "where a.ds_status ='F' and a.cd_tipo_atividade = 2 and ag.cd_tag = 153 and cast(a.dt_previsao as date) = dateadd(day, <id_grupo>, cast('01/01/1970' as date))",
-=======
                 "where a.ds_status ='F' and a.cd_tipo_atividade = 2 and ag.cd_tag = 153 and extract(year from a.dt_previsao) = extract(year from current_date) and a.cd_responsavel = <id_grupo>",
->>>>>>> 2d6ddbf224fa8f3315d15001f00781ab886a72dd
             },
           },
           {
