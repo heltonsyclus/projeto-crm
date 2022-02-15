@@ -373,8 +373,14 @@ export function bodyOcorrencia(pFiltros) {
   let body = montaBody(instrucao_sql, pFiltros);
   return body;
 }
-*/ export function bodyOcorrenciaPorAtividade(pFiltros) {
+*/
+export function bodyOcorrenciaPorAtividade(pFiltros) {
   let instrucao_sql = `select a.cd_atividade "id_atividade", a.ds_atividade "atividade", count(o.cd_ocorrencia) "qtde", sum(DATEDIFF(MINUTE, CAST('01/01/1970 00:00:00' AS TIMESTAMP), O.DURACAO)) "duracao", cast(list(o.cd_colaborador) as varchar(500)) \"lista\" from atividade_ocorrencia o inner join atividade a on a.cd_empresa = o.cd_empresa and a.cd_atividade = o.cd_atividade <filtros> group by a.cd_atividade, a.ds_atividade order by a.ds_atividade`;
+  let body = montaBody(instrucao_sql, pFiltros);
+  return body;
+}
+export function bodyOcorrencia2PorAtividade(pFiltros) {
+  let instrucao_sql = `select a.cd_atividade "id_atividade", a.ds_atividade "atividade", count(o.cd_ocorrencia) "qtde", sum(DATEDIFF(MINUTE, o.dt_ocorrencia, current_timestamp)) "duracao", cast(list(o.cd_colaborador) as varchar(500)) \"lista\" from atividade_ocorrencia o inner join atividade a on a.cd_empresa = o.cd_empresa and a.cd_atividade = o.cd_atividade <filtros> group by a.cd_atividade, a.ds_atividade order by a.ds_atividade`;
   let body = montaBody(instrucao_sql, pFiltros);
   return body;
 }

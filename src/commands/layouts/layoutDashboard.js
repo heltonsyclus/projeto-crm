@@ -99,6 +99,19 @@ function layoutDashBoard1() {
         icone: "assignment_turned_in",
         cards: [
           {
+            card: "Atividade em execução",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardSlideApi",
+            width: "31vw",
+            height: "40",
+            link: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body: "bodyOcorrenciaPorAtividade",
+              filtro_sql:
+                "where o.ds_status = 'P' and o.cd_tipo_ocorrencia = 1 and o.cd_colaborador = <id_principal>",
+            },
+          },
+          {
             card: "Planejamento",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGraficoApi",
@@ -1562,7 +1575,7 @@ function layoutDashBoard4() {
           {
             card: "Interações",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaApi",
+            tipo_card: "CardListaColaboradorApi",
             width: "94.6vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",

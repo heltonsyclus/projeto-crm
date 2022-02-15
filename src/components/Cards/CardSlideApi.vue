@@ -33,17 +33,7 @@
               track-color="cyan-3"
             />
           </div>
-          <div
-            v-show="carregarText"
-            style="
-              margin: 0 auto;
-              text-align: center;
-              padding-top: 80px;
-              color: gray;
-            "
-          >
-            <span style="font-weight: 500">Não possui itens...</span>
-          </div>
+
           <div
             style="width: 85%; margin: 0px auto"
             class="flex justify-between items-center q-mt-md"
@@ -58,6 +48,17 @@
             />
 
             <div class="column centralizar" style="text-align: center">
+              <div
+                v-show="carregarText"
+                style="
+                  margin: 0 auto;
+                  text-align: center;
+                  padding-top: 80px;
+                  color: gray;
+                "
+              >
+                <span style="font-weight: 500">Não possui itens...</span>
+              </div>
               <span
                 class="q-px-xl q-pt-md"
                 style="font-weight: 500; color: #7e7d7d; width: 220px"
@@ -65,8 +66,7 @@
                 {{ this.descricao }}
               </span>
               <p style="font-weight: 700; color: #7e7d7d; font-size: 40px">
-                {{ "00:00" }}
-                <!--{{this.duracao}}-->
+                {{ this.duracao }}
               </p>
             </div>
 

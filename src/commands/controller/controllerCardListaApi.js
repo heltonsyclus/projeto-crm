@@ -1,4 +1,5 @@
 import controllerBody from "app/src/commands/controller/controllerBody";
+import { senhaLogin } from "app/src/commands/layouts/layoutColaborador";
 export default {
   mixins: [controllerBody],
   data() {
@@ -18,10 +19,15 @@ export default {
   },
   methods: {
     getTextoSlideAtual(atualizarIndex) {
-      let descricao = this.ObjConteudo.itens.map((chave) => chave.descricao);
-      let duracao = this.ObjConteudo.itens.map((chave) => chave.duracao);
-      this.descricao = descricao[atualizarIndex];
-      this.duracao = duracao[atualizarIndex];
+      if (this.ObjConteudo.itens.length === 0) {
+        this.carregarText = true;
+        this.carregarKnob = false;
+      } else {
+        let descricao = this.ObjConteudo.itens.map((chave) => chave.descricao);
+        let duracao = this.ObjConteudo.itens.map((chave) => chave.duracao);
+        this.descricao = descricao[atualizarIndex];
+        this.duracao = duracao[atualizarIndex];
+      }
     },
     atualizarConteudo() {
       this.limparConteudo();
@@ -38,39 +44,50 @@ export default {
         this.$api.post("consultasql", body).then((res) => {
           let arrRetorno = res.data;
           for (let i = 0; i < arrRetorno.length; i++) {
-            let arraYlista = Object.values(arrRetorno[i])[4];
+            //construindoi array lista
+            let arrayLista = Object.values(arrRetorno[i])[4];
             var arrJson = "[]";
-            if (arraYlista != undefined) {
-              arrJson = JSON.parse("[" + arraYlista + "]");
+            if (arrayLista != undefined) {
+              arrJson = JSON.parse("[" + arrayLista + "]");
             }
+            //nome colaborador
             let item = {
               id: Object.values(arrRetorno[i])[0],
               descricao: Object.values(arrRetorno[i])[1],
               qtde: Object.values(arrRetorno[i])[2],
               duracao: Object.values(arrRetorno[i])[3],
-              lista: arrJson,
+              lista: [...new Set(arrJson)],
             };
             this.carregarKnob = false;
             this.ObjConteudo.itens.push(item);
           }
+          this.getTextoSlideAtual(this.indexSlide);
+          let objSenhaLogin = senhaLogin();
+          for (let i = 0; i < objSenhaLogin.login.length; i++) {
+            this.ObjColaborador.push(objSenhaLogin.login[i]);
+          }
+
           setTimeout(() => {
-            arrRetorno == "";
+            arrRetorno === "";
           }, 2000);
-          if (arrRetorno == "") {
+          if (arrRetorno === "") {
             this.carregarText = true;
             this.carregarKnob = false;
           } else {
             this.carregarText = false;
           }
-          this.getTextoSlideAtual(this.indexSlide);
         });
       }
     },
     proximoIndex() {
-      this.getTextoSlideAtual(this.indexSlide + 1);
-      this.indexSlide++;
-      if (this.indexSlide === this.ObjConteudo.itens.length - 1) {
-        this.indexSlide = -1;
+      if (this.ObjConteudo.itens.length === 1) {
+        this.indexSlide = 0;
+      } else {
+        this.getTextoSlideAtual(this.indexSlide + 1);
+        this.indexSlide++;
+        if (this.indexSlide === this.ObjConteudo.itens.length - 1) {
+          this.indexSlide = -1;
+        }
       }
     },
     voltarIndex() {
