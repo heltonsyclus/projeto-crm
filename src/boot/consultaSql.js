@@ -73,7 +73,8 @@ export function bodyClienteTag(pFiltros) {
 
 //---------------------- atividade ----------------------//
 export function bodyAtividade(pFiltros) {
-  let instrucao_sql = `select a.cd_atividade "id_atividade", a.ds_atividade "atividade", a.dt_previsao "data_previsao" from atividade a <filtros> order by a.ds_atividade`;
+  //let instrucao_sql = `select a.cd_atividade "id_atividade", a.ds_atividade "atividade", a.dt_previsao "data_previsao" from atividade a <filtros> order by a.ds_atividade`;
+  let instrucao_sql = `select a.cd_atividade "id_atividade", a.ds_atividade "atividade", a.qt_colaborador_ativo "qtde", DATEDIFF(MINUTE, CAST('01/01/1970 00:00:00' AS TIMESTAMP), a.duracao) "duracao", a.cd_responsavel "lista" from atividade a <filtros> order by a.ds_atividade`;
   let body = montaBody(instrucao_sql, pFiltros);
   return body;
 }

@@ -116,6 +116,25 @@
           :idPrincipal="this.idColaboradorAtivo"
           :msg="this.msgCard"
         />
+        <CardListaColaboradorApi
+          v-if="ObjCard.tipo_card === 'CardListaColaboradorApi'"
+          class="q-ma-xs"
+          :id="ObjCard.id_card"
+          :card="ObjCard.card"
+          :ordem="ObjCard.ordem"
+          cor_header="bg-primary"
+          :style="{ width: `${ObjCard.width}` }"
+          topo_fixo="topo_fixo"
+          :height="ObjCard.height"
+          :width="ObjCard.width"
+          :btn_comando="ObjCard.btn_comando"
+          :tipo_card="ObjCard.tipo_card"
+          :sub_tipo="ObjCard.sub_tipo"
+          :conteudo_card="ObjCard.conteudo_card"
+          :link="ObjCard.link"
+          :idPrincipal="this.idColaboradorAtivo"
+          :msg="this.msgCard"
+        />
       </div>
     </div>
   </div>
@@ -126,6 +145,7 @@ import { GeLayoutDashBoard } from "src/commands/layouts/layoutDashboard";
 import BarraLayout from "src/layouts/BarraLayout.vue";
 import CardGrupoApi from "src/components/Cards/CardGrupoApi.vue";
 import CardListaApi from "src/components/Cards/CardListaApi.vue";
+import CardListaColaboradorApi from "src/components/Cards/CardListaColaboradorApi.vue";
 import CardGraficoApi from "src/components/Cards/CardGraficoApi.vue";
 import CardEmpresaApi from "src/components/Cards/CardEmpresaApi.vue";
 import cardpopup from "app/src/components/Cards/Cardpopup.vue";
@@ -139,6 +159,7 @@ export default defineComponent({
     BarraLayout,
     CardGrupoApi,
     CardListaApi,
+    CardListaColaboradorApi,
     CardGraficoApi,
     cardpopup,
     CardEmpresaApi,
