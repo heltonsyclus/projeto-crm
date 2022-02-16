@@ -35,7 +35,7 @@
           </div>
 
           <div
-            style="width: 85%; margin: 0px auto"
+            style="width: 95%; margin: 0px auto"
             class="flex justify-between items-center q-mt-md"
           >
             <q-avatar

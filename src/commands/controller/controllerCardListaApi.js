@@ -18,6 +18,19 @@ export default {
     };
   },
   methods: {
+    getTextoSlideAtual() {
+      if (this.indexSlide >= 0) {
+        let descricao = this.ObjConteudo.itens.map((chave) => chave.descricao);
+        let duracao = this.ObjConteudo.itens.map((chave) => chave.duracao);
+        this.descricao = descricao[this.indexSlide];
+        this.duracao = duracao[this.indexSlide];
+      } else {
+        this.descricao = "";
+        this.duracao = "";
+      }
+    },
+
+    /*
     getTextoSlideAtual(atualizarIndex) {
       if (this.ObjConteudo.itens.length === 0) {
         this.carregarText = true;
@@ -29,6 +42,7 @@ export default {
         this.duracao = duracao[atualizarIndex];
       }
     },
+    */
     atualizarConteudo() {
       this.limparConteudo();
       if (this.idPrincipal !== null) {
@@ -40,17 +54,20 @@ export default {
         if (body == null) {
           return false;
         }
+        this.indexSlide = -1;
         this.carregarKnob = true;
         this.$api.post("consultasql", body).then((res) => {
           let arrRetorno = res.data;
+
           for (let i = 0; i < arrRetorno.length; i++) {
-            //construindoi array lista
+            //construindo array lista
             let arrayLista = Object.values(arrRetorno[i])[4];
             var arrJson = "[]";
+            //var arrJson = "";
             if (arrayLista != undefined) {
               arrJson = JSON.parse("[" + arrayLista + "]");
             }
-            //nome colaborador
+
             let item = {
               id: Object.values(arrRetorno[i])[0],
               descricao: Object.values(arrRetorno[i])[1],
@@ -58,27 +75,44 @@ export default {
               duracao: Object.values(arrRetorno[i])[3],
               lista: [...new Set(arrJson)],
             };
-            this.carregarKnob = false;
             this.ObjConteudo.itens.push(item);
           }
-          this.getTextoSlideAtual(this.indexSlide);
-          let objSenhaLogin = senhaLogin();
-          for (let i = 0; i < objSenhaLogin.login.length; i++) {
-            this.ObjColaborador.push(objSenhaLogin.login[i]);
-          }
 
-          setTimeout(() => {
-            arrRetorno === "";
-          }, 2000);
-          if (arrRetorno === "") {
-            this.carregarText = true;
-            this.carregarKnob = false;
-          } else {
-            this.carregarText = false;
+          if (arrRetorno.length > 0) {
+            this.indexSlide = 0;
           }
+          this.getTextoSlideAtual();
+
+          /*
+          if (this.tipo_card === "CardListaColaboradorApi") {
+            let objSenhaLogin = senhaLogin();
+            for (let i = 0; i < objSenhaLogin.login.length; i++) {
+              this.ObjColaborador.push(objSenhaLogin.login[i]);
+            }
+          }
+          */
+          setTimeout(() => {
+            arrRetorno = "";
+          }, 2000);
+          this.carregarKnob = false;
+          this.carregarText = arrRetorno.length === 0;
         });
       }
     },
+    proximoIndex() {
+      if (this.indexSlide < this.ObjConteudo.itens.length - 1) {
+        this.indexSlide++;
+        this.getTextoSlideAtual();
+      }
+    },
+    voltarIndex() {
+      if (this.indexSlide > 0) {
+        this.indexSlide--;
+        this.getTextoSlideAtual();
+      }
+    },
+
+    /*
     proximoIndex() {
       if (this.ObjConteudo.itens.length === 1) {
         this.indexSlide = 0;
@@ -97,6 +131,7 @@ export default {
         this.indexSlide = this.ObjConteudo.itens.length - 1;
       }
     },
+    */
     limparConteudo() {
       this.ObjConteudo.itens = [];
     },
@@ -133,6 +168,14 @@ export default {
       this.alturaCard = this.height + "vh";
       this.alturaCorpo = this.height - 7.8 + "vh";
     },
+    carregaObjColaborador() {
+      this.ObjColaborador = [];
+      let objSenhaLogin = senhaLogin();
+      for (let i = 0; i < objSenhaLogin.login.length; i++) {
+        console.log(objSenhaLogin.login[i]);
+        this.ObjColaborador.push(objSenhaLogin.login[i]);
+      }
+    },
   },
   computed: {
     UrlItem() {
@@ -155,5 +198,6 @@ export default {
   },
   created() {
     this.medidaCard();
+    this.carregaObjColaborador();
   },
 };

@@ -50,6 +50,7 @@ import {
   bodyOcorrenciaPorData,
   bodyOcorrenciaPorMesAno,
   bodyOcorrenciaPorSemana,
+  bodyOcorrenciaExecucaoPorAtividade,
   bodyOcorrenciaCliente,
   bodyOcorrenciaClientePorData,
   bodyOcorrenciaPorTipoAtividadeData,
@@ -273,6 +274,9 @@ export default {
       }
       if (pNomeBody === "bodyOcorrenciaPorSemana") {
         return bodyOcorrenciaPorSemana(filtros);
+      }
+      if (pNomeBody === "bodyOcorrenciaExecucaoPorAtividade") {
+        return bodyOcorrenciaExecucaoPorAtividade(filtros);
       }
       if (pNomeBody === "bodyOcorrenciaCliente") {
         return bodyOcorrenciaCliente(filtros);
