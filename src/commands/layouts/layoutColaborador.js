@@ -1,3 +1,7 @@
+export function GetImg(pIdColaborador) {
+  return pIdColaborador;
+}
+
 export function senhaLogin() {
   const json = {
     login: [

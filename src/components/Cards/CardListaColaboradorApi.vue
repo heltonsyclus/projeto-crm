@@ -9,7 +9,12 @@
       <q-item-section
         style="height: 40px; font-weight: 700; color: White; padding-left: 10px"
       >
-        {{ card }}
+        <div>
+          {{ card }}
+          <span v-if="total_execucao === 1">
+            ({{ this.ObjConteudo.itens.length }})
+          </span>
+        </div>
       </q-item-section>
       <q-btn
         v-if="btn_comando === 'btn-atualizar'"
@@ -58,14 +63,13 @@
             >
               {{ itens.descricao }}
             </a>
-            <div class="flex">
+            <div class="flex" v-if="coluna_imagens === 1">
               <div v-if="itens.lista.length > 1">
-                <q-btn
-                  round
-                  size="10px"
-                  color="gray-8"
-                  text-color="black"
-                  icon="arrow_back_ios"
+                <q-icon
+                  :name="this.icon"
+                  size="1em"
+                  style="margin-top: 10px; cursor: pointer"
+                  @click="mostrarColaboradores(indexitem)"
                 />
               </div>
               <div
@@ -77,30 +81,16 @@
                   v-for="(colaborador, indexitem) in this.ObjColaborador"
                   :key="indexitem"
                 >
-                  <!--  <div v-if="itens.lista.length > 1">
-                    <div v-if="colaborador.id_colaborador === itens.lista[0]">
-                      <q-avatar size="32px" style="margin-left: 8px">
-                        <img
-                          :src="require(`../../assets/${itens.lista[0]}.png`)"
-                        />
-                      </q-avatar>
-                      <q-tooltip class="capitalize">{{
-                        colaborador.usuario
-                      }}</q-tooltip>
-                    </div>
-                  </div>-->
                   <div
                     v-if="colaborador.id_colaborador === listas"
                     class="flex"
                   >
-                    <!-- <div v-if="itens.lista.length <= 1">-->
                     <q-avatar size="32px" style="margin-left: 8px">
                       <img :src="require(`../../assets/${listas}.png`)" />
                     </q-avatar>
                     <q-tooltip class="capitalize">{{
                       colaborador.usuario
                     }}</q-tooltip>
-                    <!-- </div>-->
                   </div>
                 </div>
               </div>
@@ -130,26 +120,26 @@ export default {
     "link",
     "width",
     "height",
+    "total_execucao",
+    "coluna_imagens",
   ],
   data() {
     return {
-      ObjColaborador: [],
+      mostrarImg: false,
+      icon: "arrow_back_ios",
     };
   },
-  /* methods: {
-   /* Logar() {
-      let objSenhaLogin = senhaLogin();
-      for (let i = 0; i < objSenhaLogin.login.length; i++) {
-        this.ObjColaborador.push({
-          id: [objSenhaLogin.login[i].id_colaborador],
-          nome: objSenhaLogin.login[i].usuario,
-        });
+  methods: {
+    mostrarColaboradores(indexitem) {
+      this.mostrarImg = !this.mostrarImg;
+      if (this.mostrarImg === true) {
+        this.icon = "arrow_forward_ios";
+      } else {
+        this.icon = "arrow_back_ios";
       }
+      console.log(indexitem);
     },
   },
-  created() {
-    this.Logar();
-  },*/
 };
 </script>
 

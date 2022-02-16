@@ -85,6 +85,8 @@
           :tipo_card="ObjCard.tipo_card"
           :sub_tipo="ObjCard.sub_tipo"
           :conteudo_card="ObjCard.conteudo_card"
+          :total_execucao="ObjCard.total_execucao"
+          :mostrar_qtde="ObjCard.mostrar_qtde"
           :link_item="ObjCard.link_item"
           :idPrincipal="this.idColaboradorAtivo"
           :msg="this.msgCard"

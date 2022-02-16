@@ -9,7 +9,12 @@
       <q-item-section
         style="height: 40px; font-weight: 700; color: White; padding-left: 10px"
       >
-        {{ card }}
+        <div>
+          {{ card }}
+          <span v-if="total_execucao === 1">
+            ({{ this.ObjConteudo.itens.length }})
+          </span>
+        </div>
       </q-item-section>
       <q-btn
         v-if="btn_comando === 'btn-atualizar'"
@@ -59,12 +64,23 @@
               >
                 <span style="font-weight: 500">Não possui itens...</span>
               </div>
+              <a
+                class="q-px-xl q-pt-md cursor"
+                style="font-weight: 500; width: 220px"
+                @click.prevent="getUrlItemSlide()"
+              >
+                {{ this.descricao }}
+              </a>
               <span
                 class="q-px-xl q-pt-md"
                 style="font-weight: 500; color: #7e7d7d; width: 220px"
+                >{{ this.id }}</span
               >
-                {{ this.descricao }}
-              </span>
+              <span
+                class="q-px-xl q-pt-md"
+                style="font-weight: 500; color: #7e7d7d; width: 220px"
+                >{{ this.qtde }}</span
+              >
               <p style="font-weight: 700; color: #7e7d7d; font-size: 40px">
                 {{ this.duracao }}
               </p>
@@ -100,6 +116,7 @@ export default {
     "link",
     "width",
     "height",
+    "total_execucao",
   ],
 };
 </script>

@@ -14,6 +14,8 @@ export default {
       imagens: [],
       descricao: null,
       duracao: null,
+      id: null,
+      qtde: null,
       indexSlide: 0,
     };
   },
@@ -22,27 +24,20 @@ export default {
       if (this.indexSlide >= 0) {
         let descricao = this.ObjConteudo.itens.map((chave) => chave.descricao);
         let duracao = this.ObjConteudo.itens.map((chave) => chave.duracao);
+        let id = this.ObjConteudo.itens.map((chave) => chave.id);
+        let qtde = this.ObjConteudo.itens.map((chave) => chave.qtde);
+
         this.descricao = descricao[this.indexSlide];
         this.duracao = duracao[this.indexSlide];
+        this.id = id[this.indexSlide];
+        this.qtde = qtde[this.indexSlide];
       } else {
         this.descricao = "";
         this.duracao = "";
+        this.id = "";
+        this.qtde = "";
       }
     },
-
-    /*
-    getTextoSlideAtual(atualizarIndex) {
-      if (this.ObjConteudo.itens.length === 0) {
-        this.carregarText = true;
-        this.carregarKnob = false;
-      } else {
-        let descricao = this.ObjConteudo.itens.map((chave) => chave.descricao);
-        let duracao = this.ObjConteudo.itens.map((chave) => chave.duracao);
-        this.descricao = descricao[atualizarIndex];
-        this.duracao = duracao[atualizarIndex];
-      }
-    },
-    */
     atualizarConteudo() {
       this.limparConteudo();
       if (this.idPrincipal !== null) {
@@ -63,7 +58,6 @@ export default {
             //construindo array lista
             let arrayLista = Object.values(arrRetorno[i])[4];
             var arrJson = "[]";
-            //var arrJson = "";
             if (arrayLista != undefined) {
               arrJson = JSON.parse("[" + arrayLista + "]");
             }
@@ -83,14 +77,6 @@ export default {
           }
           this.getTextoSlideAtual();
 
-          /*
-          if (this.tipo_card === "CardListaColaboradorApi") {
-            let objSenhaLogin = senhaLogin();
-            for (let i = 0; i < objSenhaLogin.login.length; i++) {
-              this.ObjColaborador.push(objSenhaLogin.login[i]);
-            }
-          }
-          */
           setTimeout(() => {
             arrRetorno = "";
           }, 2000);
@@ -111,27 +97,6 @@ export default {
         this.getTextoSlideAtual();
       }
     },
-
-    /*
-    proximoIndex() {
-      if (this.ObjConteudo.itens.length === 1) {
-        this.indexSlide = 0;
-      } else {
-        this.getTextoSlideAtual(this.indexSlide + 1);
-        this.indexSlide++;
-        if (this.indexSlide === this.ObjConteudo.itens.length - 1) {
-          this.indexSlide = -1;
-        }
-      }
-    },
-    voltarIndex() {
-      this.getTextoSlideAtual(this.indexSlide);
-      this.indexSlide--;
-      if (this.indexSlide < 0) {
-        this.indexSlide = this.ObjConteudo.itens.length - 1;
-      }
-    },
-    */
     limparConteudo() {
       this.ObjConteudo.itens = [];
     },
@@ -142,6 +107,12 @@ export default {
     },
     formataCaptionItem(pQtde, pDuracao) {
       let texto = "";
+      if (this.mostrar_qtde === false) {
+        pQtde = "";
+      }
+      if (this.mostrar_duracao === false) {
+        pDuracao = "";
+      }
       if (pQtde > 0) {
         texto = pQtde + " itens";
         if (pDuracao > 0) {
@@ -161,6 +132,12 @@ export default {
       url = url.replace("<id_item>", this.ObjConteudo.itens[pIndexItem].id);
       return url;
     },
+    getUrlItemSlide() {
+      let url = this.link;
+      url = url.replace("<id_item>", this.id);
+      window.open(url, "_blank");
+    },
+
     abrirItem(pIndexItem) {
       this.abrirUrl(this.getUrlItem(pIndexItem));
     },

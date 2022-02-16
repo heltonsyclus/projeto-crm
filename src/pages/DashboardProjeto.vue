@@ -147,6 +147,7 @@
             :link_item="ObjCard.link_item"
             :idPrincipal="this.idProjetoAtivo"
             :msg="this.msgCard"
+            :total_execucao="ObjCard.total_execucao"
           />
           <CardGraficoApi
             v-if="ObjCard.tipo_card === 'CardGraficoApi'"
@@ -168,6 +169,7 @@
             :link_item="ObjCard.link_item"
             :idPrincipal="this.idProjetoAtivo"
             :msg="this.msgCard"
+            :total_execucao="ObjCard.total_execucao"
           />
           <CardListaApi
             v-if="ObjCard.tipo_card === 'CardListaApi'"
@@ -186,6 +188,7 @@
             :link="ObjCard.link"
             :idPrincipal="this.idProjetoAtivo"
             :msg="this.msgCard"
+            :total_execucao="ObjCard.total_execucao"
           />
         </div>
       </div>

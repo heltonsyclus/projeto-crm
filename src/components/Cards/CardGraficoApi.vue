@@ -9,7 +9,12 @@
       <q-item-section
         style="height: 40px; font-weight: 700; color: White; padding-left: 10px"
       >
-        {{ card }}
+        <div>
+          {{ card }}
+          <span v-if="total_execucao === 1">
+            ({{ this.ObjConteudo.itens.length }})
+          </span>
+        </div>
       </q-item-section>
 
       <q-btn
@@ -166,6 +171,7 @@ export default {
     "coluna_categoria",
     "coluna_serie",
     "coluna_totalizadora",
+    "total_execucao",
   ],
 };
 </script>

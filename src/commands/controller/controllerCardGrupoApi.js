@@ -51,6 +51,12 @@ export default {
     },
     formataCaptionGrupo(pQtde, pDuracao) {
       let texto = "";
+      if (this.mostrar_qtde === false) {
+        pQtde = "";
+      }
+      if (this.mostrar_duracao === false) {
+        pDuracao = "";
+      }
       if (pQtde > 0) {
         texto = pQtde + " itens";
         if (pDuracao > 0) {
@@ -77,9 +83,6 @@ export default {
       this.$api.post("consultasql", body).then((res) => {
         let arrRetorno = res.data;
         for (let i = 0; i < arrRetorno.length; i++) {
-          /*if (this.link_grupo !== undefined) {
-            this.abrirGrupo(arrRetorno[i].id_atividade);
-          }*/
           let item = {
             id: Object.values(arrRetorno[i])[0],
             item: Object.values(arrRetorno[i])[1],

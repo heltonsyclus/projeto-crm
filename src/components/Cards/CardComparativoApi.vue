@@ -9,7 +9,12 @@
       <q-item-section
         style="height: 40px; font-weight: 700; color: White; padding-left: 10px"
       >
-        {{ card }}
+        <div>
+          {{ card }}
+          <span v-if="total_execucao === 1">
+            ({{ this.ObjConteudo.itens.length }})
+          </span>
+        </div>
       </q-item-section>
       <q-btn
         v-if="btn_comando === 'btn-atualizar'"
@@ -90,6 +95,7 @@ export default {
     "link_item",
     "width",
     "height",
+    "total_execucao",
   ],
 };
 </script>

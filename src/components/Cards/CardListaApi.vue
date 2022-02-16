@@ -9,7 +9,12 @@
       <q-item-section
         style="height: 40px; font-weight: 700; color: White; padding-left: 10px"
       >
-        {{ card }}
+        <div>
+          {{ card }}
+          <span v-if="total_execucao === true">
+            ({{ this.ObjConteudo.itens.length }})
+          </span>
+        </div>
       </q-item-section>
       <q-btn
         v-if="btn_comando === 'btn-atualizar'"
@@ -54,7 +59,11 @@
             <a @click.prevent="abrirItem(indexitem)" class="cursor">
               {{ itens.descricao }}
             </a>
-            <p class="text-blue-grey-7" style="font-size: 12.5px">
+            <p
+              class="text-blue-grey-7"
+              style="font-size: 12.5px"
+              v-if="mostrar_qtde === true || mostrar_duracao === true"
+            >
               <q-icon name="av_timer" />
               {{ this.formataCaptionItem(itens.qtde, itens.duracao) }}
             </p>
@@ -83,6 +92,9 @@ export default {
     "link",
     "width",
     "height",
+    "total_execucao",
+    "mostrar_qtde",
+    "mostrar_duracao",
   ],
 };
 </script>
