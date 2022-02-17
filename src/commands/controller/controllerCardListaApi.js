@@ -120,7 +120,7 @@ export default {
           const total = numbersList.reduce(
             (total, currentElement) => total + currentElement
           );
-          this.duracaoTotal = Math.round(total);
+          this.duracaoTotal = total;
           texto =
             texto +
             " (" +
