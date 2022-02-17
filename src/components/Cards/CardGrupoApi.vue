@@ -55,7 +55,7 @@
             v-for="(grupos, indexGrupo) in this.ObjConteudo.grupos"
             :key="indexGrupo"
             @before-show="showItem(indexGrupo)"
-            :icon="grupos.icone"
+            :icon="adicionar_icone"
             :label="grupos.grupo"
             :caption="this.formataCaptionGrupo(grupos.qtde, grupos.duracao)"
             :caption-lines="1"
@@ -126,6 +126,7 @@ export default {
     "total_execucao",
     "mostrar_qtde",
     "mostrar_duracao",
+    "adicionar_icone",
   ],
 };
 </script>

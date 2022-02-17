@@ -1,6 +1,5 @@
 export function GeLayoutDashBoard(pIdLayout) {
   let jLayout;
-
   switch (pIdLayout) {
     case 1:
       jLayout = layoutDashBoard1();
@@ -84,7 +83,6 @@ export function GeLayoutDashBoard(pIdLayout) {
       jLayout = layoutDashBoard9999();
       break;
   }
-
   return jLayout;
 }
 
@@ -237,7 +235,6 @@ function layoutDashBoard1() {
             card: "Interações",
             btn_comando: "btn-atualizar",
             tipo_card: "CardListaApi",
-
             total_execucao: true,
             mostrar_qtde: true,
             mostrar_duracao: true,
@@ -274,19 +271,21 @@ function layoutDashBoard1() {
           {
             card: "Atividade",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaColaboradorApi",
-            coluna_imagens: 1,
-
-            width: "31vw",
+            tipo_card: "CardListaApi",
+            campo_imagem: true,
+            mostrar_qtde: true,
+            mostrar_duracao: true,
+            total_execucao: true,
+            width: "62.5vw",
             height: "70",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
-              body: "bodyOcorrenciaPorAtividade",
+              body: "bodyOcorrenciaExecucaoPorAtividade",
               filtro_sql:
                 "where o.ds_status = 'P' and o.cd_tipo_ocorrencia = 1",
             },
           },
-          {
+          /*  {
             card: "Colaborador",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
@@ -304,7 +303,7 @@ function layoutDashBoard1() {
               filtro_sql_item:
                 "where o.ds_status = 'P' and o.cd_tipo_ocorrencia = 1 and o.cd_colaborador = <id_grupo>",
             },
-          },
+          },*/
           {
             card: "Cliente",
             btn_comando: "btn-atualizar",
@@ -1439,8 +1438,8 @@ function layoutDashBoard4() {
           {
             card: "Em Execução",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaColaboradorApi",
-            coluna_imagens: 1,
+            tipo_card: "CardListaApi",
+            campo_imagem: true,
             width: "31vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -1467,8 +1466,8 @@ function layoutDashBoard4() {
           {
             card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaColaboradorApi",
-            coluna_imagens: 1,
+            tipo_card: "CardListaApi",
+            campo_imagem: true,
             width: "31vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -1586,8 +1585,8 @@ function layoutDashBoard4() {
           {
             card: "Em Execução",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaColaboradorApi",
-            coluna_imagens: 1,
+            tipo_card: "CardListaApi",
+            campo_imagem: true,
             width: "31vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -1614,8 +1613,8 @@ function layoutDashBoard4() {
           {
             card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaColaboradorApi",
-            coluna_imagens: 1,
+            tipo_card: "CardListaApi",
+            campo_imagem: true,
             width: "31vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -1717,8 +1716,8 @@ function layoutDashBoard4() {
           {
             card: "Interações",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaColaboradorApi",
-            coluna_imagens: 1,
+            tipo_card: "CardListaApi",
+            campo_imagem: true,
             width: "94.6vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -1750,8 +1749,8 @@ function layoutDashBoard4() {
           {
             card: "Em Execução",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaColaboradorApi",
-            coluna_imagens: 1,
+            tipo_card: "CardListaApi",
+            campo_imagem: true,
             width: "31vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -1778,8 +1777,8 @@ function layoutDashBoard4() {
           {
             card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaColaboradorApi",
-            coluna_imagens: 1,
+            tipo_card: "CardListaApi",
+            campo_imagem: true,
             width: "31vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -1914,8 +1913,8 @@ function layoutDashBoard4() {
           {
             card: "Em Execução",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaColaboradorApi",
-            coluna_imagens: 1,
+            tipo_card: "CardListaApi",
+            campo_imagem: true,
             width: "31vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -1942,8 +1941,8 @@ function layoutDashBoard4() {
           {
             card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaColaboradorApi",
-            coluna_imagens: 1,
+            tipo_card: "CardListaApi",
+            campo_imagem: true,
             width: "31vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -2078,8 +2077,8 @@ function layoutDashBoard4() {
           {
             card: "Em Execução",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaColaboradorApi",
-            coluna_imagens: 1,
+            tipo_card: "CardListaApi",
+            campo_imagem: true,
             width: "31vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -2106,8 +2105,8 @@ function layoutDashBoard4() {
           {
             card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaColaboradorApi",
-            coluna_imagens: 1,
+            tipo_card: "CardListaApi",
+            campo_imagem: true,
             width: "31vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -2270,8 +2269,8 @@ function layoutDashBoard4() {
           {
             card: "Pendentes (Hoje)",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaColaboradorApi",
-            coluna_imagens: 1,
+            tipo_card: "CardListaApi",
+            campo_imagem: true,
             width: "31vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -2406,8 +2405,9 @@ function layoutDashBoard4() {
           {
             card: "Atividade",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardListaColaboradorApi",
-            coluna_imagens: 1,
+            tipo_card: "CardListaApi",
+            campo_imagem: true,
+            mostrar_qtde: true,
             width: "62vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -4044,7 +4044,8 @@ function layoutDashBoard12() {
           {
             card: "Sem Análise",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
+            adicionar_icone: "corporate_fare",
             mostrar_qtde: true,
             mostrar_duracao: true,
             total_execucao: true,
@@ -4063,7 +4064,8 @@ function layoutDashBoard12() {
           {
             card: "Em Análise",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
+            adicionar_icone: "corporate_fare",
             mostrar_qtde: true,
             mostrar_duracao: true,
             total_execucao: true,
@@ -4082,7 +4084,8 @@ function layoutDashBoard12() {
           {
             card: "Reprovadas",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
+            adicionar_icone: "corporate_fare",
             mostrar_qtde: true,
             mostrar_duracao: true,
             total_execucao: true,
@@ -4102,6 +4105,7 @@ function layoutDashBoard12() {
             card: "Previsao (Sem Analise)",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
+            adicionar_icone: "calendar_today",
             mostrar_qtde: true,
             mostrar_duracao: true,
             total_execucao: true,
@@ -4120,6 +4124,7 @@ function layoutDashBoard12() {
             card: "Previsao (Em Analise)",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
+            adicionar_icone: "calendar_today",
             mostrar_qtde: true,
             mostrar_duracao: true,
             total_execucao: true,
@@ -4137,9 +4142,8 @@ function layoutDashBoard12() {
           {
             card: "Aplicativo",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
-
             width: "31vw",
             height: "40",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -4162,9 +4166,9 @@ function layoutDashBoard12() {
           {
             card: "Cliente",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
-
+            adicionar_icone: "corporate_fare",
             width: "31vw",
             height: "40",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -4180,9 +4184,9 @@ function layoutDashBoard12() {
           {
             card: "Tag",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
-
+            adicionar_icone: "corporate_fare",
             width: "31vw",
             height: "40",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -4199,6 +4203,7 @@ function layoutDashBoard12() {
             card: "Previsao",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
+            adicionar_icone: "calendar_today",
             mostrar_qtde: true,
             mostrar_duracao: true,
             total_execucao: true,
@@ -4216,9 +4221,8 @@ function layoutDashBoard12() {
           {
             card: "Dificuldade",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
-
             width: "31vw",
             height: "40",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -4234,9 +4238,9 @@ function layoutDashBoard12() {
           {
             card: "Aplicativo",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
-
+            adicionar_icone: "corporate_fare",
             width: "31vw",
             height: "40",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -4293,9 +4297,9 @@ function layoutDashBoard12() {
           {
             card: "Cliente",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
-
+            adicionar_icone: "corporate_fare",
             width: "31vw",
             height: "40",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -4311,7 +4315,7 @@ function layoutDashBoard12() {
           {
             card: "Tag",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -4330,6 +4334,7 @@ function layoutDashBoard12() {
             card: "Previsao",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
+            adicionar_icone: "calendar_today",
             mostrar_qtde: true,
             mostrar_duracao: true,
             total_execucao: true,
@@ -4366,7 +4371,7 @@ function layoutDashBoard12() {
           {
             card: "Aplicativo",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -4444,9 +4449,9 @@ function layoutDashBoard12() {
           {
             card: "Cliente",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
-
+            adicionar_icone: "corporate_fare",
             width: "31vw",
             height: "40",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -4482,6 +4487,7 @@ function layoutDashBoard12() {
             card: "Previsao",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
+            adicionar_icone: "calendar_today",
             mostrar_qtde: true,
             mostrar_duracao: true,
             total_execucao: true,
@@ -4521,9 +4527,9 @@ function layoutDashBoard12() {
           {
             card: "Cliente",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
-
+            adicionar_icone: "corporate_fare",
             width: "31vw",
             height: "40",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -4559,6 +4565,7 @@ function layoutDashBoard12() {
             card: "Previsao",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
+            adicionar_icone: "calendar_today",
             mostrar_qtde: true,
             mostrar_duracao: true,
             total_execucao: true,
@@ -4598,7 +4605,7 @@ function layoutDashBoard12() {
           {
             card: "Cliente",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -4636,6 +4643,7 @@ function layoutDashBoard12() {
             card: "Previsao",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
+            adicionar_icone: "calendar_today",
             mostrar_qtde: true,
             mostrar_duracao: true,
             total_execucao: true,
@@ -4659,9 +4667,9 @@ function layoutDashBoard12() {
           {
             card: "Cliente",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
-
+            adicionar_icone: "corporate_fare",
             width: "31vw",
             height: "40",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -4678,6 +4686,7 @@ function layoutDashBoard12() {
             card: "Data",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
+            adicionar_icone: "calendar_today",
             mostrar_qtde: true,
             mostrar_duracao: true,
             total_execucao: true,
@@ -5731,7 +5740,7 @@ function layoutDashBoard15() {
           {
             card: "Tag",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -6620,7 +6629,7 @@ function layoutDashBoard16() {
           {
             card: "Tag",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -6733,7 +6742,7 @@ function layoutDashBoard16() {
           {
             card: "Previsão",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -6751,7 +6760,7 @@ function layoutDashBoard16() {
           {
             card: "Tag",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -6836,7 +6845,7 @@ function layoutDashBoard17() {
           {
             card: "Previsão",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -6854,7 +6863,7 @@ function layoutDashBoard17() {
           {
             card: "Tag",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -6948,7 +6957,7 @@ function layoutDashBoard17() {
           {
             card: "Previsão",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -6966,7 +6975,7 @@ function layoutDashBoard17() {
           {
             card: "Tag",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -7052,7 +7061,7 @@ function layoutDashBoard18() {
           {
             card: "Tag",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -7070,7 +7079,7 @@ function layoutDashBoard18() {
           {
             card: "Previsão",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -7156,7 +7165,7 @@ function layoutDashBoard19() {
           {
             card: "Tag",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -7174,7 +7183,7 @@ function layoutDashBoard19() {
           {
             card: "Previsão",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -7978,7 +7987,7 @@ function layoutDashBoard20() {
           {
             card: "Tag",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -7996,7 +8005,7 @@ function layoutDashBoard20() {
           {
             card: "Previsão",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",
@@ -8156,7 +8165,7 @@ function layoutDashBoard22() {
             id_card: 1,
             card: "Cliente",
             btn_comando: "btn-atualizar",
-            tipo_card: "CardEmpresaApi",
+            tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
 
             width: "31vw",

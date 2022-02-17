@@ -55,13 +55,13 @@ export default {
           let arrRetorno = res.data;
 
           for (let i = 0; i < arrRetorno.length; i++) {
+            //  console.log(arrRetorno);
             //construindo array lista
             let arrayLista = Object.values(arrRetorno[i])[4];
             var arrJson = "[]";
             if (arrayLista != undefined) {
               arrJson = JSON.parse("[" + arrayLista + "]");
             }
-
             let item = {
               id: Object.values(arrRetorno[i])[0],
               descricao: Object.values(arrRetorno[i])[1],
@@ -149,7 +149,6 @@ export default {
       this.ObjColaborador = [];
       let objSenhaLogin = senhaLogin();
       for (let i = 0; i < objSenhaLogin.login.length; i++) {
-        console.log(objSenhaLogin.login[i]);
         this.ObjColaborador.push(objSenhaLogin.login[i]);
       }
     },

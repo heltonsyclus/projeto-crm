@@ -56,17 +56,89 @@
             class="flex justify-between items-center q-my-none hover"
             style="padding: 10px"
           >
-            <a @click.prevent="abrirItem(indexitem)" class="cursor">
+            <a
+              @click.prevent="abrirItem(indexitem)"
+              class="cursor"
+              style="max-width: 80%"
+            >
               {{ itens.descricao }}
             </a>
-            <p
-              class="text-blue-grey-7"
-              style="font-size: 12.5px"
-              v-if="mostrar_qtde === true || mostrar_duracao === true"
-            >
-              <q-icon name="av_timer" />
-              {{ this.formataCaptionItem(itens.qtde, itens.duracao) }}
-            </p>
+            <div class="flex justify-end items-center">
+              <p
+                v-if="mostrar_qtde === true || mostrar_duracao === true"
+                class="text-blue-grey-7"
+                style="font-size: 12.5px"
+              >
+                <q-icon name="av_timer" />
+                {{ this.formataCaptionItem(itens.qtde, itens.duracao) }}
+              </p>
+              <div class="flex" v-if="campo_imagem === true">
+                <div v-if="itens.lista.length > 1" class="flex">
+                  <q-icon
+                    :name="this.icon"
+                    size="1em"
+                    style="margin-top: 10px; cursor: pointer"
+                    @click="mostrarColaboradores()"
+                  />
+                  <q-avatar
+                    size="32px"
+                    style="margin-left: 8px"
+                    v-if="mostrarColaborador === true"
+                  >
+                    <img :src="require(`../../assets/${itens.lista[0]}.png`)" />
+                  </q-avatar>
+
+                  <div v-if="mostrarColaborador === false" class="flex">
+                    <div
+                      class="flex"
+                      v-for="(listas, indexitem) in itens.lista"
+                      :key="indexitem"
+                    >
+                      <div
+                        v-for="(colaborador, indexitem) in this.ObjColaborador"
+                        :key="indexitem"
+                      >
+                        <div
+                          v-if="colaborador.id_colaborador === listas"
+                          class="flex"
+                        >
+                          <q-avatar size="32px" style="margin-left: 8px">
+                            <img :src="require(`../../assets/${listas}.png`)" />
+                          </q-avatar>
+                          <q-tooltip class="capitalize">{{
+                            colaborador.usuario
+                          }}</q-tooltip>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex"
+                  v-for="(listas, indexitem) in itens.lista"
+                  :key="indexitem"
+                >
+                  <div
+                    v-for="(colaborador, indexitem) in this.ObjColaborador"
+                    :key="indexitem"
+                  >
+                    <div
+                      v-if="colaborador.id_colaborador === listas"
+                      class="flex"
+                    >
+                      <div v-if="itens.lista.length <= 1">
+                        <q-avatar size="32px" style="margin-left: 8px">
+                          <img :src="require(`../../assets/${listas}.png`)" />
+                        </q-avatar>
+                        <q-tooltip class="capitalize">{{
+                          colaborador.usuario
+                        }}</q-tooltip>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div style="width: 95%; margin-left: 15px">
             <q-separator />
@@ -95,7 +167,26 @@ export default {
     "total_execucao",
     "mostrar_qtde",
     "mostrar_duracao",
+    "campo_imagem",
   ],
+  data() {
+    return {
+      mostrarImg: false,
+      mostrarColaborador: true,
+      icon: "arrow_back_ios",
+    };
+  },
+  methods: {
+    mostrarColaboradores() {
+      this.mostrarImg = !this.mostrarImg;
+      if (this.mostrarImg === true) {
+        this.icon = "arrow_forward_ios";
+      } else {
+        this.icon = "arrow_back_ios";
+      }
+      this.mostrarColaborador = !this.mostrarColaborador;
+    },
+  },
 };
 </script>
 

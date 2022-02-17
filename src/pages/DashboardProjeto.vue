@@ -211,6 +211,7 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 export default defineComponent({
   components: { BarraLayout, CardGrupoApi, CardGraficoApi, CardListaApi },
+
   name: "Projeto",
   data() {
     return {
@@ -350,8 +351,6 @@ export default defineComponent({
     const login = computed({
       get: () => $store.state.showcase.login,
     });
-    const fabPos = ref([18, 18]);
-    const draggingFab = ref(false);
     return {
       login,
     };

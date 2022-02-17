@@ -84,12 +84,17 @@
                 style="font-weight: 500; color: #7e7d7d; width: 220px"
                 >{{ this.qtde }}</span
               >
-              <p
-                v-if="campo_duracao === true"
-                style="font-weight: 700; color: #7e7d7d; font-size: 40px"
-              >
-                {{ this.duracao }}
-              </p>
+              <div v-if="campo_duracao === true">
+                <p style="font-weight: 700; color: #7e7d7d; font-size: 40px">
+                  {{ this.duracao }}
+                </p>
+                <p
+                  v-if="this.duracao >= '0'"
+                  style="font-weight: 00; color: #7e7d7d; font-size: 15px"
+                >
+                  Minutos
+                </p>
+              </div>
             </div>
 
             <q-avatar

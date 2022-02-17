@@ -54,27 +54,7 @@
           :conteudo_card="ObjCard.conteudo_card"
           :total_execucao="ObjCard.total_execucao"
           :mostrar_qtde="ObjCard.mostrar_qtde"
-          :link_item="ObjCard.link_item"
-          :idPrincipal="this.idColaboradorAtivo"
-          :msg="this.msgCard"
-        />
-
-        <CardEmpresaApi
-          v-if="ObjCard.tipo_card === 'CardEmpresaApi'"
-          class="q-ma-xs"
-          :id="ObjCard.id_card"
-          :card="ObjCard.card"
-          :ordem="ObjCard.ordem"
-          cor_header="bg-primary"
-          topo_fixo="topo_fixo"
-          :height="ObjCard.height"
-          :style="{ width: `${ObjCard.width}` }"
-          :btn_comando="ObjCard.btn_comando"
-          :tipo_card="ObjCard.tipo_card"
-          :sub_tipo="ObjCard.sub_tipo"
-          :conteudo_card="ObjCard.conteudo_card"
-          :total_execucao="ObjCard.total_execucao"
-          :mostrar_qtde="ObjCard.mostrar_qtde"
+          :adicionar_icone="ObjCard.adicionar_icone"
           :link_item="ObjCard.link_item"
           :idPrincipal="this.idColaboradorAtivo"
           :msg="this.msgCard"
@@ -121,26 +101,7 @@
           :total_execucao="ObjCard.total_execucao"
           :mostrar_qtde="ObjCard.mostrar_qtde"
           :mostrar_duracao="ObjCard.mostrar_duracao"
-          :link="ObjCard.link"
-          :idPrincipal="this.idColaboradorAtivo"
-          :msg="this.msgCard"
-        />
-        <CardListaColaboradorApi
-          v-if="ObjCard.tipo_card === 'CardListaColaboradorApi'"
-          class="q-ma-xs"
-          :id="ObjCard.id_card"
-          :card="ObjCard.card"
-          :ordem="ObjCard.ordem"
-          cor_header="bg-primary"
-          :style="{ width: `${ObjCard.width}` }"
-          topo_fixo="topo_fixo"
-          :height="ObjCard.height"
-          :width="ObjCard.width"
-          :btn_comando="ObjCard.btn_comando"
-          :tipo_card="ObjCard.tipo_card"
-          :sub_tipo="ObjCard.sub_tipo"
-          :conteudo_card="ObjCard.conteudo_card"
-          :total_execucao="ObjCard.total_execucao"
+          :campo_imagem="ObjCard.campo_imagem"
           :link="ObjCard.link"
           :idPrincipal="this.idColaboradorAtivo"
           :msg="this.msgCard"
@@ -155,9 +116,7 @@ import { GeLayoutDashBoard } from "src/commands/layouts/layoutDashboard";
 import BarraLayout from "src/layouts/BarraLayout.vue";
 import CardGrupoApi from "src/components/Cards/CardGrupoApi.vue";
 import CardListaApi from "src/components/Cards/CardListaApi.vue";
-import CardListaColaboradorApi from "src/components/Cards/CardListaColaboradorApi.vue";
 import CardGraficoApi from "src/components/Cards/CardGraficoApi.vue";
-import CardEmpresaApi from "src/components/Cards/CardEmpresaApi.vue";
 import cardpopup from "app/src/components/Cards/Cardpopup.vue";
 import { defineComponent } from "vue";
 import { ref } from "vue";
@@ -169,10 +128,8 @@ export default defineComponent({
     BarraLayout,
     CardGrupoApi,
     CardListaApi,
-    CardListaColaboradorApi,
     CardGraficoApi,
     cardpopup,
-    CardEmpresaApi,
   },
   name: "bi",
   setup() {
@@ -225,15 +182,7 @@ export default defineComponent({
       let login = JSON.parse(localStorage.getItem("login"));
       let recursosBi = login.aplicativos[0].recursos.dashboard_bi;
       this.IndexGrupoAtual = 0;
-      console.log(
-        "serie1= " +
-          recursosBi[grupoBi].layout_dashboard[dashboardBi].id_layout_dashboard
-      );
-      console.log(
-        "serie2 = " +
-          recursosBi[grupoBi].layout_dashboard[dashboardBi]
-            .dashboard_complementar
-      );
+
       this.CarregarDashboard(
         recursosBi[grupoBi].layout_dashboard[dashboardBi].id_layout_dashboard,
         recursosBi[grupoBi].layout_dashboard[dashboardBi].dashboard_complementar
@@ -288,11 +237,9 @@ export default defineComponent({
       }
     },
     CarregarDashboard(pIDashboard, pComplementar) {
-      console.log("valor 1= " + pIDashboard);
-      console.log("valor 2 = " + pComplementar);
       this.IndexGrupoAtual = 0;
       this.ObjDashboard = GeLayoutDashBoard(pIDashboard);
-      console.log(this.ObjDashboard);
+
       if (pComplementar) {
         for (let i = 0; i < pComplementar.length; i++) {
           let ObjDashboardTemp = GeLayoutDashBoard(pComplementar[i]);
