@@ -137,6 +137,10 @@
           :link="ObjCard.link"
           :idPrincipal="this.idColaboradorAtivo"
           :msg="this.msgCard"
+          :campo_duracao="ObjCard.campo_duracao"
+          :campo_qtde="ObjCard.campo_qtde"
+          :campo_id="ObjCard.campo_id"
+          :campo_descricao="ObjCard.campo_descricao"
         />
       </div>
     </div>

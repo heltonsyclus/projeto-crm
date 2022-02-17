@@ -67,21 +67,27 @@
               <a
                 class="q-px-xl q-pt-md cursor"
                 style="font-weight: 500; width: 220px"
+                v-if="campo_descricao === true"
                 @click.prevent="getUrlItemSlide()"
               >
                 {{ this.descricao }}
               </a>
               <span
+                v-if="campo_id === true"
                 class="q-px-xl q-pt-md"
                 style="font-weight: 500; color: #7e7d7d; width: 220px"
                 >{{ this.id }}</span
               >
               <span
+                v-if="campo_qtde === true"
                 class="q-px-xl q-pt-md"
                 style="font-weight: 500; color: #7e7d7d; width: 220px"
                 >{{ this.qtde }}</span
               >
-              <p style="font-weight: 700; color: #7e7d7d; font-size: 40px">
+              <p
+                v-if="campo_duracao === true"
+                style="font-weight: 700; color: #7e7d7d; font-size: 40px"
+              >
                 {{ this.duracao }}
               </p>
             </div>
@@ -117,6 +123,10 @@ export default {
     "width",
     "height",
     "total_execucao",
+    "campo_duracao",
+    "campo_qtde",
+    "campo_id",
+    "campo_descricao",
   ],
 };
 </script>
