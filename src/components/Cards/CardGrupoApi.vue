@@ -9,11 +9,13 @@
       <q-item-section
         style="height: 40px; font-weight: 700; color: White; padding-left: 10px"
       >
-        <div>
+        <div class="flex">
           {{ card }}
-          <span v-if="total_execucao === true">
-            ({{ this.ObjConteudo.grupos.length }})
-          </span>
+          <div v-if="total_execucao === true">
+            <span v-if="this.ObjConteudo.grupos.length >= 1">
+              ({{ this.ObjConteudo.grupos.length }})
+            </span>
+          </div>
         </div>
       </q-item-section>
       <q-btn

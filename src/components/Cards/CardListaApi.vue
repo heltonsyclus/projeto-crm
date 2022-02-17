@@ -9,11 +9,18 @@
       <q-item-section
         style="height: 40px; font-weight: 700; color: White; padding-left: 10px"
       >
-        <div>
+        <div class="flex">
           {{ card }}
-          <span v-if="total_execucao === true">
-            ({{ this.ObjConteudo.itens.length }})
-          </span>
+          <div v-if="total_execucao === true">
+            <span v-if="this.ObjConteudo.itens.length >= 1">
+              ({{ this.ObjConteudo.itens.length }})
+            </span>
+          </div>
+          <div v-if="total_tempo === true">
+            <span v-if="this.ObjConteudo.itens.length >= 1">
+              Minutos: ({{ this.duracaoTotal }})
+            </span>
+          </div>
         </div>
       </q-item-section>
       <q-btn
@@ -63,7 +70,9 @@
             >
               {{ itens.descricao }}
             </a>
+
             <div class="flex justify-end items-center">
+              <!--duracao-->
               <p
                 v-if="mostrar_qtde === true || mostrar_duracao === true"
                 class="text-blue-grey-7"
@@ -72,23 +81,35 @@
                 <q-icon name="av_timer" />
                 {{ this.formataCaptionItem(itens.qtde, itens.duracao) }}
               </p>
+              <!--img-->
               <div class="flex" v-if="campo_imagem === true">
                 <div v-if="itens.lista.length > 1" class="flex">
-                  <q-icon
+                  <!--<q-icon
                     :name="this.icon"
                     size="1em"
-                    style="margin-top: 10px; cursor: pointer"
+                    style="margin: 10px 0px 0px 10px; cursor: pointer"
                     @click="mostrarColaboradores()"
-                  />
+                  />-->
+                  <q-btn
+                    size="11px"
+                    unelevated
+                    round
+                    color="primary"
+                    style="margin-left: 10px"
+                    @click="mostrarColaboradores(indexitem)"
+                  >
+                    +{{ itens.lista.length - 1 }}
+                  </q-btn>
+
                   <q-avatar
                     size="32px"
                     style="margin-left: 8px"
-                    v-if="mostrarColaborador === true"
+                    v-show="mostrarColaborador === true"
                   >
                     <img :src="require(`../../assets/${itens.lista[0]}.png`)" />
                   </q-avatar>
 
-                  <div v-if="mostrarColaborador === false" class="flex">
+                  <div v-show="mostrarColaborador === false" class="flex">
                     <div
                       class="flex"
                       v-for="(listas, indexitem) in itens.lista"
@@ -168,24 +189,24 @@ export default {
     "mostrar_qtde",
     "mostrar_duracao",
     "campo_imagem",
+    "total_tempo",
   ],
   data() {
     return {
-      mostrarImg: false,
-      mostrarColaborador: true,
-      icon: "arrow_back_ios",
+      mostrarColaborador: null,
+      //icon: "arrow_back_ios",
+      //mostrarImg: false,
     };
   },
   methods: {
-    mostrarColaboradores() {
-      this.mostrarImg = !this.mostrarImg;
-      if (this.mostrarImg === true) {
-        this.icon = "arrow_forward_ios";
-      } else {
-        this.icon = "arrow_back_ios";
-      }
+    mostrarColaboradores(indexitem) {
       this.mostrarColaborador = !this.mostrarColaborador;
+      console.log(indexitem);
+      return indexitem;
     },
+  },
+  created() {
+    this.mostrarColaborador = true;
   },
 };
 </script>

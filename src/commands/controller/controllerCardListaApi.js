@@ -17,6 +17,8 @@ export default {
       id: null,
       qtde: null,
       indexSlide: 0,
+      buscandoDuracao: [],
+      duracaoTotal: [],
     };
   },
   methods: {
@@ -53,10 +55,7 @@ export default {
         this.carregarKnob = true;
         this.$api.post("consultasql", body).then((res) => {
           let arrRetorno = res.data;
-
           for (let i = 0; i < arrRetorno.length; i++) {
-            //  console.log(arrRetorno);
-            //construindo array lista
             let arrayLista = Object.values(arrRetorno[i])[4];
             var arrJson = "[]";
             if (arrayLista != undefined) {
@@ -116,6 +115,12 @@ export default {
       if (pQtde > 0) {
         texto = pQtde + " itens";
         if (pDuracao > 0) {
+          this.buscandoDuracao.push(pDuracao);
+          const numbersList = this.buscandoDuracao;
+          const total = numbersList.reduce(
+            (total, currentElement) => total + currentElement
+          );
+          this.duracaoTotal = Math.round(total);
           texto =
             texto +
             " (" +
