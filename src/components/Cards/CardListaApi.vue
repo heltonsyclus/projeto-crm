@@ -16,11 +16,11 @@
               ({{ this.ObjConteudo.itens.length }})
             </span>
           </div>
-          <div v-if="total_tempo === false">
+          <!--    <div v-if="total_tempo === false">
             <span v-if="this.ObjConteudo.itens.length >= 1">
               Minutos: ({{ this.duracaoTotal }})
             </span>
-          </div>
+          </div>-->
         </div>
       </q-item-section>
       <q-btn
