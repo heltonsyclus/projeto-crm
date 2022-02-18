@@ -16,7 +16,7 @@
               ({{ this.ObjConteudo.itens.length }})
             </span>
           </div>
-          <div v-if="total_tempo === true">
+          <div v-if="total_tempo === false">
             <span v-if="this.ObjConteudo.itens.length >= 1">
               Minutos: ({{ this.duracaoTotal }})
             </span>
