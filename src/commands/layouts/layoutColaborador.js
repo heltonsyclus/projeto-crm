@@ -28,7 +28,7 @@ export function senhaLogin() {
                 permissao_colaborador: ["*"],
               },
               dashboard_projeto: {
-                id_layout_dashboard: 9,
+                id_layout_dashboard: 8,
                 dashboard_complementar: [],
               },
               dashboard_notificacao: {
@@ -98,6 +98,10 @@ export function senhaLogin() {
               },
               dashboard_cliente: {
                 id_layout_dashboard: 2,
+                dashboard_complementar: [],
+              },
+              dashboard_projeto: {
+                id_layout_dashboard: 8,
                 dashboard_complementar: [],
               },
               dashboard_bi: [
@@ -222,6 +226,10 @@ export function senhaLogin() {
               },
               dashboard_cliente: {
                 id_layout_dashboard: 2,
+                dashboard_complementar: [],
+              },
+              dashboard_projeto: {
+                id_layout_dashboard: 8,
                 dashboard_complementar: [],
               },
               dashboard_bi: [
@@ -453,6 +461,10 @@ export function senhaLogin() {
                 id_layout_dashboard: 2,
                 dashboard_complementar: [],
               },
+              dashboard_projeto: {
+                id_layout_dashboard: 8,
+                dashboard_complementar: [],
+              },
               dashboard_bi: [
                 {
                   grupo: "Área Técnica",
@@ -508,6 +520,10 @@ export function senhaLogin() {
               },
               dashboard_cliente: {
                 id_layout_dashboard: 2,
+                dashboard_complementar: [],
+              },
+              dashboard_projeto: {
+                id_layout_dashboard: 8,
                 dashboard_complementar: [],
               },
               dashboard_bi: [
@@ -607,6 +623,10 @@ export function senhaLogin() {
                 id_layout_dashboard: 2,
                 dashboard_complementar: [],
               },
+              dashboard_projeto: {
+                id_layout_dashboard: 8,
+                dashboard_complementar: [],
+              },
               dashboard_bi: [
                 {
                   grupo: "Projetos",
@@ -673,6 +693,10 @@ export function senhaLogin() {
               },
               dashboard_cliente: {
                 id_layout_dashboard: 2,
+                dashboard_complementar: [],
+              },
+              dashboard_projeto: {
+                id_layout_dashboard: 8,
                 dashboard_complementar: [],
               },
               dashboard_colaborador: {
@@ -768,6 +792,10 @@ export function senhaLogin() {
                 id_layout_dashboard: 3,
                 dashboard_complementar: [],
                 permissao_colaborador: ["*"],
+              },
+              dashboard_projeto: {
+                id_layout_dashboard: 8,
+                dashboard_complementar: [],
               },
               dashboard_bi: [
                 {
@@ -1025,6 +1053,10 @@ export function senhaLogin() {
                 dashboard_complementar: [],
                 permissao_colaborador: ["*"],
               },
+              dashboard_projeto: {
+                id_layout_dashboard: 8,
+                dashboard_complementar: [],
+              },
               dashboard_bi: [
                 {
                   grupo: "Administrativo",
@@ -1208,6 +1240,10 @@ export function senhaLogin() {
                 id_layout_dashboard: 3,
                 dashboard_complementar: [],
                 permissao_colaborador: ["*"],
+              },
+              dashboard_projeto: {
+                id_layout_dashboard: 8,
+                dashboard_complementar: [],
               },
               dashboard_bi: [
                 {
@@ -1481,6 +1517,10 @@ export function senhaLogin() {
                 id_layout_dashboard: 3,
                 dashboard_complementar: [],
                 permissao_colaborador: ["*"],
+              },
+              dashboard_projeto: {
+                id_layout_dashboard: 8,
+                dashboard_complementar: [],
               },
               dashboard_bi: [
                 {
