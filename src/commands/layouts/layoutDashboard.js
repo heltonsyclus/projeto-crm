@@ -1668,7 +1668,7 @@ function layoutDashBoard4() {
             },
           },
           {
-            card: "Pendentes (Hoje)",
+            card: "Pendentes",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
@@ -1728,6 +1728,9 @@ function layoutDashBoard4() {
             btn_comando: "btn-atualizar",
             tipo_card: "CardListaApi",
             campo_imagem: true,
+            mostrar_qtde: true,
+            mostrar_duracao: true,
+            total_execucao: true,
             width: "94.6vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -1836,7 +1839,7 @@ function layoutDashBoard4() {
             },
           },
           {
-            card: "Pendentes (Hoje)",
+            card: "Pendentes",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
@@ -1895,7 +1898,10 @@ function layoutDashBoard4() {
             card: "Interações",
             btn_comando: "btn-atualizar",
             tipo_card: "CardListaApi",
+            campo_imagem: true,
             mostrar_qtde: true,
+            mostrar_duracao: true,
+            total_execucao: true,
             width: "94.6vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -2004,7 +2010,7 @@ function layoutDashBoard4() {
             },
           },
           {
-            card: "Pendentes (Hoje)",
+            card: "Pendentes",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
@@ -2063,7 +2069,10 @@ function layoutDashBoard4() {
             card: "Interações",
             btn_comando: "btn-atualizar",
             tipo_card: "CardListaApi",
+            campo_imagem: true,
             mostrar_qtde: true,
+            mostrar_duracao: true,
+            total_execucao: true,
             width: "94.6vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -2172,7 +2181,7 @@ function layoutDashBoard4() {
             },
           },
           {
-            card: "Pendentes (Hoje)",
+            card: "Pendentes",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
@@ -2231,7 +2240,10 @@ function layoutDashBoard4() {
             card: "Interações",
             btn_comando: "btn-atualizar",
             tipo_card: "CardListaApi",
+            campo_imagem: true,
             mostrar_qtde: true,
+            mostrar_duracao: true,
+            total_execucao: true,
             width: "94.6vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -2248,7 +2260,7 @@ function layoutDashBoard4() {
         icone: "assignment_turned_in",
         cards: [
           {
-            card: "Previstas (Hoje)",
+            card: "Previstas",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGraficoApi",
             sub_tipo: "grafico_barra_horizontal",
@@ -2340,7 +2352,7 @@ function layoutDashBoard4() {
             },
           },
           {
-            card: "Pendentes (Hoje)",
+            card: "Pendentes",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
             mostrar_qtde: true,
@@ -2399,7 +2411,10 @@ function layoutDashBoard4() {
             card: "Interações",
             btn_comando: "btn-atualizar",
             tipo_card: "CardListaApi",
+            campo_imagem: true,
             mostrar_qtde: true,
+            mostrar_duracao: true,
+            total_execucao: true,
             width: "94.6vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -2433,7 +2448,7 @@ function layoutDashBoard4() {
             btn_comando: "btn-atualizar",
             tipo_card: "CardListaApi",
             campo_imagem: true,
-            mostrar_qtde: true,
+            total_execucao: true,
             width: "62vw",
             height: "40",
             link: "https://crm.syclus.com.br/atividades/<id_item>",
@@ -3147,7 +3162,7 @@ function layoutDashBoard7() {
             link: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
               body: "bodyAtividadeCliente",
-              filtro_sql_item:
+              filtro_sql:
                 "where a.ds_status = 'P' and a.cd_tipo_atividade = 1 and ac.cd_cliente = <id_principal>",
             },
           },
@@ -3189,6 +3204,24 @@ function layoutDashBoard8() {
         icone: "assignment_turned_in",
         cards: [
           {
+            card: "Estrutura",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            mostrar_qtde: true,
+            mostrar_duracao: true,
+            total_execucao: true,
+            width: "70vw",
+            height: "60",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyItemProjeto",
+              filtro_sql_grupo:
+                "where i.cd_tipo = 1 and p.cd_projeto = <id_principal>",
+              body_item: "bodyItemProjetoAtividade",
+              filtro_sql_item: `where i.cd_tipo = 2 and p.cd_projeto = <id_principal> and i.ds_classificacao like('<id_grupo>%')`,
+            },
+          },
+          {
             card: "Pendentes",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
@@ -3224,6 +3257,26 @@ function layoutDashBoard8() {
               body_item: "bodyAtividadeProjeto",
               filtro_sql_item:
                 "where a.ds_status = 'F' and a.cd_tipo_atividade = 4 and pj.cd_projeto = <id_principal> and a.cd_responsavel = <id_grupo>",
+            },
+          },
+        ],
+      },
+      {
+        grupo: "Cronograma",
+        icone: "assignment_turned_in",
+        cards: [
+          {
+            card: "Estrutura",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_linha_tempo",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "70vw",
+            height: "80",
+            conteudo_card: {
+              body: "bodyItemProjetoItemPrevRealPeriodo",
+              filtro_sql: "where p.cd_projeto = <id_principal>",
             },
           },
         ],

@@ -73,6 +73,9 @@ import {
   bodyProjetoTagPorTipoProjeto,
   bodyProjetoTagPorSituacao,
   bodyProjetoTagPorMesAno,
+  bodyItemProjeto,
+  bodyItemProjetoAtividade,
+  bodyItemProjetoItemPrevRealPeriodo,
   bodyNotificacao,
   bodyNotificacaoPorAtividade,
   bodyNotificacaoPorTipoAtividade,
@@ -348,6 +351,16 @@ export default {
       }
       if (pNomeBody === "bodyProjetoTagPorMesAno") {
         return bodyProjetoTagPorMesAno(filtros);
+      }
+
+      if (pNomeBody === "bodyItemProjeto") {
+        return bodyItemProjeto(filtros);
+      }
+      if (pNomeBody === "bodyItemProjetoAtividade") {
+        return bodyItemProjetoAtividade(filtros);
+      }
+      if (pNomeBody === "bodyItemProjetoItemPrevRealPeriodo") {
+        return bodyItemProjetoItemPrevRealPeriodo(filtros);
       }
 
       if (pNomeBody === "bodyNotificacao") {

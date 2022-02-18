@@ -41,7 +41,7 @@ export function montaBody(pInstrucaoSql, pFiltros) {
     pFiltros = "where (0 = 1)";
   }
 
-  let sql = pInstrucaoSql.replace("<filtros>", pFiltros);
+  let sql = pInstrucaoSql.replaceAll("<filtros>", pFiltros);
 
   const body = {
     tipo_retorno: "",
@@ -545,6 +545,28 @@ export function bodyProjetoTagPorSituacao(pFiltros) {
 export function bodyProjetoTagPorMesAno(pFiltros) {
   let instrucao_sql = `select cast(extract(year from p.dt_previsao)||lpad(extract(month from p.dt_previsao), 2, '0') as integer) "id_sequencial", lpad(extract(month from p.dt_previsao), 2, '0')||'/'||extract(year from p.dt_previsao) "data_previsao", count(p.cd_projeto) "qtde", sum(DATEDIFF(MINUTE, CAST('01/01/1970 00:00:00' AS TIMESTAMP), p.duracao)) "duracao" from projeto p inner join projeto_tag ptg on ptg.cd_projeto = p.cd_projeto <filtros> group by extract(year from p.dt_previsao)||lpad(extract(month from p.dt_previsao), 2, '0'), lpad(extract(month from p.dt_previsao), 2, '0')||'/'||extract(year from p.dt_previsao) order by 1 desc`;
   let body = montaBody(instrucao_sql, pFiltros);
+  return body;
+}
+
+//---------------------- item projeto ----------------------//
+export function bodyItemProjeto(pFiltros) {
+  let instrucao_sql = `select i.ds_classificacao "id_item", i.ds_item "item", 0 "qtde_item", DATEDIFF(MINUTE, CAST('01/01/1970 00:00:00' AS TIMESTAMP), i.duracao_prevista) from projeto p inner join item_projeto i on i.cd_projeto = p.cd_projeto <filtros> order by i.ds_classificacao`;
+  let body = montaBody(instrucao_sql, pFiltros);
+  return body;
+}
+export function bodyItemProjetoAtividade(pFiltros) {
+  let instrucao_sql = `select a.cd_atividade "id_atividade", a.ds_atividade "atividade", a.qt_colaborador_ativo "qtde", DATEDIFF(MINUTE, CAST('01/01/1970 00:00:00' AS TIMESTAMP), a.duracao) "duracao", a.cd_responsavel "lista" from atividade a inner join atividade_vinculo av on av.cd_empresa = a.cd_empresa and av.cd_atividade = a.cd_atividade inner join projeto p on p.cd_projeto = av.cd_projeto inner join item_projeto i on i.cd_projeto = av.cd_projeto and i.cd_item = av.cd_item_projeto <filtros> order by i.ds_classificacao`;
+  let body = montaBody(instrucao_sql, pFiltros);
+  return body;
+}
+
+//---------------------- item projeto lista ----------------------//
+export function bodyItemProjetoItemPrevRealPeriodo(pFiltros) {
+  //let instrucao_sql = `select cast('PREVISTO' as varchar(20)) "Tipo", i.ds_item "item", i.dt_inicial_prevista "data inicial", i.dt_final_prevista "data final" from projeto p inner join item_projeto i on i.cd_projeto = p.cd_projeto <filtros> order by i.ds_classificacao`;
+  let instrucao_sql = `select cast('PREVISTO' as varchar(20)) "Tipo", i.ds_classificacao||' - '||i.ds_item "item", i.dt_inicial_prevista "data inicial", i.dt_final_prevista "data final" from projeto p inner join item_projeto i on i.cd_projeto = p.cd_projeto <filtros> union select cast('REALIZADO' as varchar(20)) "Tipo", i.ds_classificacao||' - '||i.ds_item "item", cast(min(ao.dt_ocorrencia) as date) "data inicial", cast(max(ao.dt_ocorrencia) as date) "data final" from atividade a inner join atividade_vinculo av on av.cd_empresa = a.cd_empresa and av.cd_atividade = a.cd_atividade inner join projeto p on p.cd_projeto = av.cd_projeto inner join item_projeto i on i.cd_projeto = av.cd_projeto and i.cd_item = av.cd_item_projeto inner join atividade_ocorrencia ao on ao.cd_empresa = a.cd_empresa and ao.cd_atividade = a.cd_atividade and ao.cd_tipo_ocorrencia = 1 <filtros> group by cast('REALIZADO' as varchar(20)), i.ds_classificacao||' - '||i.ds_item order by 2`;
+  //let instrucao_sql = `select cast('REALIZADO' as varchar(20)) "Tipo", i.ds_classificacao||' - '||i.ds_item "item", min(ao.dt_ocorrencia) "data inicial", max(ao.dt_ocorrencia) "data final" from atividade a inner join atividade_vinculo av on av.cd_empresa = a.cd_empresa and av.cd_atividade = a.cd_atividade inner join projeto p on p.cd_projeto = av.cd_projeto inner join item_projeto i on i.cd_projeto = av.cd_projeto and i.cd_item = av.cd_item_projeto inner join atividade_ocorrencia ao on ao.cd_empresa = a.cd_empresa and ao.cd_atividade = a.cd_atividade and ao.cd_tipo_ocorrencia = 1 <filtros> group by cast('REALIZADO' as varchar(20)), i.ds_classificacao||' - '||i.ds_item order by 2`;
+  let body = montaBody(instrucao_sql, pFiltros);
+  console.log(body);
   return body;
 }
 
