@@ -115,12 +115,12 @@ export default {
       if (pQtde > 0) {
         texto = pQtde + " itens";
         if (pDuracao > 0) {
-          this.buscandoDuracao.push(pDuracao);
+          /*     this.buscandoDuracao.push(pDuracao);
           const numbersList = this.buscandoDuracao;
           const total = numbersList.reduce(
             (total, currentElement) => total + currentElement
           );
-          this.duracaoTotal = total;
+          this.duracaoTotal = total;*/
           texto =
             texto +
             " (" +
