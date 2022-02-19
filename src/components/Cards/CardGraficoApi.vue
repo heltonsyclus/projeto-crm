@@ -11,7 +11,7 @@
       >
         <div class="flex">
           {{ card }}
-          <div v-if="total_execucao === true">
+          <div v-if="totalizar_grupo === true">
             <span v-if="this.ObjConteudo.itens.length >= 1">
               ({{ this.ObjConteudo.itens.length }})
             </span>
@@ -173,7 +173,10 @@ export default {
     "coluna_categoria",
     "coluna_serie",
     "coluna_totalizadora",
-    "total_execucao",
+    "totalizar_grupo",
+    "barra_tempo",
+    "label_min",
+    "label_data",
   ],
 };
 </script>

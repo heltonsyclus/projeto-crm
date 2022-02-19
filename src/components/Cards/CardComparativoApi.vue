@@ -11,7 +11,7 @@
       >
         <div class="flex">
           {{ card }}
-          <div v-if="total_execucao === true">
+          <div v-if="totalizar_grupo === true">
             <span v-if="this.ObjConteudo.itens.length >= 1">
               ({{ this.ObjConteudo.itens.length }})
             </span>
@@ -97,7 +97,7 @@ export default {
     "link_item",
     "width",
     "height",
-    "total_execucao",
+    "totalizar_grupo",
   ],
 };
 </script>

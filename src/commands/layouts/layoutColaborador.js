@@ -1594,3 +1594,15 @@ export function senhaLogin() {
   };
   return json;
 }
+
+export function GetUsuarioPorIdColaborador(pIdColaborador) {
+  let itemArray = null;
+  let objSenhaLogin = senhaLogin();
+  for (let i = 0; i < objSenhaLogin.login.length; i++) {
+    if (pIdColaborador === objSenhaLogin.login[i].id_colaborador) {
+      itemArray = objSenhaLogin.login[i];
+      break;
+    }
+  }
+  return itemArray;
+}

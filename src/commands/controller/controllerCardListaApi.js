@@ -1,5 +1,4 @@
 import controllerBody from "app/src/commands/controller/controllerBody";
-import { senhaLogin } from "app/src/commands/layouts/layoutColaborador";
 export default {
   mixins: [controllerBody],
   data() {
@@ -18,7 +17,7 @@ export default {
       qtde: null,
       indexSlide: 0,
       buscandoDuracao: [],
-      duracaoTotal: [],
+      expandir_img: false,
     };
   },
   methods: {
@@ -67,6 +66,7 @@ export default {
               qtde: Object.values(arrRetorno[i])[2],
               duracao: Object.values(arrRetorno[i])[3],
               lista: [...new Set(arrJson)],
+              listaExpandida: false,
             };
             this.ObjConteudo.itens.push(item);
           }
@@ -115,11 +115,12 @@ export default {
       if (pQtde > 0) {
         texto = pQtde + " itens";
         if (pDuracao > 0) {
-          /*     this.buscandoDuracao.push(pDuracao);
+          /*   this.buscandoDuracao.push(pDuracao);
           const numbersList = this.buscandoDuracao;
           const total = numbersList.reduce(
             (total, currentElement) => total + currentElement
           );
+          let Stringtotal = total.toString();
           this.duracaoTotal = total;*/
           texto =
             texto +
@@ -142,20 +143,12 @@ export default {
       url = url.replace("<id_item>", this.id);
       window.open(url, "_blank");
     },
-
     abrirItem(pIndexItem) {
       this.abrirUrl(this.getUrlItem(pIndexItem));
     },
     medidaCard() {
       this.alturaCard = this.height + "vh";
       this.alturaCorpo = this.height - 7.8 + "vh";
-    },
-    carregaObjColaborador() {
-      this.ObjColaborador = [];
-      let objSenhaLogin = senhaLogin();
-      for (let i = 0; i < objSenhaLogin.login.length; i++) {
-        this.ObjColaborador.push(objSenhaLogin.login[i]);
-      }
     },
   },
   computed: {
@@ -179,6 +172,5 @@ export default {
   },
   created() {
     this.medidaCard();
-    this.carregaObjColaborador();
   },
 };

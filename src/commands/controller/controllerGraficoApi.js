@@ -206,10 +206,6 @@ export default {
       },
       seriesGraficoPolar: [],
       objGraficoLinhaDoTempo: {
-        chart: {
-          height: 450,
-          type: "rangeBar",
-        },
         tooltip: {
           custom: function (opts) {
             const valorY1horas = new Date(opts.y1).getHours();
@@ -239,6 +235,17 @@ export default {
             );
           },
         },
+        dataLabels: {
+          enabled: this.barra_tempo,
+          formatter: function (val) {
+            var ocorrenciaValor = (val[1] - val[0]) / 60 / 1000 + " MN";
+            return ocorrenciaValor;
+          },
+        },
+        chart: {
+          height: 450,
+          type: "rangeBar",
+        },
         plotOptions: {
           bar: {
             horizontal: true,
@@ -253,10 +260,6 @@ export default {
           show: true,
           //nome vertical na lateral
         },
-        /*--linha margem
-        stroke: {
-          width: 0
-        },*/
         fill: {
           type: "solid",
           opacity: 0.7,
@@ -264,13 +267,6 @@ export default {
         legend: {
           position: "top",
           horizontalAlign: "left",
-        },
-        dataLabels: {
-          enabled: true,
-          formatter: function (val) {
-            var ocorrenciaValor = (val[1] - val[0]) / 60 / 1000 + " MN";
-            return ocorrenciaValor;
-          },
         },
       },
       seriesGraficoLinhaDoTempo: [],
@@ -430,6 +426,15 @@ export default {
     montarConteudoLinhaTempo(pConteudo) {
       this.limparConteudoLinhaTempo();
       //Criando estrutura de categorias e series
+      console.log(this.label_min);
+      /*  if (this.label_min === true) {
+        this.objGraficoLinhaDoTempo.tooltip = {
+          custom: function () {
+            return false;
+          },
+        };
+        console.log(this.objGraficoLinhaDoTempo.tooltip);
+      }*/
       for (let i = 0; i < pConteudo.length; i++) {
         let xSerie = Object.values(pConteudo[i])[0];
         let xCategoria = Object.values(pConteudo[i])[1];

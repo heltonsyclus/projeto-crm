@@ -147,7 +147,7 @@
             :link_item="ObjCard.link_item"
             :idPrincipal="this.idProjetoAtivo"
             :msg="this.msgCard"
-            :total_execucao="ObjCard.total_execucao"
+            :totalizar_grupo="ObjCard.totalizar_grupo"
           />
           <CardGraficoApi
             v-if="ObjCard.tipo_card === 'CardGraficoApi'"
@@ -165,11 +165,14 @@
             :coluna_serie="ObjCard.coluna_serie"
             :coluna_totalizadora="ObjCard.coluna_totalizadora"
             :sub_tipo="ObjCard.sub_tipo"
+            :barra_tempo="ObjCard.barra_tempo"
+            :label_min="ObjCard.barra_tempo"
+            :label_data="ObjCard.label_data"
             :conteudo_card="ObjCard.conteudo_card"
             :link_item="ObjCard.link_item"
             :idPrincipal="this.idProjetoAtivo"
             :msg="this.msgCard"
-            :total_execucao="ObjCard.total_execucao"
+            :totalizar_grupo="ObjCard.totalizar_grupo"
           />
           <CardListaApi
             v-if="ObjCard.tipo_card === 'CardListaApi'"
@@ -188,7 +191,7 @@
             :link="ObjCard.link"
             :idPrincipal="this.idProjetoAtivo"
             :msg="this.msgCard"
-            :total_execucao="ObjCard.total_execucao"
+            :totalizar_grupo="ObjCard.totalizar_grupo"
           />
         </div>
       </div>

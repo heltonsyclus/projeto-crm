@@ -11,12 +11,12 @@
       >
         <div class="flex">
           {{ card }}
-          <div v-if="total_execucao === true">
+          <div v-if="totalizar_grupo === true">
             <span v-if="this.ObjConteudo.itens.length >= 1">
               ({{ this.ObjConteudo.itens.length }})
             </span>
           </div>
-          <!--    <div v-if="total_tempo === false">
+          <!--<div v-if="total_tempo === true">
             <span v-if="this.ObjConteudo.itens.length >= 1">
               Minutos: ({{ this.duracaoTotal }})
             </span>
@@ -35,11 +35,8 @@
     </q-item>
     <q-card-section class="corpo" :style="{ height: `${this.alturaCorpo}` }">
       <div>
-        <div
-          v-for="(itens, indexitem) in this.ObjConteudo.itens"
-          :key="indexitem"
-        >
-          <div class="spin" style="width: 230px" v-show="carregarKnob">
+        <div v-for="(itemConteudo, i) in this.ObjConteudo.itens" :key="i">
+          <div class="spin" style="width: 230px" v-if="carregarKnob">
             <q-knob
               v-model="value"
               size="30px"
@@ -49,7 +46,7 @@
             />
           </div>
           <div
-            v-show="carregarText"
+            v-if="carregarText"
             style="
               margin: 0 auto;
               text-align: center;
@@ -64,11 +61,11 @@
             style="padding: 10px"
           >
             <a
-              @click.prevent="abrirItem(indexitem)"
+              @click.prevent="abrirItem(i)"
               class="cursor"
               style="max-width: 80%"
             >
-              {{ itens.descricao }}
+              {{ itemConteudo.descricao }}
             </a>
 
             <div class="flex justify-end items-center">
@@ -79,91 +76,50 @@
                 style="font-size: 12.5px"
               >
                 <q-icon name="av_timer" />
-                {{ this.formataCaptionItem(itens.qtde, itens.duracao) }}
+                {{
+                  this.formataCaptionItem(
+                    itemConteudo.qtde,
+                    itemConteudo.duracao
+                  )
+                }}
               </p>
               <!--img-->
-              <div class="flex" v-if="campo_imagem === true">
-                <div v-if="itens.lista.length > 1" class="flex">
-                  <!--<q-icon
-                    :name="this.icon"
-                    size="1em"
-                    style="margin: 10px 0px 0px 10px; cursor: pointer"
-                    @click="mostrarColaboradores()"
-                  />-->
-                  <q-btn
-                    size="11px"
-                    unelevated
-                    round
-                    color="primary"
-                    style="margin-left: 10px"
-                    @click="mostrarColaboradores(indexitem)"
-                  >
-                    +{{ itens.lista.length - 1 }}
-                  </q-btn>
-
-                  <q-avatar
-                    size="32px"
-                    style="margin-left: 8px"
-                    v-show="mostrarColaborador === true"
-                  >
-                    <img :src="require(`../../assets/${itens.lista[0]}.png`)" />
-                  </q-avatar>
-
-                  <div v-show="mostrarColaborador === false" class="flex">
-                    <div
-                      class="flex"
-                      v-for="(listas, indexitem) in itens.lista"
-                      :key="indexitem"
-                    >
-                      <div
-                        v-for="(colaborador, indexitem) in this.ObjColaborador"
-                        :key="indexitem"
-                      >
-                        <div
-                          v-if="colaborador.id_colaborador === listas"
-                          class="flex"
-                        >
-                          <q-avatar size="32px" style="margin-left: 8px">
-                            <img :src="require(`../../assets/${listas}.png`)" />
-                          </q-avatar>
-                          <q-tooltip class="capitalize">{{
-                            colaborador.usuario
-                          }}</q-tooltip>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="flex"
-                  v-for="(listas, indexitem) in itens.lista"
-                  :key="indexitem"
+              <div
+                v-if="mostrar_imagem === true && itemConteudo.lista.length > 0"
+                class="flex"
+              >
+                <q-btn
+                  v-if="itemConteudo.lista.length > 1"
+                  size="11px"
+                  unelevated
+                  round
+                  color="primary"
+                  style="margin-left: 10px"
+                  @click="mostrarColaboradores(i)"
                 >
+                  <div v-if="itemConteudo.listaExpandida === false">+</div>
+                  <div v-else>-</div>
+                  {{ itemConteudo.lista.length - 1 }}
+                </q-btn>
+                <div v-for="(itemLista, j) in itemConteudo.lista" :key="j">
                   <div
-                    v-for="(colaborador, indexitem) in this.ObjColaborador"
-                    :key="indexitem"
+                    class="flex"
+                    v-if="j === 0 || itemConteudo.listaExpandida === true"
                   >
-                    <div
-                      v-if="colaborador.id_colaborador === listas"
-                      class="flex"
-                    >
-                      <div v-if="itens.lista.length <= 1">
-                        <q-avatar size="32px" style="margin-left: 8px">
-                          <img :src="require(`../../assets/${listas}.png`)" />
-                        </q-avatar>
-                        <q-tooltip class="capitalize">{{
-                          colaborador.usuario
-                        }}</q-tooltip>
-                      </div>
-                    </div>
+                    <q-avatar size="32px" style="margin-left: 8px">
+                      <img :src="this.getColaborador(itemLista).img" />
+                    </q-avatar>
+                    <q-tooltip class="capitalize">
+                      {{ this.getColaborador(itemLista).usuario }}
+                    </q-tooltip>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div style="width: 95%; margin-left: 15px">
-            <q-separator />
-          </div>
+        </div>
+        <div style="width: 95%; margin-left: 15px">
+          <q-separator />
         </div>
       </div>
     </q-card-section>
@@ -172,6 +128,7 @@
 
 <script>
 import controllerCardApi from "app/src/commands/controller/controllerCardListaApi";
+import { GetUsuarioPorIdColaborador } from "../../commands/layouts/layoutColaborador";
 export default {
   mixins: [controllerCardApi],
   props: [
@@ -185,28 +142,22 @@ export default {
     "link",
     "width",
     "height",
-    "total_execucao",
+    "totalizar_grupo",
     "mostrar_qtde",
     "mostrar_duracao",
-    "campo_imagem",
+    "mostrar_imagem",
     "total_tempo",
+    "expandir_imagem",
   ],
-  data() {
-    return {
-      mostrarColaborador: null,
-      //icon: "arrow_back_ios",
-      //mostrarImg: false,
-    };
-  },
   methods: {
-    mostrarColaboradores(indexitem) {
-      this.mostrarColaborador = !this.mostrarColaborador;
-      console.log(indexitem);
-      return indexitem;
+    getColaborador(pIdColaborador) {
+      let usuario = GetUsuarioPorIdColaborador(pIdColaborador);
+      return usuario;
     },
-  },
-  created() {
-    this.mostrarColaborador = true;
+    mostrarColaboradores(pIndexItem) {
+      this.ObjConteudo.itens[pIndexItem].listaExpandida =
+        !this.ObjConteudo.itens[pIndexItem].listaExpandida;
+    },
   },
 };
 </script>
