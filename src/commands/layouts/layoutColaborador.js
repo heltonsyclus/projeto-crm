@@ -1601,6 +1601,11 @@ export function senhaLogin() {
         img: require("../../assets/53.png"),
       },
       {
+        usuario: "setor desenvolvimento",
+        id_colaborador: 34,
+        img: require("../../assets/34.png"),
+      },
+      {
         usuario: "techplast",
         senha: "0",
         id_colaborador: 54,
