@@ -106,31 +106,22 @@ export default {
     },
     formataCaptionItem(pQtde, pDuracao) {
       let texto = "";
-      if (this.mostrar_qtde === false) {
-        pQtde = "";
-      }
-      if (this.mostrar_duracao === false) {
-        pDuracao = "";
-      }
-      if (pQtde > 0) {
-        texto = pQtde + " itens";
-        if (pDuracao > 0) {
-          /*   this.buscandoDuracao.push(pDuracao);
-          const numbersList = this.buscandoDuracao;
-          const total = numbersList.reduce(
-            (total, currentElement) => total + currentElement
-          );
-          let Stringtotal = total.toString();
-          this.duracaoTotal = total;*/
-          texto =
-            texto +
-            " (" +
-            pDuracao +
-            " mim - " +
-            Math.round(pDuracao / pQtde) +
-            " med)";
+      if (this.mostrar_qtde === true) {
+        if (pQtde > 0) {
+          texto = pQtde + (pQtde > 1 ? " itens " : " item ");
         }
       }
+      if (this.mostrar_duracao === true) {
+        if (pDuracao != null && pDuracao > 0) {
+          texto = texto + "(";
+          texto = texto + pDuracao + " mim";
+          if (pQtde != null && pQtde > 1) {
+            texto = texto + " - " + Math.round(pDuracao / pQtde) + " med";
+          }
+          texto = texto + ")";
+        }
+      }
+
       return texto;
     },
     getUrlItem(pIndexItem) {

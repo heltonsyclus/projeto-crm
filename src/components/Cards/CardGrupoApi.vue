@@ -11,9 +11,12 @@
       >
         <div class="flex">
           {{ card }}
-          <div v-if="totalizar_grupo === true">
+          <div v-if="totalizar_grupo === true || totalizar_item === true">
             <span v-if="this.ObjConteudo.grupos.length >= 1">
+              {{ this.formataCaptionCard() }}
+              <!--
               ({{ this.ObjConteudo.grupos.length }})
+              -->
             </span>
           </div>
         </div>
@@ -126,6 +129,7 @@ export default {
     "width",
     "height",
     "totalizar_grupo",
+    "totalizar_item",
     "mostrar_qtde",
     "mostrar_duracao",
     "adicionar_icone",

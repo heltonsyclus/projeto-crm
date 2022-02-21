@@ -43,6 +43,8 @@
           :tipo_card="ObjCard.tipo_card"
           :sub_tipo="ObjCard.sub_tipo"
           :conteudo_card="ObjCard.conteudo_card"
+          :totalizar_grupo="ObjCard.totalizar_grupo"
+          :totalizar_item="ObjCard.totalizar_item"
           :link_item="ObjCard.link_item"
           :idPrincipal="this.idColaboradorAtivo"
           :msg="this.msgCard"

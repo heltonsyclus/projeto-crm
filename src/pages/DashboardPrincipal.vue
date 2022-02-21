@@ -45,6 +45,7 @@
           :sub_tipo="ObjCard.sub_tipo"
           :conteudo_card="ObjCard.conteudo_card"
           :totalizar_grupo="ObjCard.totalizar_grupo"
+          :totalizar_item="ObjCard.totalizar_item"
           :mostrar_qtde="ObjCard.mostrar_qtde"
           :mostrar_duracao="ObjCard.mostrar_duracao"
           :link_grupo="ObjCard.link_grupo"

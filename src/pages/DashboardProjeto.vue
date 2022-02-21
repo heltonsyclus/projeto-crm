@@ -144,10 +144,12 @@
             :tipo_card="ObjCard.tipo_card"
             :sub_tipo="ObjCard.sub_tipo"
             :conteudo_card="ObjCard.conteudo_card"
-            :link_item="ObjCard.link_item"
-            :idPrincipal="this.idProjetoAtivo"
-            :msg="this.msgCard"
             :totalizar_grupo="ObjCard.totalizar_grupo"
+            :totalizar_item="ObjCard.totalizar_item"
+            :mostrar_qtde="ObjCard.mostrar_qtde"
+            :link_item="ObjCard.link_item"
+            :idPrincipal="this.idcolaboradorAtivo"
+            :msg="this.msgCard"
           />
           <CardGraficoApi
             v-if="ObjCard.tipo_card === 'CardGraficoApi'"

@@ -106,6 +106,11 @@
                     class="flex"
                     v-if="j === 0 || itemConteudo.listaExpandida === true"
                   >
+                    <!--
+                    <q-avatar size="32px" style="margin-left: 8px">
+                      <img :src="this.getImg(itemLista)" />
+                    </q-avatar>
+                    -->
                     <q-avatar size="32px" style="margin-left: 8px">
                       <img :src="this.getColaborador(itemLista).img" />
                     </q-avatar>
@@ -129,6 +134,7 @@
 <script>
 import controllerCardApi from "app/src/commands/controller/controllerCardListaApi";
 import { GetUsuarioPorIdColaborador } from "../../commands/layouts/layoutColaborador";
+
 export default {
   mixins: [controllerCardApi],
   props: [
@@ -152,6 +158,13 @@ export default {
   methods: {
     getColaborador(pIdColaborador) {
       let usuario = GetUsuarioPorIdColaborador(pIdColaborador);
+      if (usuario === null) {
+        usuario = {
+          usuario: "colaborador " + pIdColaborador,
+          id_colaborador: pIdColaborador,
+          img: "",
+        };
+      }
       return usuario;
     },
     mostrarColaboradores(pIndexItem) {

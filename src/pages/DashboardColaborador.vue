@@ -143,6 +143,7 @@
             :sub_tipo="ObjCard.sub_tipo"
             :conteudo_card="ObjCard.conteudo_card"
             :totalizar_grupo="ObjCard.totalizar_grupo"
+            :totalizar_item="ObjCard.totalizar_item"
             :mostrar_qtde="ObjCard.mostrar_qtde"
             :link_item="ObjCard.link_item"
             :idPrincipal="this.idcolaboradorAtivo"
