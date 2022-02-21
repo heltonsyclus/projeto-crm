@@ -96,7 +96,14 @@
                   style="margin-left: 10px"
                   @click="mostrarColaboradores(i)"
                 >
-                  <div v-if="itemConteudo.listaExpandida === false">+</div>
+                  <div
+                    v-if="
+                      itemConteudo.listaExpandida === false ||
+                      itemConteudo.listaExpandida === undefined
+                    "
+                  >
+                    +
+                  </div>
                   <div v-else>-</div>
                   {{ itemConteudo.lista.length - 1 }}
                 </q-btn>
@@ -105,11 +112,6 @@
                     class="flex"
                     v-if="j === 0 || itemConteudo.listaExpandida === true"
                   >
-                    <!--
-                    <q-avatar size="32px" style="margin-left: 8px">
-                      <img :src="this.getImg(itemLista)" />
-                    </q-avatar>
-                    -->
                     <q-avatar size="32px" style="margin-left: 8px">
                       <img :src="this.getColaborador(itemLista).img" />
                     </q-avatar>
@@ -121,9 +123,9 @@
               </div>
             </div>
           </div>
-        </div>
-        <div style="width: 95%; margin-left: 15px">
-          <q-separator />
+          <div style="width: 95%; margin-left: 15px">
+            <q-separator />
+          </div>
         </div>
       </div>
     </q-card-section>

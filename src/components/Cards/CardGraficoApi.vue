@@ -108,6 +108,14 @@
           :height="alturaGrafico"
         ></apexchart>
       </div>
+      <div v-if="sub_tipo === 'grafico_comparativo_barra_horizontal'">
+        <apexchart
+          type="bar"
+          :options="objGraficoComparativoHorizontal"
+          :series="seriesGraficoComparativoHorizontal"
+          :height="alturaGrafico"
+        ></apexchart>
+      </div>
       <div v-if="sub_tipo === 'grafico_comparativo_linha'">
         <apexchart
           type="line"

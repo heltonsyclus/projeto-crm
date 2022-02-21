@@ -197,9 +197,9 @@
             :card="ObjCard.card"
             :ordem="ObjCard.ordem"
             cor_header="bg-primary"
+            :style="{ width: `${ObjCard.width}` }"
             topo_fixo="topo_fixo"
             :height="ObjCard.height"
-            :style="{ width: `${ObjCard.width}` }"
             :btn_comando="ObjCard.btn_comando"
             :tipo_card="ObjCard.tipo_card"
             :sub_tipo="ObjCard.sub_tipo"
@@ -209,6 +209,9 @@
             :totalizar_grupo="ObjCard.totalizar_grupo"
             :mostrar_qtde="ObjCard.mostrar_qtde"
             :mostrar_duracao="ObjCard.mostrar_duracao"
+            :mostrar_imagem="ObjCard.mostrar_imagem"
+            :expandir_imagem="ObjCard.expandir_imagem"
+            :total_tempo="ObjCard.total_tempo"
             :msg="this.msgCard"
           />
         </div>

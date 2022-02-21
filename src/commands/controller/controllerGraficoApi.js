@@ -92,6 +92,46 @@ export default {
         },
       },
       seriesGraficoComparativo: [],
+      objGraficoComparativoHorizontal: {
+        chart: {
+          type: "bar",
+          height: 350,
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: "55%",
+            endingShape: "rounded",
+          },
+        },
+        dataLabels: {
+          enabled: false,
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ["transparent"],
+        },
+        xaxis: {
+          categories: [],
+        },
+        yaxis: {
+          title: {
+            text: "",
+          },
+        },
+        fill: {
+          opacity: 1,
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return val + " quantidades";
+            },
+          },
+        },
+      },
+      seriesGraficoComparativoHorizontal: [],
       objGraficoComparacaoLinha: {
         chart: {
           type: "bar",
@@ -371,6 +411,9 @@ export default {
             case "grafico_comparativo_barra":
               this.montarConteudoComparativoBarra(arrRetorno);
               break;
+            case "grafico_comparativo_barra_horizontal":
+              this.montarConteudoComparativoBarraHorizontal(arrRetorno);
+              break;
             case "grafico_comparativo_linha":
               this.montarConteudoComparativoLinha(arrRetorno);
               break;
@@ -529,6 +572,64 @@ export default {
             Object.values(pConteudo[i])[this.index_coluna_serie]
           ) {
             this.seriesGraficoComparativo[j].data.splice(
+              idxCategoria,
+              1,
+              Object.values(pConteudo[i])[this.index_coluna_totalizadora]
+            );
+            break;
+          }
+        }
+      }
+    },
+    montarConteudoComparativoBarraHorizontal(pConteudo) {
+      for (let i = 0; i < pConteudo.length; i++) {
+        let idxCategoria =
+          this.objGraficoComparativoHorizontal.xaxis.categories.indexOf(
+            Object.values(pConteudo[i])[this.index_coluna_categoria]
+          );
+        if (idxCategoria < 0) {
+          this.objGraficoComparativoHorizontal.xaxis.categories.push(
+            Object.values(pConteudo[i])[this.index_coluna_categoria]
+          );
+        }
+        let idxSerie = this.seriesGraficoComparativoHorizontal.find(
+          (item) =>
+            item.name === Object.values(pConteudo[i])[this.index_coluna_serie]
+        );
+        if (idxSerie === undefined) {
+          this.seriesGraficoComparativoHorizontal.push({
+            name: Object.values(pConteudo[i])[this.index_coluna_serie],
+            data: [],
+          });
+        }
+      }
+      this.objGraficoComparativoHorizontal.xaxis.categories.sort();
+      //criando valores zerados
+      for (let i = 0; i < this.seriesGraficoComparativoHorizontal.length; i++) {
+        for (
+          let j = 0;
+          j < this.objGraficoComparativoHorizontal.xaxis.categories.length;
+          j++
+        ) {
+          this.seriesGraficoComparativoHorizontal[i].data.push(0);
+        }
+      }
+      //setando os valores
+      for (let i = 0; i < pConteudo.length; i++) {
+        let idxCategoria =
+          this.objGraficoComparativoHorizontal.xaxis.categories.indexOf(
+            Object.values(pConteudo[i])[this.index_coluna_categoria]
+          );
+        for (
+          let j = 0;
+          j < this.seriesGraficoComparativoHorizontal.length;
+          j++
+        ) {
+          if (
+            this.seriesGraficoComparativoHorizontal[j].name ===
+            Object.values(pConteudo[i])[this.index_coluna_serie]
+          ) {
+            this.seriesGraficoComparativoHorizontal[j].data.splice(
               idxCategoria,
               1,
               Object.values(pConteudo[i])[this.index_coluna_totalizadora]
@@ -716,6 +817,8 @@ export default {
     limparConteudoComparativoBarra() {
       this.objGraficoComparativo.xaxis.categories = [];
       this.seriesGraficoComparativo = [];
+      this.objGraficoComparativoHorizontal.xaxis.categories = [];
+      this.seriesGraficoComparativoHorizontal = [];
     },
     limparConteudoComparativoLinha() {
       this.objGraficoComparacaoLinha.xaxis.categories = [];

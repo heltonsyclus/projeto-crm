@@ -103,6 +103,8 @@
           :mostrar_qtde="ObjCard.mostrar_qtde"
           :mostrar_duracao="ObjCard.mostrar_duracao"
           :mostrar_imagem="ObjCard.mostrar_imagem"
+          :expandir_imagem="ObjCard.expandir_imagem"
+          :total_tempo="ObjCard.total_tempo"
           :link="ObjCard.link"
           :idPrincipal="this.idColaboradorAtivo"
           :msg="this.msgCard"
