@@ -66,7 +66,7 @@ export default {
               qtde: Object.values(arrRetorno[i])[2],
               duracao: Object.values(arrRetorno[i])[3],
               lista: [...new Set(arrJson)],
-              listaExpandida: false,
+              listaExpandida: this.expandir_imagem,
             };
             this.ObjConteudo.itens.push(item);
           }

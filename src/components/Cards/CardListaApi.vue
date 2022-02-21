@@ -67,7 +67,6 @@
             >
               {{ itemConteudo.descricao }}
             </a>
-
             <div class="flex justify-end items-center">
               <!--duracao-->
               <p
