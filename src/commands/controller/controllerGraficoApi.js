@@ -338,16 +338,16 @@ export default {
         yaxis: {
           min: 0,
         },
-        colors: ["#DCE6EC"],
+        colors: ["#0E9DDB"],
         title: {
-          text: "$424,652",
+          text: [],
           offsetX: 0,
           style: {
             fontSize: "24px",
           },
         },
         subtitle: {
-          text: "Sales",
+          text: "Total",
           offsetX: 0,
           style: {
             fontSize: "14px",
@@ -355,9 +355,10 @@ export default {
         },
       },
       serieGraficoSpark: [
-        /* {
-          data: randomizeArray(sparklineData),
-        },*/
+        {
+          data: [],
+          name: "Atividades",
+        },
       ],
     };
   },
@@ -445,15 +446,15 @@ export default {
       }
     },
     montarConteudoSpark(pConteudo) {
-      // this.limparConteudoSpark();
-      /* for (let i = 0; i < pConteudo.length; i++) {
-        this.objGraficoSpark.xaxis.categories.push(
-          Object.values(pConteudo[i])[1]
-        );*/
-      this.serieGraficoSpark.push({
-        data: randomizeArray(sparklineData),
-      });
-      /* }*/
+      this.limparConteudoSpark();
+      let somaObj = 0;
+      for (let i = 0; i < pConteudo.length; i++) {
+        this.serieGraficoSpark[0].data.push(Object.values(pConteudo[i])[3]);
+        var valorObj = Object.values(this.serieGraficoSpark[0].data);
+        somaObj += valorObj[i];
+      }
+      this.objGraficoSpark.title.text.push(somaObj);
+      this.objGraficoSpark.title.text = [];
     },
     montarConteudoBarra(pConteudo) {
       this.limparConteudoBarra();
@@ -772,6 +773,9 @@ export default {
         this.objGraficoRadial.labels.push(total);
         this.seriesGraficoRadial.push(perc);
       }
+    },
+    limparConteudoSpark() {
+      this.serieGraficoSpark[0].data = [];
     },
     limparConteudoBarra() {
       this.objGraficoBarra = {

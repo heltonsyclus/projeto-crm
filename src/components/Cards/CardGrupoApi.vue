@@ -14,9 +14,6 @@
           <div v-if="totalizar_grupo === true || totalizar_item === true">
             <span v-if="this.ObjConteudo.grupos.length >= 1">
               {{ this.formataCaptionCard() }}
-              <!--
-              ({{ this.ObjConteudo.grupos.length }})
-              -->
             </span>
           </div>
         </div>
