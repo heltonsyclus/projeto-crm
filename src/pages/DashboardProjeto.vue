@@ -62,7 +62,7 @@
       <q-card
         class="my-card bg-light-blue-9"
         style="color: #fff"
-        v-show="ProjetoAtivo"
+        v-show="projetoAtivo"
       >
         <q-card-section>
           <div class="flex justify-between items-center">
@@ -148,7 +148,7 @@
             :totalizar_item="ObjCard.totalizar_item"
             :mostrar_qtde="ObjCard.mostrar_qtde"
             :link_item="ObjCard.link_item"
-            :idPrincipal="this.idcolaboradorAtivo"
+            :idPrincipal="this.idAtivoProjeto"
             :msg="this.msgCard"
           />
           <CardGraficoApi
@@ -170,7 +170,7 @@
             :sub_tipo="ObjCard.sub_tipo"
             :conteudo_card="ObjCard.conteudo_card"
             :link_item="ObjCard.link_item"
-            :idPrincipal="this.idcolaboradorAtivo"
+            :idPrincipal="this.idAtivoProjeto"
             :msg="this.msgCard"
           />
           <CardListaApi
@@ -180,21 +180,21 @@
             :card="ObjCard.card"
             :ordem="ObjCard.ordem"
             cor_header="bg-primary"
-            :style="{ width: `${ObjCard.width}` }"
             topo_fixo="topo_fixo"
             :height="ObjCard.height"
+            :style="{ width: `${ObjCard.width}` }"
             :btn_comando="ObjCard.btn_comando"
             :tipo_card="ObjCard.tipo_card"
             :sub_tipo="ObjCard.sub_tipo"
             :conteudo_card="ObjCard.conteudo_card"
-            :link="ObjCard.link"
-            :idPrincipal="this.idcolaboradorAtivo"
             :totalizar_grupo="ObjCard.totalizar_grupo"
             :mostrar_qtde="ObjCard.mostrar_qtde"
             :mostrar_duracao="ObjCard.mostrar_duracao"
             :mostrar_imagem="ObjCard.mostrar_imagem"
             :expandir_imagem="ObjCard.expandir_imagem"
             :total_tempo="ObjCard.total_tempo"
+            :link="ObjCard.link"
+            :idPrincipal="this.idAtivoProjeto"
             :msg="this.msgCard"
           />
         </div>
@@ -204,7 +204,6 @@
 </template>
 
 <script>
-import { GeLayoutDashBoard } from "src/commands/layouts/layoutDashboard";
 import BarraLayout from "src/layouts/BarraLayout.vue";
 import CardGrupoApi from "src/components/Cards/CardGrupoApi.vue";
 import CardGraficoApi from "src/components/Cards/CardGraficoApi.vue";
@@ -213,12 +212,12 @@ import {
   bodyProcuraIdProjeto,
   bodyDadosProjeto,
 } from "src/boot/consultaSql.js";
+import { GeLayoutDashBoard } from "src/commands/layouts/layoutDashboard";
 import { defineComponent } from "vue";
 import { computed } from "vue";
 import { useStore } from "vuex";
 export default defineComponent({
   components: { BarraLayout, CardGrupoApi, CardGraficoApi, CardListaApi },
-
   name: "Projeto",
   data() {
     return {
@@ -227,8 +226,8 @@ export default defineComponent({
       GrupoCards: [],
       GrupoCardsOpcionais: [],
       nomeFantasia: null,
-      idProjetoAtivo: null,
-      ProjetoAtivo: false,
+      idAtivoProjeto: null,
+      projetoAtivo: false,
       objProjeto: [],
       datafiltro: "",
       dadosProjeto: null,
@@ -263,8 +262,8 @@ export default defineComponent({
           message: "Preencha os campos!",
         });
       } else {
-        this.ProjetoAtivo = false;
-        this.idProjetoAtivo = null;
+        this.projetoAtivo = false;
+        this.idAtivoProjeto = null;
         let body = bodyProcuraIdProjeto(this.nomeFantasia.toUpperCase());
         this.$api.post("consultasql", body).then((res) => {
           let arrRetorno = res.data;
@@ -292,7 +291,7 @@ export default defineComponent({
       if (this.dadosProjeto.id_projeto === null) {
         return false;
       }
-      this.idProjetoAtivo = this.dadosProjeto.id_projeto;
+      this.idAtivoProjeto = this.dadosProjeto.id_projeto;
       let body = bodyDadosProjeto(this.dadosProjeto.id_projeto);
       this.$api.post("consultasql", body).then((res) => {
         this.AtualizarCardsGrupoAtual();
@@ -301,7 +300,7 @@ export default defineComponent({
         let dataprojeto = this.objProjeto[0].data_previsao.substr(0, 10);
         this.datafiltro = dataprojeto.split("-").reverse().join("/");
       });
-      this.ProjetoAtivo = true;
+      this.projetoAtivo = true;
       this.AtualizarCardsGrupoAtual();
     },
     selecionarProjeto(index) {

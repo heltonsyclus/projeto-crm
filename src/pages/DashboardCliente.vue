@@ -254,7 +254,7 @@
             :conteudo_card="ObjCard.conteudo_card"
             :totalizar_grupo="ObjCard.totalizar_grupo"
             :link_item="ObjCard.link_item"
-            :idPrincipal="this.idColaboradorAtivo"
+            :idPrincipal="this.idClienteAtivo"
             :msg="this.msgCard"
           />
           <CardGraficoApi
@@ -332,7 +332,6 @@ export default defineComponent({
       IndexGrupoAtual: 0,
       GrupoCards: [],
       GrupoCardsOpcionais: [],
-      idcolaboradorAtivo: null,
       telaWidth: "",
       msgCard: "",
       nomeFantasia: null,
@@ -353,15 +352,19 @@ export default defineComponent({
       this.msgCard = null;
     },
     OnClickBarraLayout(IndexGrupo) {
+      console.log("c1");
       this.IndexGrupoAtual = IndexGrupo;
       this.AtualizarCardsGrupoAtual();
+      console.log("c2");
     },
     AtualizarCardsGrupoAtual() {
+      console.log("a1");
       this.handleResize();
       this.msgCard = "atualizar_conteudo";
       setTimeout(() => {
         this.msgCard = "";
       }, 1000);
+      console.log("a2");
     },
     btnVmais() {
       for (let i = 0; i < this.telefone.length; i++) {
