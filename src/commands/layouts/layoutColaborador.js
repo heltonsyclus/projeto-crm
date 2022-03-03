@@ -1015,6 +1015,10 @@ export function senhaLogin() {
                 id_layout_dashboard: 2,
                 dashboard_complementar: [],
               },
+              dashboard_projeto: {
+                id_layout_dashboard: 8,
+                dashboard_complementar: [],
+              },
               dashboard_bi: [
                 {
                   grupo: "Área Técnica",
