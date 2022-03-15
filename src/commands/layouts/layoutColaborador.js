@@ -183,6 +183,12 @@ export function senhaLogin() {
                       dashboard_complementar: [],
                     },
                     {
+                      id_layout_dashboard: 27,
+                      dashboard: "Area 1",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
                       id_layout_dashboard: 18,
                       dashboard: "Formação",
                       icone: "construction",
@@ -345,6 +351,12 @@ export function senhaLogin() {
                       dashboard_complementar: [],
                     },
                     {
+                      id_layout_dashboard: 27,
+                      dashboard: "Area 1",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
                       id_layout_dashboard: 13,
                       icone: "construction",
                       dashboard: "Gestão",
@@ -484,6 +496,12 @@ export function senhaLogin() {
                     {
                       id_layout_dashboard: 4,
                       dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 27,
+                      dashboard: "Area 1",
                       icone: "construction",
                       dashboard_complementar: [],
                     },
@@ -879,6 +897,12 @@ export function senhaLogin() {
                       icone: "construction",
                       dashboard_complementar: [],
                     },
+                    {
+                      id_layout_dashboard: 27,
+                      dashboard: "Area 1",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    }
                   ],
                 },
                 {
@@ -1120,6 +1144,12 @@ export function senhaLogin() {
                       dashboard_complementar: [],
                     },
                     {
+                      id_layout_dashboard: 27,
+                      dashboard: "Área 1",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
                       id_layout_dashboard: 13,
                       dashboard: "Gestão",
                       icone: "construction",
@@ -1187,28 +1217,17 @@ export function senhaLogin() {
               },
               dashboard_bi: [
                 {
-                  grupo: "Projetos",
-                  layout_dashboard: [
-                    {
-                      icone: "description",
-                      id_layout_dashboard: 9,
-                      dashboard: "Corrente",
-                      dashboard_complementar: [],
-                    },
-                    {
-                      icone: "description",
-                      id_layout_dashboard: 22,
-                      dashboard: "Gestão",
-                      dashboard_complementar: [],
-                    },
-                  ],
-                },
-                {
                   grupo: "Área Técnica",
                   layout_dashboard: [
                     {
                       id_layout_dashboard: 4,
                       dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 27,
+                      dashboard: "Área 1",
                       icone: "construction",
                       dashboard_complementar: [],
                     },
@@ -1222,6 +1241,23 @@ export function senhaLogin() {
                       id_layout_dashboard: 18,
                       dashboard: "Formação",
                       icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
+                {
+                  grupo: "Projetos",
+                  layout_dashboard: [
+                    {
+                      icone: "description",
+                      id_layout_dashboard: 9,
+                      dashboard: "Corrente",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      icone: "description",
+                      id_layout_dashboard: 22,
+                      dashboard: "Gestão",
                       dashboard_complementar: [],
                     },
                   ],
@@ -1292,6 +1328,12 @@ export function senhaLogin() {
                     {
                       id_layout_dashboard: 4,
                       dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 27,
+                      dashboard: "Área 1",
                       icone: "construction",
                       dashboard_complementar: [],
                     },
@@ -1534,105 +1576,9 @@ export function senhaLogin() {
         img: require("../../assets/58.png"),
       },
       {
-        usuario: "wagner",
-        senha: "wagner321",
-        id_colaborador: 53,
-        id_aplicativo_inicial: 0,
-        aplicativos: [
-          {
-            id_aplicativo: 1,
-            aplicativo: "CRM",
-            base_url_api: "https://api.syclus.com.br",
-            recursos: {
-              dashboard_area_trabalho: {
-                id_layout_dashboard: 1,
-                dashboard_complementar: [],
-              },
-              dashboard_cliente: {
-                id_layout_dashboard: 2,
-                dashboard_complementar: [],
-              },
-              dashboard_colaborador: {
-                id_layout_dashboard: 3,
-                dashboard_complementar: [],
-                permissao_colaborador: ["*"],
-              },
-              dashboard_projeto: {
-                id_layout_dashboard: 8,
-                dashboard_complementar: [],
-              },
-              dashboard_bi: [
-                {
-                  grupo: "Área Técnica",
-                  layout_dashboard: [
-                    {
-                      id_layout_dashboard: 4,
-                      dashboard: "Corrente",
-                      icone: "construction",
-                      dashboard_complementar: [],
-                    },
-                    {
-                      id_layout_dashboard: 13,
-                      dashboard: "Gestão",
-                      icone: "construction",
-                      dashboard_complementar: [],
-                    },
-                    {
-                      id_layout_dashboard: 18,
-                      dashboard: "Formação",
-                      icone: "construction",
-                      dashboard_complementar: [],
-                    },
-                  ],
-                },
-                {
-                  grupo: "Desenvolvimento",
-                  icone: "code",
-                  layout_dashboard: [
-                    {
-                      id_layout_dashboard: 12,
-                      icone: "code",
-                      dashboard: "Padrão",
-                      dashboard_complementar: [],
-                    },
-                  ],
-                },
-              ],
-            },
-          },
-        ],
-        rotas: "colaborador",
-        img: require("../../assets/53.png"),
-      },
-      {
         usuario: "setor desenvolvimento",
         id_colaborador: 34,
         img: require("../../assets/34.png"),
-      },
-      {
-        usuario: "techplast",
-        senha: "0",
-        id_colaborador: 54,
-        id_aplicativo_inicial: 1,
-        aplicativos: [
-          {
-            id_aplicativo: 1,
-            aplicativo: "Produção",
-            base_url_api: "https://cloud01.syclus.com.br:50001/api/syclus/v1",
-            recursos: {
-              dashboard_area_trabalho: {
-                id_layout_dashboard: 1,
-                dashboard_complementar: [],
-              },
-              dashboard_producao: {
-                id_layout_dashboard: 2,
-                dashboard_complementar: [6, 7],
-              },
-            },
-          },
-        ],
-        rotas: "cliente",
-        img: require("../../assets/clientes/techplast.png"),
       },
     ],
   };
