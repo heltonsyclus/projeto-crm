@@ -9495,7 +9495,8 @@ function layoutDashBoard27() {
             card: "Previstas",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGraficoApi",
-            sub_tipo: "grafico_barra_horizontal",
+            sub_tipo: "grafico_pizza",
+            /*sub_tipo: "grafico_barra_horizontal",*/
             width: "31vw",
             height: "40",
             conteudo_card: {
@@ -9572,6 +9573,25 @@ function layoutDashBoard27() {
             },
           },
           {
+            card: "Tags",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGrupoApi",
+            totalizar_item: true,
+            mostrar_qtde: true,
+            mostrar_duracao: true,
+            totalizar_grupo: true,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorTag",
+              filtro_sql_grupo:
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+              body_item: "bodyAtividade",
+              filtro_sql_item:
+                "where a.ds_status = 'P' and a.cd_workflow = 35 and cast(a.dt_previsao as date) = current_date and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and a.cd_responsavel = <id_grupo>",
+            },
+          },
+          {
             card: "Interações",
             btn_comando: "btn-atualizar",
             tipo_card: "CardListaApi",
@@ -9611,6 +9631,124 @@ function layoutDashBoard27() {
           },
         ],
       },
+      /*{
+        grupo: "Mês Atual",
+        icone: "assignment_turned_in",
+        cards: [
+          {
+            card: "Criadas",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadePorEmissaoMesAnoStatus",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+        ],
+      },*/
+      {
+        grupo: "Estatísticas",
+        icone: "assignment_turned_in",
+        cards: [
+          {
+            card: "Criadas x Status",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadePorEmissaoMesAnoStatus",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Criadas x Responsável",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadePorEmissaoMesAnoResponsavel",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Criadas x Tipo",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadePorEmissaoMesAnoTipoAtividade",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Criadas x Modulo",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadePorEmissaoMesAnoTag",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and ag.cd_tag not in (140, 141, 387, 388, 389) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Criadas x Tipo Contato",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadePorEmissaoMesAnoTag",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and ag.cd_tag in (387, 388, 389) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+          {
+            card: "Criadas x Qualidade",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "31vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadePorEmissaoMesAnoTag",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and ag.cd_tag in (140, 141) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+        ],
+      },
+
     ],
   };
 

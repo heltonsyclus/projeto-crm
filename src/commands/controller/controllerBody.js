@@ -16,8 +16,15 @@ import {
   bodyAtividadePorWorkflowStatus,
   bodyAtividadePorResponsavelStatus,
   bodyAtividadePorDataStatus,
-  bodyAtividadePorMesAnoStatus,
   bodyAtividadePorEmissaoStatus,
+  bodyAtividadePorMesAnoStatus,
+  bodyAtividadePorMesAnoTipoAtividade,
+  bodyAtividadePorMesAnoResponsavel,
+  bodyAtividadePorMesAnoTag,
+  bodyAtividadePorEmissaoMesAnoStatus,
+  bodyAtividadePorEmissaoMesAnoTipoAtividade,
+  bodyAtividadePorEmissaoMesAnoResponsavel,
+  bodyAtividadePorEmissaoMesAnoTag,
   bodyAtividadePorTipoAtividadeColaboradorPrevisao,
   bodyAtividadeCliente,
   bodyAtividadeClientePorTipoAtividade,
@@ -171,11 +178,32 @@ export default {
       if (pNomeBody === "bodyAtividadePorDataStatus") {
         return bodyAtividadePorDataStatus(filtros);
       }
+      if (pNomeBody === "bodyAtividadePorEmissaoStatus") {
+        return bodyAtividadePorEmissaoStatus(filtros);
+      }
       if (pNomeBody === "bodyAtividadePorMesAnoStatus") {
         return bodyAtividadePorMesAnoStatus(filtros);
       }
-      if (pNomeBody === "bodyAtividadePorEmissaoStatus") {
-        return bodyAtividadePorEmissaoStatus(filtros);
+      if (pNomeBody === "bodyAtividadePorMesAnoTipoAtividade") {
+        return bodyAtividadePorMesAnoTipoAtividade(filtros);
+      }
+      if (pNomeBody === "bodyAtividadePorMesAnoResponsavel") {
+        return bodyAtividadePorMesAnoResponsavel(filtros);
+      }
+      if (pNomeBody === "bodyAtividadePorMesAnoTag") {
+        return bodyAtividadePorMesAnoTag(filtros);
+      }
+      if (pNomeBody === "bodyAtividadePorEmissaoMesAnoStatus") {
+        return bodyAtividadePorEmissaoMesAnoStatus(filtros);
+      }
+      if (pNomeBody === "bodyAtividadePorEmissaoMesAnoTipoAtividade") {
+        return bodyAtividadePorEmissaoMesAnoTipoAtividade(filtros);
+      }
+      if (pNomeBody === "bodyAtividadePorEmissaoMesAnoResponsavel") {
+        return bodyAtividadePorEmissaoMesAnoResponsavel(filtros);
+      }
+      if (pNomeBody === "bodyAtividadePorEmissaoMesAnoTag") {
+        return bodyAtividadePorEmissaoMesAnoTag(filtros);
       }
       if (pNomeBody === "bodyAtividadePorTipoAtividadeColaboradorPrevisao") {
         return bodyAtividadePorTipoAtividadeColaboradorPrevisao(filtros);
