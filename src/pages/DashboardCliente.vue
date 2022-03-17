@@ -352,19 +352,19 @@ export default defineComponent({
       this.msgCard = null;
     },
     OnClickBarraLayout(IndexGrupo) {
-      console.log("c1");
+      // console.log("c1");
       this.IndexGrupoAtual = IndexGrupo;
       this.AtualizarCardsGrupoAtual();
-      console.log("c2");
+      //console.log("c2");
     },
     AtualizarCardsGrupoAtual() {
-      console.log("a1");
+      // console.log("a1");
       this.handleResize();
       this.msgCard = "atualizar_conteudo";
       setTimeout(() => {
         this.msgCard = "";
       }, 1000);
-      console.log("a2");
+      alert(this.msgCard);
     },
     btnVmais() {
       for (let i = 0; i < this.telefone.length; i++) {

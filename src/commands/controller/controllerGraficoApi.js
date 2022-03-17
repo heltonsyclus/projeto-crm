@@ -134,52 +134,46 @@ export default {
       seriesGraficoComparativoHorizontal: [],
       objGraficoComparacaoLinha: {
         chart: {
-          type: "bar",
           height: 350,
-          stacked: true,
-          toolbar: {
-            show: true,
-          },
-          zoom: {
+          type: "line",
+          dropShadow: {
             enabled: true,
+            color: "#000",
+            top: 18,
+            left: 7,
+            blur: 10,
+            opacity: 0.2,
+          },
+          toolbar: {
+            show: false,
           },
         },
-        responsive: [
-          {
-            breakpoint: 480,
-            options: {
-              legend: {
-                position: "bottom",
-                offsetX: -10,
-                offsetY: 0,
-              },
-            },
-          },
-        ],
+        colors: ["#77B6EA", "#545454"],
         dataLabels: {
           enabled: true,
         },
         stroke: {
           curve: "smooth",
         },
+        grid: {
+          borderColor: "#e7e7e7",
+          row: {
+            colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+            opacity: 0.5,
+          },
+        },
         markers: {
           size: 1,
-        },
-        plotOptions: {
-          bar: {
-            horizontal: false,
-            borderRadius: 10,
-          },
         },
         xaxis: {
           categories: [],
         },
         legend: {
-          position: "right",
-          offsetY: 40,
-        },
-        fill: {
-          opacity: 1,
+          position: "top",
+          horizontalAlign: "right",
+          floating: true,
+          offsetY: -25,
+          offsetX: -5,
         },
       },
       seriesGraficoComparativoLinha: [],
@@ -368,13 +362,18 @@ export default {
       this.limparConteudoComparativoBarra();
       if (this.idPrincipal !== null) {
         let body = "";
-        body = this.getBody(this.conteudo_card.body);
-        if (body === undefined) {
-          body = this.getBody(this.conteudo_card.body_grupo);
-        }
-        if (body == null) {
-          return false;
-        }
+        const bodyPromess = new Promise((resolve, reject) => {
+          body = this.getBody(this.conteudo_card.body);
+          if (body === undefined) {
+            resolve((body = this.getBody(this.conteudo_card.body_grupo)));
+          } else {
+            reject;
+          }
+        });
+        bodyPromess.then((res) => {
+          res;
+        });
+        //console.log(body);
         this.carregarKnob = true;
         this.$api.post("consultasql", body).then((res) => {
           //  console.log(">>" + JSON.stringify(res.data));
@@ -433,15 +432,15 @@ export default {
           }
 
           //final
-          setTimeout(() => {
-            arrRetorno == "";
-          }, 2000);
-          if (arrRetorno == "") {
-            this.carregarText = true;
-            this.carregarKnob = false;
-          } else {
-            this.carregarText = false;
-          }
+          const promessa = new Promise((resolve, reject) => {
+            if (arrRetorno === "") {
+              resolve((this.carregarText = false));
+            }
+            reject((this.carregarText = true), (this.carregarKnob = false));
+          });
+          promessa.then((resolucao) => {
+            resolucao;
+          });
         });
       }
     },
@@ -458,6 +457,7 @@ export default {
     },
     montarConteudoBarra(pConteudo) {
       this.limparConteudoBarra();
+
       for (let i = 0; i < pConteudo.length; i++) {
         this.objGraficoBarra.xaxis.categories.push(
           Object.values(pConteudo[i])[1]
@@ -470,7 +470,7 @@ export default {
     montarConteudoLinhaTempo(pConteudo) {
       this.limparConteudoLinhaTempo();
       //Criando estrutura de categorias e series
-      console.log(this.label_min);
+      // console.log(this.label_min);
       /*  if (this.label_min === true) {
         this.objGraficoLinhaDoTempo.tooltip = {
           custom: function () {
@@ -642,7 +642,19 @@ export default {
     },
     montarConteudoComparativoLinha(pConteudo) {
       this.limparConteudoComparativoLinha();
-      for (let i = 0; i < arrRetorno.length; i++) {
+      //exemplo:
+      /*this.objGraficoComparacaoLinha.xaxis.categories=["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"]
+      this.seriesGraficoComparativoLinha = [
+        {
+          name: "Nome1",
+          data: [28, 29, 33, 36, 32, 32, 33],
+        },
+        {
+          name: "Nome2",
+          data: [12, 11, 14, 18, 17, 13, 13],
+        },
+      ];*/
+      for (let i = 0; i < pConteudo.length; i++) {
         let idxCategoria =
           this.objGraficoComparacaoLinha.xaxis.categories.indexOf(
             Object.values(pConteudo[i])[2]
@@ -677,17 +689,17 @@ export default {
       for (let i = 0; i < pConteudo.length; i++) {
         let idxCategoria =
           this.objGraficoComparacaoLinha.xaxis.categories.indexOf(
-            Object.values(pConteudo[i])[2]
+            Object.values(pConteudo[i])[this.index_coluna_categoria]
           );
         for (let j = 0; j < this.seriesGraficoComparativoLinha.length; j++) {
           if (
             this.seriesGraficoComparativoLinha[j].name ===
-            Object.values(pConteudo[i])[1]
+            Object.values(pConteudo[i])[this.index_coluna_serie]
           ) {
             this.seriesGraficoComparativoLinha[j].data.splice(
               idxCategoria,
               1,
-              Object.values(pConteudo[i])[3]
+              Object.values(pConteudo[i])[this.index_coluna_totalizadora]
             );
             break;
           }

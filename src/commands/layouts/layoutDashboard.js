@@ -135,6 +135,28 @@ function layoutDashBoard1() {
         grupo: "Meu Dia",
         icone: "assignment_turned_in",
         cards: [
+          /*   {
+            card: "Conforme(Anual)",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_linha",
+            coluna_totalizadora: 3,
+            mostrar_qtde: true,
+            mostrar_duracao: true,
+            totalizar_grupo: true,
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "46.5vw",
+            height: "50",
+            conteudo_card: {
+              body_grupo: "bodyAtividadeTagPorResponsavel",
+              filtro_sql_grupo:
+                "where a.ds_status = 'F' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and ag.cd_tag = 141 and extract(year from a.dt_previsao) = extract(year from current_date)",
+              body_item: "bodyAtividadeTag",
+              filtro_sql_item:
+                "where a.ds_status ='F' and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and ag.cd_tag = 141 and extract(year from a.dt_previsao) = extract(year from current_date) and a.cd_responsavel = <id_grupo>",
+            },
+          },*/
           {
             card: "Planejamento",
             btn_comando: "btn-atualizar",
@@ -9782,10 +9804,8 @@ function layoutDashBoard27() {
                 "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and ag.cd_tag not in (370, 140, 141, 153, 387, 388, 389, 172, 99, 30, 26, 17) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
-
         ],
       },
-
     ],
   };
 
@@ -10112,10 +10132,8 @@ function layoutDashBoard28() {
                 "where a.ds_status in ('P', 'F') and a.cd_workflow = 36 and ag.cd_tag not in (370, 140, 141, 153, 387, 388, 389, 23, 24, 25, 33) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
-
         ],
       },
-
     ],
   };
 
@@ -10442,10 +10460,8 @@ function layoutDashBoard29() {
                 "where a.ds_status in ('P', 'F') and a.cd_workflow = 37 and ag.cd_tag not in (370, 140, 141, 153, 387, 388, 389, 35) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
-
         ],
       },
-
     ],
   };
 
@@ -10772,10 +10788,8 @@ function layoutDashBoard30() {
                 "where a.ds_status in ('P', 'F') and a.cd_workflow = 38 and ag.cd_tag not in (370, 140, 141, 153, 387, 388, 389, 41, 11, 102, 103) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
-
         ],
       },
-
     ],
   };
 
@@ -11102,17 +11116,13 @@ function layoutDashBoard31() {
                 "where a.ds_status in ('P', 'F') and a.cd_workflow = 39 and ag.cd_tag not in (370, 140, 141, 153, 387, 388, 389, 9, 29, 38, 42, 79, 110, 113, 173, 174, 189, 195, 215, 268) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
             },
           },
-
         ],
       },
-
     ],
   };
 
   return json;
-
 }
-
 
 //bi - teste
 function layoutDashBoard9999() {
