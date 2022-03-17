@@ -364,7 +364,7 @@ export default defineComponent({
       setTimeout(() => {
         this.msgCard = "";
       }, 1000);
-      alert(this.msgCard);
+      //alert(this.msgCard);
     },
     btnVmais() {
       for (let i = 0; i < this.telefone.length; i++) {
