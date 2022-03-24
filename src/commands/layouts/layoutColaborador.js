@@ -815,6 +815,11 @@ export function senhaLogin() {
                 id_layout_dashboard: 2,
                 dashboard_complementar: [],
               },
+              dashboard_colaborador: {
+                id_layout_dashboard: 3,
+                dashboard_complementar: [],
+                permissao_colaborador: ["*"],
+              },
               dashboard_projeto: {
                 id_layout_dashboard: 8,
                 dashboard_complementar: [],
@@ -1118,7 +1123,7 @@ export function senhaLogin() {
                       dashboard: "Formação",
                       icone: "construction",
                       dashboard_complementar: [],
-                    }
+                    },
                   ],
                 },
                 {
@@ -2023,7 +2028,6 @@ export function senhaLogin() {
         id_colaborador: 30,
         img: require("../../assets/34.png"),
       },
-
     ],
   };
   return json;

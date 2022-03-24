@@ -145,6 +145,7 @@ export default {
       let objSenhaLogin = senhaLogin();
       for (let i = 0; i < objSenhaLogin.login.length; i++) {
         var login = this.vlogin.toLowerCase();
+        sessionStorage.setItem("email", this.vlogin);
         var password = this.password.toLowerCase();
         if (
           objSenhaLogin.login[i].usuario === login &&
@@ -188,7 +189,6 @@ export default {
         this.$router.push({ name: "bi" });
       }
     },
-
     handleResize() {
       window.innerWidth;
       if (window.innerWidth <= 827) {
@@ -196,6 +196,11 @@ export default {
       }
       if (window.innerWidth >= 827) {
         this.desktop = true;
+      }
+    },
+    gravarEmailUsuario() {
+      if (sessionStorage) {
+        this.vlogin = sessionStorage.getItem("email");
       }
     },
   },
@@ -212,6 +217,7 @@ export default {
     };
   },
   created() {
+    this.gravarEmailUsuario();
     window.addEventListener("resize", this.handleResize);
     this.handleResize();
   },
