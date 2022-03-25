@@ -86,9 +86,9 @@
               <p
                 v-if="conversor_tempo === true"
                 class="text-blue-grey-7"
-                style="font-size: 13px"
+                style="font-size: 14px"
               >
-                {{ this.conversorTempo }}
+                ({{ this.conversorTempo }})
               </p>
               <!--img-->
               <div

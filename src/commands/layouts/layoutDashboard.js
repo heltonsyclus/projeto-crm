@@ -9514,7 +9514,7 @@ function layoutDashBoard27() {
             btn_comando: "btn-atualizar",
             tipo_card: "CardListaApi",
             mostrar_imagem: true,
-            conversor_tempo: false,
+            conversor_tempo: true,
             mostrar_duracao: true,
             totalizar_grupo: true,
             mostrar_imagem: true,

@@ -108,6 +108,7 @@ export default {
     },
     formataCaptionItem(pQtde, pDuracao) {
       let texto = "";
+      this.converterTempo(pDuracao);
       if (this.mostrar_qtde === true) {
         if (pQtde > 0) {
           texto = pQtde + (pQtde > 1 ? " itens " : " item ");
@@ -115,16 +116,12 @@ export default {
       }
       if (this.mostrar_duracao === true) {
         if (pDuracao != null && pDuracao > 0) {
-          if (this.conversor_tempo === true) {
-            this.converterTempo(pDuracao);
-          } else {
-            texto = texto + "(";
-            texto = texto + pDuracao + " mim";
-            if (pQtde != null && pQtde > 1) {
-              texto = texto + " - " + Math.round(pDuracao / pQtde) + " med";
-            }
-            texto = texto + ")";
+          texto = texto + "(";
+          texto = texto + pDuracao + " mim";
+          if (pQtde != null && pQtde > 1) {
+            texto = texto + " - " + Math.round(pDuracao / pQtde) + " med";
           }
+          texto = texto + ")";
         }
       }
 
