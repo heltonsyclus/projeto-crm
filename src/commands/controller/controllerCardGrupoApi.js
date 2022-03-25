@@ -63,6 +63,7 @@ export default {
         }
         texto = " (" + texto + ")";
       }
+      // console.log(texto);
       return texto;
     },
     getQtdeTotalItens() {

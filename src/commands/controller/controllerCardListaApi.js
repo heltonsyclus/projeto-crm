@@ -16,6 +16,7 @@ export default {
       id: null,
       qtde: null,
       indexSlide: 0,
+      conversorTempo: "",
       buscandoDuracao: [],
       expandir_img: false,
     };
@@ -60,6 +61,7 @@ export default {
             if (arrayLista != undefined) {
               arrJson = JSON.parse("[" + arrayLista + "]");
             }
+
             let item = {
               id: Object.values(arrRetorno[i])[0],
               descricao: Object.values(arrRetorno[i])[1],
@@ -113,17 +115,30 @@ export default {
       }
       if (this.mostrar_duracao === true) {
         if (pDuracao != null && pDuracao > 0) {
-          texto = texto + "(";
-          texto = texto + pDuracao + " mim";
-          if (pQtde != null && pQtde > 1) {
-            texto = texto + " - " + Math.round(pDuracao / pQtde) + " med";
+          if (this.conversor_tempo === true) {
+            this.converterTempo(pDuracao);
+          } else {
+            texto = texto + "(";
+            texto = texto + pDuracao + " mim";
+            if (pQtde != null && pQtde > 1) {
+              texto = texto + " - " + Math.round(pDuracao / pQtde) + " med";
+            }
+            texto = texto + ")";
           }
-          texto = texto + ")";
         }
       }
 
       return texto;
     },
+    converterTempo(pDuracao) {
+      const horas = Math.floor(pDuracao / 60);
+      const min = pDuracao % 60;
+      const textoHoras = `00${horas}`.slice(-2);
+      const textoMinutos = `00${min}`.slice(-2);
+      this.conversorTempo = `${textoHoras}:${textoMinutos}`;
+      //console.log(textoHoras + "/" + textoMinutos);
+    },
+
     getUrlItem(pIndexItem) {
       let url = this.link;
       url = url.replace("<id_item>", this.ObjConteudo.itens[pIndexItem].id);

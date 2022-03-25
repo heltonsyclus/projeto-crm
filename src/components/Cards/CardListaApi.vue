@@ -72,15 +72,23 @@
               <p
                 v-if="mostrar_qtde === true || mostrar_duracao === true"
                 class="text-blue-grey-7"
-                style="font-size: 12.5px"
+                style="font-size: 13px"
               >
                 <q-icon name="av_timer" />
+
                 {{
                   this.formataCaptionItem(
                     itemConteudo.qtde,
                     itemConteudo.duracao
                   )
                 }}
+              </p>
+              <p
+                v-if="conversor_tempo === true"
+                class="text-blue-grey-7"
+                style="font-size: 13px"
+              >
+                {{ this.conversorTempo }}
               </p>
               <!--img-->
               <div
@@ -155,6 +163,7 @@ export default {
     "mostrar_imagem",
     "total_tempo",
     "expandir_imagem",
+    "conversor_tempo",
   ],
   methods: {
     getColaborador(pIdColaborador) {

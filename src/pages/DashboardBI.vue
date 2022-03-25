@@ -104,6 +104,7 @@
           :mostrar_duracao="ObjCard.mostrar_duracao"
           :mostrar_imagem="ObjCard.mostrar_imagem"
           :expandir_imagem="ObjCard.expandir_imagem"
+          :conversor_tempo="ObjCard.conversor_tempo"
           :total_tempo="ObjCard.total_tempo"
           :link="ObjCard.link"
           :idPrincipal="this.idColaboradorAtivo"
@@ -297,13 +298,13 @@ export default defineComponent({
   z-index: 1;
   right: 1%;
   margin-left: -50px;
-  top: 18%;
+  top: 11%;
   box-shadow: 0 0 1em rgb(165, 165, 165);
 }
 @media only screen and (max-width: 1320px) {
   .tela-popup {
     width: 80%;
-    top: 10%;
+    top: 6.2%;
     right: 20%;
   }
 }

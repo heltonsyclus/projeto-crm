@@ -101,6 +101,7 @@
           :expandir_imagem="ObjCard.expandir_imagem"
           :total_tempo="ObjCard.total_tempo"
           :link="ObjCard.link"
+          :conversor_tempo="ObjCard.conversor_tempo"
           :idPrincipal="this.idColaboradorAtivo"
           :msg="this.msgCard"
         />
