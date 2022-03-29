@@ -108,7 +108,7 @@ export default {
     },
     formataCaptionItem(pQtde, pDuracao) {
       let texto = "";
-      this.converterTempo(pDuracao);
+      //  this.converterTempo(pDuracao);
       if (this.mostrar_qtde === true) {
         if (pQtde > 0) {
           texto = pQtde + (pQtde > 1 ? " itens " : " item ");
@@ -127,14 +127,14 @@ export default {
 
       return texto;
     },
-    converterTempo(pDuracao) {
+    /* converterTempo(pDuracao) {
       const horas = Math.floor(pDuracao / 60);
       const min = pDuracao % 60;
       const textoHoras = `00${horas}`.slice(-2);
       const textoMinutos = `00${min}`.slice(-2);
       this.conversorTempo = `${textoHoras}:${textoMinutos}`;
       //console.log(textoHoras + "/" + textoMinutos);
-    },
+    },*/
 
     getUrlItem(pIndexItem) {
       let url = this.link;

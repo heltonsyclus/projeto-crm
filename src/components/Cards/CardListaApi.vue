@@ -12,9 +12,7 @@
         <div class="flex">
           {{ card }}
           <div v-if="totalizar_grupo === true">
-            <span v-if="this.ObjConteudo.itens.length >= 1">
-              ({{ this.ObjConteudo.itens.length }})
-            </span>
+            <span v-if="this.ObjConteudo.itens.length >= 1"> </span>
           </div>
           <!--<div v-if="total_tempo === true">
             <span v-if="this.ObjConteudo.itens.length >= 1">
@@ -63,7 +61,7 @@
             <a
               @click.prevent="abrirItem(i)"
               class="cursor"
-              style="max-width: 80%"
+              style="max-width: 70%"
             >
               {{ itemConteudo.descricao }}
             </a>
@@ -83,13 +81,13 @@
                   )
                 }}
               </p>
-              <p
+              <!--   <p
                 v-if="conversor_tempo === true"
                 class="text-blue-grey-7"
                 style="font-size: 14px"
               >
                 ({{ this.conversorTempo }})
-              </p>
+              </p>-->
               <!--img-->
               <div
                 v-if="mostrar_imagem === true && itemConteudo.lista.length > 0"
