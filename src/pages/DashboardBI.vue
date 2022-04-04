@@ -102,6 +102,7 @@
           :totalizar_grupo="ObjCard.totalizar_grupo"
           :mostrar_qtde="ObjCard.mostrar_qtde"
           :mostrar_duracao="ObjCard.mostrar_duracao"
+          :mostrar_espera="ObjCard.mostrar_espera"
           :mostrar_imagem="ObjCard.mostrar_imagem"
           :expandir_imagem="ObjCard.expandir_imagem"
           :conversor_tempo="ObjCard.conversor_tempo"

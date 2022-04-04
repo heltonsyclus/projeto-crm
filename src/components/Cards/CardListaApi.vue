@@ -71,7 +71,11 @@
             <div class="flex justify-end items-center">
               <!--duracao-->
               <p
-                v-if="mostrar_qtde === true || mostrar_duracao === true"
+                v-if="
+                  mostrar_qtde === true ||
+                  mostrar_duracao === true ||
+                  mostrar_espera === true
+                "
                 class="text-blue-grey-7"
                 style="font-size: 13px"
               >
@@ -80,7 +84,8 @@
                 {{
                   this.formataCaptionItem(
                     itemConteudo.qtde,
-                    itemConteudo.duracao
+                    itemConteudo.duracao,
+                    itemConteudo.espera
                   )
                 }}
               </p>
@@ -161,6 +166,7 @@ export default {
     "totalizar_grupo",
     "mostrar_qtde",
     "mostrar_duracao",
+    "mostrar_espera",
     "mostrar_imagem",
     "total_tempo",
     "expandir_imagem",

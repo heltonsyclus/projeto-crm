@@ -62,11 +62,17 @@ export default {
               arrJson = JSON.parse("[" + arrayLista + "]");
             }
 
+            let tempoEspera = Object.values(arrRetorno[i])[5];;
+            //if (Object.values(arrRetorno[i])[5]) {
+            //tempoEspera = Object.values(arrRetorno[i])[5];
+            //}
+
             let item = {
               id: Object.values(arrRetorno[i])[0],
               descricao: Object.values(arrRetorno[i])[1],
               qtde: Object.values(arrRetorno[i])[2],
               duracao: Object.values(arrRetorno[i])[3],
+              espera: tempoEspera,
               lista: [...new Set(arrJson)],
               listaExpandida: this.expandir_imagem,
             };
@@ -106,7 +112,37 @@ export default {
         window.open(pUrl, "_blank");
       }
     },
-    formataCaptionItem(pQtde, pDuracao) {
+    formataDataHoraMinuto(pTempo) {
+      let dia = 0;
+      let hora = 0;
+      let minuto = 0;
+      let tempoTotal = pTempo;
+      let texto = '';
+
+      if (tempoTotal >= 1440) {
+        dia = Math.trunc(tempoTotal / 1440);
+        tempoTotal = tempoTotal - (dia * 1440);
+      }
+      if (tempoTotal >= 60) {
+        hora = Math.trunc(tempoTotal / 60);
+        tempoTotal = tempoTotal - (hora * 60);
+      }
+      if (tempoTotal >= 0) {
+        minuto = Math.trunc(tempoTotal);
+      }
+
+      if (parseInt(dia) > 0) {
+        texto = texto + dia + "d ";
+      }
+      if (parseInt(hora) > 0) {
+        texto = texto + hora + "h ";
+      }
+      if (parseInt(minuto) > 0) {
+        texto = texto + minuto + "m";
+      }
+      return texto;
+    },
+    formataCaptionItem(pQtde, pDuracao, pEspera) {
       let texto = "";
       //  this.converterTempo(pDuracao);
       if (this.mostrar_qtde === true) {
@@ -124,15 +160,20 @@ export default {
           texto = texto + ")";
         }
       }
+      if (this.mostrar_espera === true) {
+        if (pEspera) {
+          texto = texto + " há " + this.formataDataHoraMinuto(pEspera);
+        }
+      }
 
       return texto;
     },
     /* converterTempo(pDuracao) {
       const horas = Math.floor(pDuracao / 60);
-      const min = pDuracao % 60;
-      const textoHoras = `00${horas}`.slice(-2);
-      const textoMinutos = `00${min}`.slice(-2);
-      this.conversorTempo = `${textoHoras}:${textoMinutos}`;
+          const min = pDuracao % 60;
+          const textoHoras = `00${horas}`.slice(-2);
+          const textoMinutos = `00${min}`.slice(-2);
+          this.conversorTempo = `${textoHoras}:${textoMinutos}`;
       //console.log(textoHoras + "/" + textoMinutos);
     },*/
 
