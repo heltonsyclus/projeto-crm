@@ -7803,6 +7803,7 @@ function layoutDashBoard19() {
             totalizar_grupo: true,
             width: "46.5vw",
             height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
               body_grupo: "bodyAtividadeTagPorResponsavel",
               filtro_sql_grupo:
