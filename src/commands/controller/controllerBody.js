@@ -19,10 +19,12 @@ import {
   bodyAtividadePorEmissaoStatus,
   bodyAtividadePorMesAnoStatus,
   bodyAtividadePorMesAnoTipoAtividade,
+  bodyAtividadePorMesAnoWorkflow,
   bodyAtividadePorMesAnoResponsavel,
   bodyAtividadePorMesAnoTag,
   bodyAtividadePorEmissaoMesAnoStatus,
   bodyAtividadePorEmissaoMesAnoTipoAtividade,
+  bodyAtividadePorEmissaoMesAnoWorkflow,
   bodyAtividadePorEmissaoMesAnoResponsavel,
   bodyAtividadePorEmissaoMesAnoTag,
   bodyAtividadePorTipoAtividadeColaboradorPrevisao,
@@ -187,6 +189,9 @@ export default {
       if (pNomeBody === "bodyAtividadePorMesAnoTipoAtividade") {
         return bodyAtividadePorMesAnoTipoAtividade(filtros);
       }
+      if (pNomeBody === "bodyAtividadePorMesAnoWorkflow") {
+        return bodyAtividadePorMesAnoWorkflow(filtros);
+      }
       if (pNomeBody === "bodyAtividadePorMesAnoResponsavel") {
         return bodyAtividadePorMesAnoResponsavel(filtros);
       }
@@ -198,6 +203,9 @@ export default {
       }
       if (pNomeBody === "bodyAtividadePorEmissaoMesAnoTipoAtividade") {
         return bodyAtividadePorEmissaoMesAnoTipoAtividade(filtros);
+      }
+      if (pNomeBody === "bodyAtividadePorEmissaoMesAnoWorkflow") {
+        return bodyAtividadePorEmissaoMesAnoWorkflow(filtros);
       }
       if (pNomeBody === "bodyAtividadePorEmissaoMesAnoResponsavel") {
         return bodyAtividadePorEmissaoMesAnoResponsavel(filtros);

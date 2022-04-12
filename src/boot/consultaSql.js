@@ -175,6 +175,11 @@ export function bodyAtividadePorMesAnoTipoAtividade(pFiltros) {
   let body = montaBody(instrucao_sql, pFiltros);
   return body;
 }
+export function bodyAtividadePorMesAnoWorkflow(pFiltros) {
+  let instrucao_sql = `select lpad(extract(month from a.dt_previsao), 2, '0')||'/'||extract(year from a.dt_previsao) "data_previsao", wf.ds_workflow "workflow", count(a.cd_atividade) "qtde_atividade" from atividade a inner join workflow wf on wf.cd_workflow = a.cd_workflow <filtros> group by lpad(extract(month from a.dt_previsao), 2, '0')||'/'||extract(year from a.dt_previsao), wf.ds_workflow order by 1, 2`;
+  let body = montaBody(instrucao_sql, pFiltros);
+  return body;
+}
 export function bodyAtividadePorMesAnoResponsavel(pFiltros) {
   let instrucao_sql = `select lpad(extract(month from a.dt_previsao), 2, '0')||'/'||extract(year from a.dt_previsao) "data_previsao", cb.ds_colaborador "colaborador", count(a.cd_atividade) "qtde_atividade" from atividade a inner join colaborador cb on cb.cd_colaborador = a.cd_responsavel <filtros> group by lpad(extract(month from a.dt_previsao), 2, '0')||'/'||extract(year from a.dt_previsao), cb.ds_colaborador order by 1, 2`;
   let body = montaBody(instrucao_sql, pFiltros);
@@ -191,17 +196,23 @@ export function bodyAtividadePorEmissaoMesAnoStatus(pFiltros) {
   return body;
 }
 export function bodyAtividadePorEmissaoMesAnoTipoAtividade(pFiltros) {
-  let instrucao_sql = `select lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao) "data_previsao", tv.ds_tipo_atividade "tipo_atividade", count(a.cd_atividade) "qtde_atividade" from atividade a inner join tipo_atividade tv on tv.cd_tipo_atividade = a.cd_tipo_atividade <filtros> group by lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao), tv.ds_tipo_atividade order by 1, 2`;
+  let instrucao_sql = `select lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao) "dt_emissao", tv.ds_tipo_atividade "tipo_atividade", count(a.cd_atividade) "qtde_atividade" from atividade a inner join tipo_atividade tv on tv.cd_tipo_atividade = a.cd_tipo_atividade <filtros> group by lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao), tv.ds_tipo_atividade order by 1, 2`;
   let body = montaBody(instrucao_sql, pFiltros);
   return body;
 }
+export function bodyAtividadePorEmissaoMesAnoWorkflow(pFiltros) {
+  let instrucao_sql = `select lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao) "dt_emissao", wf.ds_workflow "workflow", count(a.cd_atividade) "qtde_atividade" from atividade a inner join workflow wf on wf.cd_workflow = a.cd_workflow <filtros> group by lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao), wf.ds_workflow order by 1, 2`;
+  let body = montaBody(instrucao_sql, pFiltros);
+  return body;
+}
+
 export function bodyAtividadePorEmissaoMesAnoResponsavel(pFiltros) {
-  let instrucao_sql = `select lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao) "data_previsao", cb.ds_colaborador "colaborador", count(a.cd_atividade) "qtde_atividade" from atividade a inner join colaborador cb on cb.cd_colaborador = a.cd_responsavel <filtros> group by lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao), cb.ds_colaborador order by 1, 2`;
+  let instrucao_sql = `select lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao) "dt_emissao", cb.ds_colaborador "colaborador", count(a.cd_atividade) "qtde_atividade" from atividade a inner join colaborador cb on cb.cd_colaborador = a.cd_responsavel <filtros> group by lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao), cb.ds_colaborador order by 1, 2`;
   let body = montaBody(instrucao_sql, pFiltros);
   return body;
 }
 export function bodyAtividadePorEmissaoMesAnoTag(pFiltros) {
-  let instrucao_sql = `select lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao) "data_previsao", tg.ds_tag "tag", count(a.cd_atividade) "qtde_atividade" from atividade a inner join atividade_tag ag on ag.cd_empresa = a.cd_empresa and ag.cd_atividade = a.cd_atividade inner join tag tg on tg.cd_tag = ag.cd_tag <filtros> group by lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao), tg.ds_tag order by 1, 2`;
+  let instrucao_sql = `select lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao) "dt_emissao", tg.ds_tag "tag", count(a.cd_atividade) "qtde_atividade" from atividade a inner join atividade_tag ag on ag.cd_empresa = a.cd_empresa and ag.cd_atividade = a.cd_atividade inner join tag tg on tg.cd_tag = ag.cd_tag <filtros> group by lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao), tg.ds_tag order by 1, 2`;
   let body = montaBody(instrucao_sql, pFiltros);
   return body;
 }
