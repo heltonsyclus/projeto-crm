@@ -9884,7 +9884,45 @@ function layoutDashBoard27() {
             },
           },
           {
-            card: "Atividades (Mês Anterior)",
+            card: "Módulo (Mês Atual)",
+            tipo_card: "CardGrupoApi",
+            totalizar_item: true,
+            mostrar_qtde: true,
+            mostrar_duracao: true,
+            totalizar_grupo: true,
+            width: "46vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorTag",
+              filtro_sql_grupo:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and ag.cd_tag in (172, 99, 30, 27, 26, 17) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
+              body_item: "bodyAtividadeTag",
+              filtro_sql_item:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and ag.cd_tag = <id_grupo>",
+            },
+          },
+          {
+            card: "Responsável (Mês Atual)",
+            tipo_card: "CardGrupoApi",
+            totalizar_item: true,
+            mostrar_qtde: true,
+            mostrar_duracao: true,
+            totalizar_grupo: true,
+            width: "46vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadeTagPorResponsavel",
+              filtro_sql_grupo:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and ag.cd_tag in (172, 99, 30, 27, 26, 17) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
+              body_item: "bodyAtividadeTag",
+              filtro_sql_item:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and ag.cd_tag in (172, 99, 30, 27, 26, 17) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and a.cd_responsavel = <id_grupo>",
+            },
+          },
+          {
+            card: "Módulo (Mês Anterior)",
             tipo_card: "CardGrupoApi",
             totalizar_item: true,
             mostrar_qtde: true,
@@ -9903,7 +9941,7 @@ function layoutDashBoard27() {
             },
           },
           {
-            card: "Atividades (Mês Atual)",
+            card: "Responsável (Mês Anterior)",
             tipo_card: "CardGrupoApi",
             totalizar_item: true,
             mostrar_qtde: true,
@@ -9913,12 +9951,12 @@ function layoutDashBoard27() {
             height: "40",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
-              body_grupo: "bodyAtividadePorTag",
+              body_grupo: "bodyAtividadeTagPorResponsavel",
               filtro_sql_grupo:
-                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and ag.cd_tag in (172, 99, 30, 27, 26, 17) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and ag.cd_tag in (172, 99, 30, 27, 26, 17) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date) -1) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
               body_item: "bodyAtividadeTag",
               filtro_sql_item:
-                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and ag.cd_tag = <id_grupo>",
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and ag.cd_tag in (172, 99, 30, 27, 26, 17) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date) -1) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and a.cd_responsavel = <id_grupo>",
             },
           },
         ],
@@ -10293,7 +10331,45 @@ function layoutDashBoard28() {
             },
           },
           {
-            card: "Atividades (Mês Anterior)",
+            card: "Módulo (Mês Atual)",
+            tipo_card: "CardGrupoApi",
+            totalizar_item: true,
+            mostrar_qtde: true,
+            mostrar_duracao: true,
+            totalizar_grupo: true,
+            width: "46vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorTag",
+              filtro_sql_grupo:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 36 and ag.cd_tag in (23, 24, 25, 33) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
+              body_item: "bodyAtividadeTag",
+              filtro_sql_item:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 36 and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and ag.cd_tag = <id_grupo>",
+            },
+          },
+          {
+            card: "Responsável (Mês Atual)",
+            tipo_card: "CardGrupoApi",
+            totalizar_item: true,
+            mostrar_qtde: true,
+            mostrar_duracao: true,
+            totalizar_grupo: true,
+            width: "46vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadeTagPorResponsavel",
+              filtro_sql_grupo:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 36 and ag.cd_tag in (23, 24, 25, 33) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
+              body_item: "bodyAtividadeTag",
+              filtro_sql_item:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 36 and ag.cd_tag in (23, 24, 25, 33) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and a.cd_responsavel = <id_grupo>",
+            },
+          },
+          {
+            card: "Módulo (Mês Anterior)",
             tipo_card: "CardGrupoApi",
             totalizar_item: true,
             mostrar_qtde: true,
@@ -10312,7 +10388,7 @@ function layoutDashBoard28() {
             },
           },
           {
-            card: "Atividades (Mês Atual)",
+            card: "Responsável (Mês Anterior)",
             tipo_card: "CardGrupoApi",
             totalizar_item: true,
             mostrar_qtde: true,
@@ -10322,12 +10398,12 @@ function layoutDashBoard28() {
             height: "40",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
-              body_grupo: "bodyAtividadePorTag",
+              body_grupo: "bodyAtividadeTagPorResponsavel",
               filtro_sql_grupo:
-                "where a.ds_status in ('P', 'F') and a.cd_workflow = 36 and ag.cd_tag in (23, 24, 25, 33) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 36 and ag.cd_tag in (23, 24, 25, 33) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date) -1) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
               body_item: "bodyAtividadeTag",
               filtro_sql_item:
-                "where a.ds_status in ('P', 'F') and a.cd_workflow = 36 and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and ag.cd_tag = <id_grupo>",
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 36 and ag.cd_tag in (23, 24, 25, 33) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date) -1) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and a.cd_responsavel = <id_grupo>",
             },
           },
         ],
@@ -10700,7 +10776,45 @@ function layoutDashBoard29() {
             },
           },
           {
-            card: "Atividades (Mês Anterior)",
+            card: "Módulo (Mês Atual)",
+            tipo_card: "CardGrupoApi",
+            totalizar_item: true,
+            mostrar_qtde: true,
+            mostrar_duracao: true,
+            totalizar_grupo: true,
+            width: "46vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorTag",
+              filtro_sql_grupo:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 37 and ag.cd_tag in (35) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
+              body_item: "bodyAtividadeTag",
+              filtro_sql_item:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 37 and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and ag.cd_tag = <id_grupo>",
+            },
+          },
+          {
+            card: "Responsável (Mês Atual)",
+            tipo_card: "CardGrupoApi",
+            totalizar_item: true,
+            mostrar_qtde: true,
+            mostrar_duracao: true,
+            totalizar_grupo: true,
+            width: "46vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadeTagPorResponsavel",
+              filtro_sql_grupo:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 37 and ag.cd_tag in (35) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
+              body_item: "bodyAtividadeTag",
+              filtro_sql_item:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 37 and ag.cd_tag in (35) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and a.cd_responsavel = <id_grupo>",
+            },
+          },
+          {
+            card: "Módulo (Mês Anterior)",
             tipo_card: "CardGrupoApi",
             totalizar_item: true,
             mostrar_qtde: true,
@@ -10719,7 +10833,7 @@ function layoutDashBoard29() {
             },
           },
           {
-            card: "Atividades (Mês Atual)",
+            card: "Responsável (Mês Anterior)",
             tipo_card: "CardGrupoApi",
             totalizar_item: true,
             mostrar_qtde: true,
@@ -10729,14 +10843,15 @@ function layoutDashBoard29() {
             height: "40",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
-              body_grupo: "bodyAtividadePorTag",
+              body_grupo: "bodyAtividadeTagPorResponsavel",
               filtro_sql_grupo:
-                "where a.ds_status in ('P', 'F') and a.cd_workflow = 37 and ag.cd_tag in (35) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 37 and ag.cd_tag in (35) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date) -1) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
               body_item: "bodyAtividadeTag",
               filtro_sql_item:
-                "where a.ds_status in ('P', 'F') and a.cd_workflow = 37 and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and ag.cd_tag = <id_grupo>",
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 37 and ag.cd_tag in (35) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date) -1) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and a.cd_responsavel = <id_grupo>",
             },
           },
+
         ],
       },
     ],
@@ -11107,7 +11222,45 @@ function layoutDashBoard30() {
             },
           },
           {
-            card: "Atividades (Mês Anterior)",
+            card: "Módulo (Mês Atual)",
+            tipo_card: "CardGrupoApi",
+            totalizar_item: true,
+            mostrar_qtde: true,
+            mostrar_duracao: true,
+            totalizar_grupo: true,
+            width: "46vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorTag",
+              filtro_sql_grupo:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 38 and ag.cd_tag in (41, 11, 102, 103) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
+              body_item: "bodyAtividadeTag",
+              filtro_sql_item:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 38 and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and ag.cd_tag = <id_grupo>",
+            },
+          },
+          {
+            card: "Responsável (Mês Atual)",
+            tipo_card: "CardGrupoApi",
+            totalizar_item: true,
+            mostrar_qtde: true,
+            mostrar_duracao: true,
+            totalizar_grupo: true,
+            width: "46vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadeTagPorResponsavel",
+              filtro_sql_grupo:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 38 and ag.cd_tag in (41, 11, 102, 103) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
+              body_item: "bodyAtividadeTag",
+              filtro_sql_item:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 38 and ag.cd_tag in (41, 11, 102, 103) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and a.cd_responsavel = <id_grupo>",
+            },
+          },
+          {
+            card: "Módulo (Mês Anterior)",
             tipo_card: "CardGrupoApi",
             totalizar_item: true,
             mostrar_qtde: true,
@@ -11126,7 +11279,7 @@ function layoutDashBoard30() {
             },
           },
           {
-            card: "Atividades (Mês Atual)",
+            card: "Responsável (Mês Anterior)",
             tipo_card: "CardGrupoApi",
             totalizar_item: true,
             mostrar_qtde: true,
@@ -11136,12 +11289,12 @@ function layoutDashBoard30() {
             height: "40",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
-              body_grupo: "bodyAtividadePorTag",
+              body_grupo: "bodyAtividadeTagPorResponsavel",
               filtro_sql_grupo:
-                "where a.ds_status in ('P', 'F') and a.cd_workflow = 38 and ag.cd_tag in (41, 11, 102, 103) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 38 and ag.cd_tag in (41, 11, 102, 103) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date) -1) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
               body_item: "bodyAtividadeTag",
               filtro_sql_item:
-                "where a.ds_status in ('P', 'F') and a.cd_workflow = 38 and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and ag.cd_tag = <id_grupo>",
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 38 and ag.cd_tag in (41, 11, 102, 103) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date) -1) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and a.cd_responsavel = <id_grupo>",
             },
           },
         ],
@@ -11514,7 +11667,45 @@ function layoutDashBoard31() {
             },
           },
           {
-            card: "Atividades (Mês Anterior)",
+            card: "Módulo (Mês Atual)",
+            tipo_card: "CardGrupoApi",
+            totalizar_item: true,
+            mostrar_qtde: true,
+            mostrar_duracao: true,
+            totalizar_grupo: true,
+            width: "46vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadePorTag",
+              filtro_sql_grupo:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 39 and ag.cd_tag in (9, 29, 38, 42, 79, 110, 113, 173, 174, 189, 195, 215, 268) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
+              body_item: "bodyAtividadeTag",
+              filtro_sql_item:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 39 and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and ag.cd_tag = <id_grupo>",
+            },
+          },
+          {
+            card: "Responsável (Mês Atual)",
+            tipo_card: "CardGrupoApi",
+            totalizar_item: true,
+            mostrar_qtde: true,
+            mostrar_duracao: true,
+            totalizar_grupo: true,
+            width: "46vw",
+            height: "40",
+            link_item: "https://crm.syclus.com.br/atividades/<id_item>",
+            conteudo_card: {
+              body_grupo: "bodyAtividadeTagPorResponsavel",
+              filtro_sql_grupo:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 39 and ag.cd_tag in (9, 29, 38, 42, 79, 110, 113, 173, 174, 189, 195, 215, 268) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
+              body_item: "bodyAtividadeTag",
+              filtro_sql_item:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 39 and ag.cd_tag in (9, 29, 38, 42, 79, 110, 113, 173, 174, 189, 195, 215, 268) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and a.cd_responsavel = <id_grupo>",
+            },
+          },
+          {
+            card: "Módulo (Mês Anterior)",
             tipo_card: "CardGrupoApi",
             totalizar_item: true,
             mostrar_qtde: true,
@@ -11533,7 +11724,7 @@ function layoutDashBoard31() {
             },
           },
           {
-            card: "Atividades (Mês Atual)",
+            card: "Responsável (Mês Anterior)",
             tipo_card: "CardGrupoApi",
             totalizar_item: true,
             mostrar_qtde: true,
@@ -11543,12 +11734,12 @@ function layoutDashBoard31() {
             height: "40",
             link_item: "https://crm.syclus.com.br/atividades/<id_item>",
             conteudo_card: {
-              body_grupo: "bodyAtividadePorTag",
+              body_grupo: "bodyAtividadeTagPorResponsavel",
               filtro_sql_grupo:
-                "where a.ds_status in ('P', 'F') and a.cd_workflow = 39 and ag.cd_tag in (9, 29, 38, 42, 79, 110, 113, 173, 174, 189, 195, 215, 268) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 39 and ag.cd_tag in (9, 29, 38, 42, 79, 110, 113, 173, 174, 189, 195, 215, 268) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date) -1) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0",
               body_item: "bodyAtividadeTag",
               filtro_sql_item:
-                "where a.ds_status in ('P', 'F') and a.cd_workflow = 39 and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and ag.cd_tag = <id_grupo>",
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 39 and ag.cd_tag in (9, 29, 38, 42, 79, 110, 113, 173, 174, 189, 195, 215, 268) and (extract(year from a.dt_emissao) = extract(year from current_date) and extract(month from a.dt_emissao) = extract(month from current_date) -1) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and (select count(x.cd_tag) from atividade_tag x where x.cd_empresa = a.cd_empresa and x.cd_atividade = a.cd_atividade and x.cd_tag = 370) > 0 and a.cd_responsavel = <id_grupo>",
             },
           },
         ],
