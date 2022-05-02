@@ -1833,6 +1833,92 @@ export function senhaLogin() {
         img: require("../../assets/41.png"),
       },
       {
+        usuario: "ramon",
+        senha: "ramon321",
+        id_colaborador: 60,
+        id_aplicativo_inicial: 0,
+        aplicativos: [
+          {
+            id_aplicativo: 1,
+            aplicativo: "CRM",
+            base_url_api: "https://api.syclus.com.br",
+            recursos: {
+              dashboard_area_trabalho: {
+                id_layout_dashboard: 1,
+                dashboard_complementar: [],
+              },
+              dashboard_cliente: {
+                id_layout_dashboard: 2,
+                dashboard_complementar: [],
+              },
+              dashboard_bi: [
+                {
+                  grupo: "Área Técnica",
+                  layout_dashboard: [
+                    {
+                      id_layout_dashboard: 4,
+                      dashboard: "Corrente",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 27,
+                      dashboard: "Area 1",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 28,
+                      dashboard: "Area 2",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 29,
+                      dashboard: "Area 3",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 30,
+                      dashboard: "Area 4",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 31,
+                      dashboard: "Area 5",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 18,
+                      dashboard: "Formação",
+                      icone: "construction",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
+                {
+                  grupo: "Desenvolvimento",
+                  icone: "code",
+                  layout_dashboard: [
+                    {
+                      icone: "code",
+                      id_layout_dashboard: 12,
+                      dashboard: "Padrão",
+                      dashboard_complementar: [],
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+        rotas: "colaborador",
+        img: require("../../assets/60.png"),
+      },
+      {
         usuario: "renan",
         senha: "renan321",
         id_colaborador: 55,
