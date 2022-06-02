@@ -11610,7 +11610,7 @@ function layoutDashBoard32() {
             conteudo_card: {
               body: "bodyAtividadePorMesAnoTag",
               filtro_sql:
-                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and ag.cd_tag in (23, 24, 25, 33, 35, 41, 11, 102, 103, 9, 29, 38, 42, 79, 110, 113, 173, 174, 189, 195, 215, 268, 172, 99, 30, 27, 26, 17) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+                "where a.ds_status in ('P', 'F') and ag.cd_tag in (23, 24, 25, 33, 35, 41, 11, 102, 103, 9, 29, 38, 42, 79, 110, 113, 173, 174, 189, 195, 215, 268, 172, 99, 30, 27, 26, 17) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_responsavel = <id_principal>",
             },
           },
         ],
