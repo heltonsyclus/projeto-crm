@@ -324,6 +324,11 @@ export function bodyAtividadeClientePorMesAno(pFiltros) {
   let body = montaBody(instrucao_sql, pFiltros);
   return body;
 }
+export function bodyAtividadeClientePorEmissaoMesAnoStatus(pFiltros) {
+  let instrucao_sql = `select lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao) "data_emissao", a.ds_status "status", count(a.cd_atividade) "qtde_atividade" from atividade a inner join atividade_cliente ac on ac.cd_empresa = a.cd_empresa and ac.cd_atividade = a.cd_atividade <filtros> group by lpad(extract(month from a.dt_emissao), 2, '0')||'/'||extract(year from a.dt_emissao), a.ds_status order by 1, 2`;
+  let body = montaBody(instrucao_sql, pFiltros);
+  return body;
+}
 
 //---------------------- atividade colaborador ----------------------//
 

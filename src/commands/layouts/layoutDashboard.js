@@ -706,6 +706,21 @@ function layoutDashBoard2() {
         icone: "assignment_turned_in",
         cards: [
           {
+            card: "Criadas x Status",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "30vw",
+            height: "40",
+            conteudo_card: {
+              body: "bodyAtividadeClientePorEmissaoMesAnoStatus",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20) and ac.cd_cliente = <id_principal>",
+            },
+          },
+          {
             card: "Tipo Atividade",
             btn_comando: "btn-atualizar",
             tipo_card: "CardGrupoApi",
@@ -11522,6 +11537,84 @@ function layoutDashBoard31() {
             },
           },
         ],
+      },
+    ],
+  };
+
+  return json;
+}
+//colaborador - gestao
+function layoutDashBoard32() {
+  const json = {
+    id_dashboard: 32,
+    dashboard: "layout dashboard 32",
+    grupos: [
+      {
+        grupo: "2022",
+        icone: "assignment_turned_in",
+        cards: [
+          {
+            card: "Atividade Criada x Tipo Atividade",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "70vw",
+            height: "90",
+            conteudo_card: {
+              body: "bodyAtividadePorEmissaoMesAnoTipoAtividade",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_responsavel = <id_principal>",
+            },
+          },
+          {
+            card: "Atividade Finalizada x Tipo Atividade",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "70vw",
+            height: "90",
+            conteudo_card: {
+              body: "bodyAtividadePorMesAnoTipoAtividade",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and (extract(year from a.dt_previsao) = extract(year from current_date)) and a.cd_responsavel = <id_principal>",
+            },
+          },
+          {
+            card: "Atividade Finalizada x Workflow",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "70vw",
+            height: "90",
+            conteudo_card: {
+              body: "bodyAtividadePorMesAnoWorkflow",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and (extract(year from a.dt_previsao) = extract(year from current_date)) and a.cd_responsavel = <id_principal>",
+            },
+          },
+          {
+            card: "Atividade Finalizada x Módulo",
+            btn_comando: "btn-atualizar",
+            tipo_card: "CardGraficoApi",
+            sub_tipo: "grafico_comparativo_barra",
+            coluna_serie: 2,
+            coluna_categoria: 1,
+            width: "70vw",
+            height: "90",
+            conteudo_card: {
+              body: "bodyAtividadePorMesAnoTag",
+              filtro_sql:
+                "where a.ds_status in ('P', 'F') and a.cd_workflow = 35 and ag.cd_tag in (23, 24, 25, 33, 35, 41, 11, 102, 103, 9, 29, 38, 42, 79, 110, 113, 173, 174, 189, 195, 215, 268, 172, 99, 30, 27, 26, 17) and (extract(year from a.dt_emissao) = extract(year from current_date)) and a.cd_tipo_atividade in (2,3,15,28,18,19,20)",
+            },
+          },
+        ],
+        cards_opcionais: [],
       },
     ],
   };

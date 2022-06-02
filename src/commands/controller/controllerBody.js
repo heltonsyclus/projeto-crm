@@ -36,6 +36,7 @@ import {
   bodyAtividadeClientePorWorkflow,
   bodyAtividadeClientePorData,
   bodyAtividadeClientePorMesAno,
+  bodyAtividadeClientePorEmissaoMesAnoStatus,
   bodyAtividadeColaborador,
   bodyAtividadeColaboradorPorTipoAtividade,
   bodyAtividadeTag,
@@ -240,6 +241,9 @@ export default {
       }
       if (pNomeBody === "bodyAtividadeClientePorMesAno") {
         return bodyAtividadeClientePorMesAno(filtros);
+      }
+      if (pNomeBody === "bodyAtividadeClientePorEmissaoMesAnoStatus") {
+        return bodyAtividadeClientePorEmissaoMesAnoStatus(filtros);
       }
 
       if (pNomeBody === "bodyAtividadeTag") {

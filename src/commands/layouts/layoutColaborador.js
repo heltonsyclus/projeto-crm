@@ -381,7 +381,7 @@ export function senhaLogin() {
               },
               dashboard_colaborador: {
                 id_layout_dashboard: 3,
-                dashboard_complementar: [],
+                dashboard_complementar: [32],
                 permissao_colaborador: ["*"],
               },
               dashboard_projeto: {
@@ -1030,11 +1030,11 @@ export function senhaLogin() {
               },
               dashboard_cliente: {
                 id_layout_dashboard: 2,
-                dashboard_complementar: [],
+                dashboard_complementar: [6, 7],
               },
               dashboard_colaborador: {
                 id_layout_dashboard: 3,
-                dashboard_complementar: [],
+                dashboard_complementar: [32],
                 permissao_colaborador: ["*"],
               },
               dashboard_projeto: {
@@ -1388,7 +1388,7 @@ export function senhaLogin() {
               },
               dashboard_colaborador: {
                 id_layout_dashboard: 3,
-                dashboard_complementar: [],
+                dashboard_complementar: [32],
                 permissao_colaborador: ["*"],
               },
               dashboard_projeto: {
@@ -1518,7 +1518,7 @@ export function senhaLogin() {
               },
               dashboard_colaborador: {
                 id_layout_dashboard: 3,
-                dashboard_complementar: [],
+                dashboard_complementar: [32],
                 permissao_colaborador: ["*"],
               },
               dashboard_projeto: {
@@ -1636,7 +1636,7 @@ export function senhaLogin() {
               },
               dashboard_colaborador: {
                 id_layout_dashboard: 3,
-                dashboard_complementar: [],
+                dashboard_complementar: [32],
                 permissao_colaborador: ["*"],
               },
               dashboard_projeto: {
