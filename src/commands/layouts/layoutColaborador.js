@@ -169,6 +169,18 @@ export function senhaLogin() {
                   icone: "code",
                   layout_dashboard: [
                     {
+                      id_layout_dashboard: 25,
+                      icone: "code",
+                      dashboard: "Syclus 1.0",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 26,
+                      icone: "code",
+                      dashboard: "Syclus 2.0",
+                      dashboard_complementar: [],
+                    },
+                    {
                       icone: "code",
                       id_layout_dashboard: 12,
                       dashboard: "Padrão",
@@ -254,6 +266,18 @@ export function senhaLogin() {
                   grupo: "Desenvolvimento",
                   icone: "code",
                   layout_dashboard: [
+                    {
+                      id_layout_dashboard: 25,
+                      icone: "code",
+                      dashboard: "Syclus 1.0",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 26,
+                      icone: "code",
+                      dashboard: "Syclus 2.0",
+                      dashboard_complementar: [],
+                    },
                     {
                       icone: "code",
                       id_layout_dashboard: 12,
@@ -345,9 +369,20 @@ export function senhaLogin() {
                   icone: "code",
                   layout_dashboard: [
                     {
+                      id_layout_dashboard: 25,
+                      icone: "code",
+                      dashboard: "Syclus 1.0",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 26,
+                      icone: "code",
+                      dashboard: "Syclus 2.0",
+                      dashboard_complementar: [],
+                    },
+                    {
                       icone: "code",
                       id_layout_dashboard: 12,
-
                       dashboard: "Padrão",
                       dashboard_complementar: [],
                     },
@@ -650,6 +685,18 @@ export function senhaLogin() {
                   icone: "code",
                   layout_dashboard: [
                     {
+                      id_layout_dashboard: 25,
+                      icone: "code",
+                      dashboard: "Syclus 1.0",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 26,
+                      icone: "code",
+                      dashboard: "Syclus 2.0",
+                      dashboard_complementar: [],
+                    },
+                    {
                       icone: "code",
                       id_layout_dashboard: 12,
 
@@ -787,6 +834,18 @@ export function senhaLogin() {
                   icone: "code",
                   layout_dashboard: [
                     {
+                      id_layout_dashboard: 25,
+                      icone: "code",
+                      dashboard: "Syclus 1.0",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 26,
+                      icone: "code",
+                      dashboard: "Syclus 2.0",
+                      dashboard_complementar: [],
+                    },
+                    {
                       id_layout_dashboard: 12,
                       icone: "code",
                       dashboard: "Padrão",
@@ -893,6 +952,18 @@ export function senhaLogin() {
                   icone: "code",
                   layout_dashboard: [
                     {
+                      id_layout_dashboard: 25,
+                      icone: "code",
+                      dashboard: "Syclus 1.0",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 26,
+                      icone: "code",
+                      dashboard: "Syclus 2.0",
+                      dashboard_complementar: [],
+                    },
+                    {
                       icone: "code",
                       id_layout_dashboard: 12,
 
@@ -910,7 +981,7 @@ export function senhaLogin() {
       },
       {
         usuario: "helton",
-        senha: "7",
+        senha: "xxx",
         id_colaborador: 47,
         id_aplicativo_inicial: 0,
         aplicativos: [
@@ -1153,6 +1224,18 @@ export function senhaLogin() {
                   icone: "code",
                   layout_dashboard: [
                     {
+                      id_layout_dashboard: 25,
+                      icone: "code",
+                      dashboard: "Syclus 1.0",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 26,
+                      icone: "code",
+                      dashboard: "Syclus 2.0",
+                      dashboard_complementar: [],
+                    },
+                    {
                       id_layout_dashboard: 12,
                       icone: "code",
                       dashboard: "Padrão",
@@ -1352,9 +1435,20 @@ export function senhaLogin() {
                   icone: "code",
                   layout_dashboard: [
                     {
+                      id_layout_dashboard: 25,
+                      icone: "code",
+                      dashboard: "Syclus 1.0",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 26,
+                      icone: "code",
+                      dashboard: "Syclus 2.0",
+                      dashboard_complementar: [],
+                    },
+                    {
                       icone: "code",
                       id_layout_dashboard: 12,
-
                       dashboard: "Padrão",
                       dashboard_complementar: [],
                     },
@@ -1412,6 +1506,18 @@ export function senhaLogin() {
                   grupo: "Desenvolvimento",
                   icone: "code",
                   layout_dashboard: [
+                    {
+                      id_layout_dashboard: 25,
+                      icone: "code",
+                      dashboard: "Syclus 1.0",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 26,
+                      icone: "code",
+                      dashboard: "Syclus 2.0",
+                      dashboard_complementar: [],
+                    },
                     {
                       icone: "code",
                       id_layout_dashboard: 12,
@@ -1601,6 +1707,18 @@ export function senhaLogin() {
                   icone: "code",
                   layout_dashboard: [
                     {
+                      id_layout_dashboard: 25,
+                      icone: "code",
+                      dashboard: "Syclus 1.0",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 26,
+                      icone: "code",
+                      dashboard: "Syclus 2.0",
+                      dashboard_complementar: [],
+                    },
+                    {
                       id_layout_dashboard: 12,
                       icone: "code",
                       dashboard: "Padrão",
@@ -1707,6 +1825,18 @@ export function senhaLogin() {
                   grupo: "Desenvolvimento",
                   icone: "code",
                   layout_dashboard: [
+                    {
+                      id_layout_dashboard: 25,
+                      icone: "code",
+                      dashboard: "Syclus 1.0",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 26,
+                      icone: "code",
+                      dashboard: "Syclus 2.0",
+                      dashboard_complementar: [],
+                    },
                     {
                       id_layout_dashboard: 12,
                       icone: "code",
@@ -1909,6 +2039,18 @@ export function senhaLogin() {
                   icone: "code",
                   layout_dashboard: [
                     {
+                      id_layout_dashboard: 25,
+                      icone: "code",
+                      dashboard: "Syclus 1.0",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 26,
+                      icone: "code",
+                      dashboard: "Syclus 2.0",
+                      dashboard_complementar: [],
+                    },
+                    {
                       icone: "code",
                       id_layout_dashboard: 12,
                       dashboard: "Padrão",
@@ -1995,9 +2137,20 @@ export function senhaLogin() {
                   icone: "code",
                   layout_dashboard: [
                     {
+                      id_layout_dashboard: 25,
+                      icone: "code",
+                      dashboard: "Syclus 1.0",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 26,
+                      icone: "code",
+                      dashboard: "Syclus 2.0",
+                      dashboard_complementar: [],
+                    },
+                    {
                       icone: "code",
                       id_layout_dashboard: 12,
-
                       dashboard: "Padrão",
                       dashboard_complementar: [],
                     },
@@ -2094,9 +2247,20 @@ export function senhaLogin() {
                   icone: "code",
                   layout_dashboard: [
                     {
+                      id_layout_dashboard: 25,
+                      icone: "code",
+                      dashboard: "Syclus 1.0",
+                      dashboard_complementar: [],
+                    },
+                    {
+                      id_layout_dashboard: 26,
+                      icone: "code",
+                      dashboard: "Syclus 2.0",
+                      dashboard_complementar: [],
+                    },
+                    {
                       icone: "code",
                       id_layout_dashboard: 12,
-
                       dashboard: "Padrão",
                       dashboard_complementar: [],
                     },
